@@ -76,7 +76,6 @@ func doSomething() -> String {
 
 checkIfTitleIsAvengers()
 
-
 func checkIfTitleIsAvengers() -> Bool {
     var title: String = "Avengers"
 
@@ -97,8 +96,6 @@ func checkIfTitleIsAvengers2() -> Bool {
         return false
     }
 }
-
-
 
 // Calculated variables are basically functions
 // Generally good for when you don't need to pass data into the function
