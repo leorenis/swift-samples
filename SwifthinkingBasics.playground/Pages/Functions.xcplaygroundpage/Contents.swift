@@ -114,6 +114,11 @@ func calculateNumbers(value1: Int, value2: Int) -> Int {
 let result1 = calculateNumbers()
 let result2 = calculateNumbers(value1: number1, value2: number2)
 
+// variable to save a return from calculated closure
 var calculatedNumber: Int {
     return number1 + number2
 }
+
+// Both expressions does exactly the same.
+print(calculatedNumber)
+print(calculateNumbers())
