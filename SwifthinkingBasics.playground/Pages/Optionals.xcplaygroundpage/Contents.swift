@@ -40,11 +40,11 @@ print(myString ?? "There is no value!")
 // ---------------------------------------------------
 var userIsPremium: Bool? = nil
 
-func checkIfUserIsPremium() -> Bool? {
+@MainActor func checkIfUserIsPremium() -> Bool? {
     return userIsPremium
 }
 
-func checkIfUserIsPremium2() -> Bool {
+@MainActor func checkIfUserIsPremium2() -> Bool {
     return userIsPremium ?? false
 }
 
@@ -53,7 +53,7 @@ let isPremium = checkIfUserIsPremium2()
 
 // If-let
 // When if-let is successful, enter the closure
-func checkIfUserIsPremium3() -> Bool {
+@MainActor func checkIfUserIsPremium3() -> Bool {
     
     // If there is a value, let newValue equal that value
     if let newValue = userIsPremium {
@@ -64,7 +64,7 @@ func checkIfUserIsPremium3() -> Bool {
     }
 }
 
-func checkIfUserIsPremium4() -> Bool {
+@MainActor func checkIfUserIsPremium4() -> Bool {
     if let newValue = userIsPremium {
         return newValue
     }
@@ -72,7 +72,7 @@ func checkIfUserIsPremium4() -> Bool {
     return false
 }
 
-func checkIfUserIsPremium5() -> Bool {
+@MainActor func checkIfUserIsPremium5() -> Bool {
     if let userIsPremium {
         return userIsPremium
     }
@@ -82,7 +82,7 @@ func checkIfUserIsPremium5() -> Bool {
 
 // Guard
 // When a guard is a failure, enter the closure
-func checkIfUserIsPremium6() -> Bool {
+@MainActor func checkIfUserIsPremium6() -> Bool {
     
     // Make sure there is a value
     // If there is, let newValue equal that value
@@ -95,7 +95,7 @@ func checkIfUserIsPremium6() -> Bool {
     return newValue
 }
 
-func checkIfUserIsPremium7() -> Bool {
+@MainActor func checkIfUserIsPremium7() -> Bool {
     guard let userIsPremium else {
         return false
     }
@@ -111,7 +111,7 @@ var userDidCompleteOnboarding: Bool? = false
 var userFavoriteMovie: String? = nil
 
 
-func checkIfUserIsSetUp() -> Bool {
+@MainActor func checkIfUserIsSetUp() -> Bool {
 
     if let userIsNew, let userDidCompleteOnboarding, let userFavoriteMovie {
         // userIsNew == Bool AND
@@ -130,8 +130,7 @@ func checkIfUserIsSetUp() -> Bool {
     }
 }
 
-func checkIfUserIsSetUp2() -> Bool {
-    
+@MainActor func checkIfUserIsSetUp2() -> Bool {
     guard let userIsNew, let userDidCompleteOnboarding, let userFavoriteMovie else {
         // userIsNew == nil OR
         // userDidCompleteOnboarding == nil OR
@@ -159,7 +158,7 @@ func getUserStatus(userIsNew: Bool, userDidCompleteOnboarding: Bool, userFavorit
 
 
 // layered if-let
-func checkIfUserIsSetUp3() -> Bool {
+@MainActor func checkIfUserIsSetUp3() -> Bool {
     if let userIsNew {
         // userIsNew == Bool
         
@@ -190,7 +189,7 @@ func checkIfUserIsSetUp3() -> Bool {
 
 
 // layered guard
-func checkIfUserIsSetUp4() -> Bool {
+@MainActor func checkIfUserIsSetUp4() -> Bool {
     guard let userIsNew else {
         // userIsNew == nil
         return false
@@ -216,7 +215,7 @@ func checkIfUserIsSetUp4() -> Bool {
     )
 }
 
-func checkIfUserIsSetUp5() -> Bool {
+@MainActor func checkIfUserIsSetUp5() -> Bool {
     guard let userIsNew else {
         return false
     }
