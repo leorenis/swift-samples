@@ -10,7 +10,7 @@ var dictionary: [String:Bool] = [
     "Apple": true,
     "Orange": false
 ]
-print(dictionary, dictionary["Tomato"])
+print(dictionary, dictionary["Tomato"] ?? "Default Value")
 
 var anotherDictionary: [Int: String] = [
     0: "Apple",
@@ -55,4 +55,4 @@ var postDict: [String:PostModel] = [
 ]
 
 let postDictItem = postDict["abcd456"]
-print(postDictItem)
+print(postDictItem ?? "Blog not found")
