@@ -2,7 +2,7 @@
 //  GradientBootcamp.swift
 //  SwiftUIThinkingBootcamp
 //
-//  Created by Leo Renis Santos on 26/03/25.
+//  Created by Leo on 26/03/25.
 //
 
 import SwiftUI
