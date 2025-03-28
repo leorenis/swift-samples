@@ -12,11 +12,11 @@ struct StacksBootcamp: View {
     // HStack -> Horizontal
     // ZStacks -> zIndex (back to front)
     var body: some View {
+        /*
         let max: CGFloat = 100
         let medium: CGFloat = 75
         let min: CGFloat = 50
         
-        /*
         // VStack
         VStack(alignment: .center, spacing: 0, content: {
             Rectangle()
