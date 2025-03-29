@@ -2,7 +2,7 @@
 //  ExtratedFunctionsBootcamp.swift
 //  SwiftUIThinkingBootcamp
 //
-//  Created by Leo Renis Santos on 28/03/25.
+//  Created by Leo on 28/03/25.
 //
 
 import SwiftUI
@@ -10,6 +10,7 @@ import SwiftUI
 struct ExtratedFunctionsBootcamp: View {
     
     @State var bakcgroundColor: Color = .pink
+    @State var toggle: Bool = false
     
     var body: some View {
         ZStack {
@@ -26,8 +27,8 @@ struct ExtratedFunctionsBootcamp: View {
     var contentLayer: some View {
         // Content
         VStack {
-            Text("Title")
-                .font(.largeTitle)
+            Text("What's gonna happen?")
+                .font(.title)
             
             Button(action: {
                 buttonPressed()
@@ -42,8 +43,13 @@ struct ExtratedFunctionsBootcamp: View {
         }
     }
     
+    func toggleColor() {
+        toggle = !toggle
+    }
+    
     func buttonPressed() {
-        bakcgroundColor = .yellow
+        bakcgroundColor = toggle ? .pink : .yellow
+        toggleColor()
     }
 }
 
