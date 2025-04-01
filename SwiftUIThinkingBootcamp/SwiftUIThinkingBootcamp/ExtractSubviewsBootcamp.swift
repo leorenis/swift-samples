@@ -2,7 +2,7 @@
 //  ExtractSubviewsBootcamp.swift
 //  SwiftUIThinkingBootcamp
 //
-//  Created by Leo Renis Santos on 29/03/25.
+//  Created by Leo on 29/03/25.
 //
 
 import SwiftUI

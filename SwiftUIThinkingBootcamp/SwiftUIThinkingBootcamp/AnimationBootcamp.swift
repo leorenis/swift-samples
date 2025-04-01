@@ -2,7 +2,7 @@
 //  AnimationBootcamp.swift
 //  SwiftUIThinkingBootcamp
 //
-//  Created by Leo Renis Santos on 30/03/25.
+//  Created by Leo on 30/03/25.
 //
 
 import SwiftUI

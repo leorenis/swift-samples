@@ -2,7 +2,7 @@
 //  ScrollViewBootcamp.swift
 //  SwiftUIThinkingBootcamp
 //
-//  Created by Leoon 28/03/25.
+//  Created by Leo on 28/03/25.
 //
 
 import SwiftUI
