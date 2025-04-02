@@ -10,30 +10,29 @@ import SwiftUI
 struct NavigationViewBootcamp: View {
     var body: some View {
         
-        // Deprecated:
-        // Use NavigationStack and NavigationSplitView instead. For more information, see Migrating to new navigation types.
-        NavigationView {
+        // Use NavigationStack and NavigationSplitView instead NavigationView. For more information, see Migrating to new navigation types.
+        NavigationStack {
             ScrollView {
                 NavigationLink("Menu 1", destination: DestinationView())
             }
-        }
-        .navigationTitle("All inboxes")
-        //.navigationBarTitleDisplayMode(.inline)
-        //.navigationBarHidden(true)
-        .navigationBarItems(
-                leading:
+            .navigationTitle("All inboxes")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
                     HStack {
                         Image(systemName: "person.fill")
                         Image(systemName: "flame.fill")
-                    },
-                trailing: NavigationLink(
-                    destination: DestinationView(),
-                    label: {
-                        Image(systemName: "gear")
                     }
-                )
-        )
-        
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(
+                        destination: DestinationView(),
+                        label: {
+                            Image(systemName: "gear")
+                        }
+                    )
+               }
+            }
+        }
     }
 }
 
