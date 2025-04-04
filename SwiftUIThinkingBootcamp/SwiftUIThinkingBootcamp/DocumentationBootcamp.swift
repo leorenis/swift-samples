@@ -17,7 +17,6 @@ struct DocumentationBootcamp: View {
     
     // Leo: Working copy - Things to do:
     /**
-     * OBS: Video stopped 13min30
      * To fold block: Command + Ctrol + Left Arrow
      * 1. Fix title
      * 2. Fix alert
@@ -25,27 +24,52 @@ struct DocumentationBootcamp: View {
      */
     
     var body: some View {
-        NavigationStack {
-            ScrollView {
+        NavigationStack { // START: NAV
+            ZStack {
+                // Background
+                Color("AdaptiveColor")
+                    .ignoresSafeArea(.all)
                 
-                Text("Hello")
-                ForEach(data, id: \.self) { name in
-                    Text(name)
+                // Foreground
+                foregroundLayer
+                .navigationTitle(Text("Docs bootcamp"))
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Alert", action: {
+                            showAlert.toggle()
+                        })
+                   }
                 }
-            }.navigationTitle(Text("Docs bootcamp"))
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Alert", action: {
-                        showAlert.toggle()
-                    })
-               }
+                .alert(isPresented: $showAlert) {
+                    getAlert(text: "This is the alert")
+                }
             }
-            .alert(isPresented: $showAlert) {
-                getAlert(text: "This is the alert")
-            }
-        }
+        } // END: NAV
     }
     
+    /// This is the foreground layer that holds a scrollView
+    private var foregroundLayer: some View {
+        ScrollView { // START: SCROLLV
+            
+            Text("Hello")
+            ForEach(data, id: \.self) { name in
+                Text(name)
+            }
+        } // END: SCROLLV
+    }
+    
+    // MARK: FUNCTIONS
+    
+    /// Gets an alert with a specified title.
+    ///
+    /// This function creates and returns an alert immediately. The alert will have a title based on the text parameter, but will NOT have a message.
+    /// ```
+    /// getAlert(text: "This is the alert") -> Alert(title: Text("This is the alert"))
+    /// ```
+    ///
+    /// - Warning: There is no additional message in this Alert.
+    /// - Parameter text: This is the title for the alert.
+    /// - Returns: Returs an alert with a title.
     func getAlert(text: String) -> Alert {
         return Alert(title: Text(text))
     }
