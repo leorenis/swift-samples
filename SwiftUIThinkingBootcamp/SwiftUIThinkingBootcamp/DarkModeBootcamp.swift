@@ -2,7 +2,7 @@
 //  DarkModeBootcamp.swift
 //  SwiftUIThinkingBootcamp
 //
-//  Created by Leo Renis Santos on 03/04/25.
+//  Created by Leo on 03/04/25.
 //
 
 import SwiftUI
