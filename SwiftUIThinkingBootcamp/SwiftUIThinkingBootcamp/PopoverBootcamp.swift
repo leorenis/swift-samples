@@ -31,7 +31,8 @@ struct PopoverBootcamp: View {
                 ForEach(buttons) { button in
                     button
                 }
-            }.padding(.top, 10)
+            }
+            .padding(.top, 10)
             
             // METHOD 02 - Transition
             transitionLayer

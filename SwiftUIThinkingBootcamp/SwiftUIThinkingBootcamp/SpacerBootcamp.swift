@@ -62,7 +62,8 @@ struct SpacerBootcamp: View {
             HStack(spacing: 0) {
                 Text("Possible Navbar")
             }
-        }.background(Color.yellow)
+        }
+        .background(Color.yellow)
         
     }
 }
