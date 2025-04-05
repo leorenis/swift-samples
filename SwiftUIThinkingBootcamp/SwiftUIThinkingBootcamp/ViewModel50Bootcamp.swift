@@ -1,6 +1,7 @@
 //
 //  ViewModel50Bootcamp.swift
 //  SwiftUIThinkingBootcamp
+//  Episode: https://youtu.be/-yjKAb0Pj60?si=9HitwONVix8PLuRU
 //
 //  Created by Leo on 05/04/25.
 //
