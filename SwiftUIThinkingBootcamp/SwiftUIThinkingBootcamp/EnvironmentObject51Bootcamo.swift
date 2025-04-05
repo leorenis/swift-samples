@@ -54,14 +54,17 @@ struct EnvironmentObject51Bootcamo: View {
             List {
                 ForEach(viewModel.dataArray, id: \.self) { item in
                     NavigationLink(
-                        destination: ProductDetailsView(selected: item, viewModel: viewModel),
+                        // destination: ProductDetailsView(selected: item, viewModel: viewModel),
+                        destination: ProductDetailsView(selected: item),
                         label: {
                             Text(item)
                         })
 
                 }
-            }.navigationTitle("Apple products")
+            }
+            .navigationTitle("Apple products")
         }
+        .environmentObject(viewModel)
         .tint(.mint)
     }
 }
@@ -75,8 +78,16 @@ struct ProductDetailsView: View {
     /**
      * Although we're NOT using this  @ObservedObject var viewModel on this second screen, we have acces to it.
      * Except to pass to third  view ProductInfoView. This sounds like good, but if we had ten subviews in our hierarchy?
+     *   - The answer is: environmentObject on struct EnvironmentObject51Bootcamo.
+     *       ```
+     *        NavigationStack {
+     *          // all code here.
+     *        }
+     *       .environmentObject(viewModel)
+     *       ```
+     *  We don't need this anymore. All we need do is to change ProductInfoView to use a @EnvironmentObject instead @ObservedObject
      */
-    @ObservedObject var viewModel: EnvironmentViewModel
+    // @ObservedObject var viewModel: EnvironmentViewModel
     
     /// View Body: block is responsable for acts as entry point in this view.
     var body: some View {
@@ -94,7 +105,8 @@ struct ProductDetailsView: View {
                     .padding(.horizontal)
                 
                 NavigationLink {                // Destination
-                    ProductInfoView(viewModel: viewModel)
+                    // ProductInfoView(viewModel: viewModel)
+                    ProductInfoView()
                 } label: {                      // Label
                     HStack {
                         Text("Read more")
@@ -110,7 +122,7 @@ struct ProductDetailsView: View {
 ///
 struct ProductInfoView: View {
     // MARK: PROPERTIES
-    @ObservedObject var viewModel: EnvironmentViewModel
+    @EnvironmentObject var viewModel: EnvironmentViewModel
     
     /// View Body: block is responsable for acts as entry point in this view.
     var body: some View {
