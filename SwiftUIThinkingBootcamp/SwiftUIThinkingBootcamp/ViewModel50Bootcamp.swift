@@ -18,7 +18,7 @@ struct FruitModel: Identifiable {
 /// A class to provide data access for our fruits.
 ///
 class FruitViewModel: ObservableObject {
-    // @Published: for now, this is the same thing as the @State, except it's whitin a class.
+    // @Published: for now, this is the same thing as the @State (struct), except it's whitin a class.
     @Published var fruits: [FruitModel] = []
     @Published var isLoading: Bool = false
     
