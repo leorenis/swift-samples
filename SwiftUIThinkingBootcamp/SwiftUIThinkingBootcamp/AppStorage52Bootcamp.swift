@@ -25,8 +25,13 @@ struct AppStorage52Bootcamp: View {
             }
             
             Button("Save") {
-                currentUsername = "LRS"
+                let name: String = "LS"
+                currentUsername = name
+                UserDefaults.standard.set(name, forKey: "username")
             }
+        }
+        .onAppear {
+            currentUsername = UserDefaults.standard.string(forKey: "username")
         }
     }
 }
