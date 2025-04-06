@@ -39,6 +39,7 @@ struct AppStorage52Bootcamp: View {
             Button("Save") {
                 let name: String = "LS"
                 currentUsername = name
+                /// Important: Use this only to save small pieces of data. To large data, prefer a external database.
                 UserDefaults.standard.set(name, forKey: OptionsKey.username.key)
             }
         }
