@@ -15,6 +15,18 @@ struct AppStorage52Bootcamp: View {
     // MARK: PROPERTIES
     @State var currentUsername: String? = nil
     
+    /// A enum to provide options key. The main goal is avoid magic constants in the code.
+    ///
+    enum OptionsKey {
+        case username
+        
+        var key: String {
+            switch self {
+            case .username: return "username"
+            }
+        }
+    }
+    
     /// View Body: block is responsable for acts as entry point in this view.
     var body: some View {
         VStack(spacing: 20) {
@@ -27,11 +39,11 @@ struct AppStorage52Bootcamp: View {
             Button("Save") {
                 let name: String = "LS"
                 currentUsername = name
-                UserDefaults.standard.set(name, forKey: "username")
+                UserDefaults.standard.set(name, forKey: OptionsKey.username.key)
             }
         }
         .onAppear {
-            currentUsername = UserDefaults.standard.string(forKey: "username")
+            currentUsername = UserDefaults.standard.string(forKey: OptionsKey.username.key)
         }
     }
 }
