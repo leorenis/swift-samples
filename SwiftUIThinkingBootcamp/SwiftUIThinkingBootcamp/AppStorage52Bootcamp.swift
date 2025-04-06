@@ -13,7 +13,8 @@ import SwiftUI
 struct AppStorage52Bootcamp: View {
     
     // MARK: PROPERTIES
-    @State var currentUsername: String? = nil
+    // @State var currentUsername: String? = nil
+    @AppStorage(OptionsKey.username.key) var currentUsername: String?
     
     /// A enum to provide options key. The main goal is avoid magic constants in the code.
     ///
@@ -37,15 +38,17 @@ struct AppStorage52Bootcamp: View {
             }
             
             Button("Save") {
-                let name: String = "LS"
+                let name: String = "John Doe"
                 currentUsername = name
                 /// Important: Use this only to save small pieces of data. To large data, prefer a external database.
-                UserDefaults.standard.set(name, forKey: OptionsKey.username.key)
+                /// Tip: When we use @AppStorage, the state became able to update data directly by assing value to a variable.
+                ///   - We don't need use class UserDefaults anymore.
+                // UserDefaults.standard.set(name, forKey: OptionsKey.username.key)
             }
         }
-        .onAppear {
+        /*.onAppear {
             currentUsername = UserDefaults.standard.string(forKey: OptionsKey.username.key)
-        }
+        }*/
     }
 }
 
