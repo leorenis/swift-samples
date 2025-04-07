@@ -9,14 +9,11 @@ import SwiftUI
 
 /// A enum to provide options key. The main goal is avoid magic constants in the code.
 ///
-enum OnboardingStorageKey {
-    case signedIn
-    
-    var key: String {
-        switch self {
-        case .signedIn: return "signed_in"
-        }
-    }
+enum OnboardingStorageKey: String {
+    case signedIn = "signed_in"
+    case onboardingName = "onboardingName"
+    case onboardingAge = "onboardingAge"
+    case onboardingGender = "onboardingGender"
 }
 
 /// A class to provide  access for Onboarding Intro View.
@@ -24,7 +21,7 @@ enum OnboardingStorageKey {
 struct IntroView: View {
     
     // MARK: PROPERTIES
-    @AppStorage(OnboardingStorageKey.signedIn.key) var currentUserSignedIn: Bool = false
+    @AppStorage(OnboardingStorageKey.signedIn.rawValue) var currentUserSignedIn: Bool = false
     
     /// View Body: block  responsable for acts as entry point in this view.
     var body: some View {
@@ -41,7 +38,7 @@ struct IntroView: View {
             if currentUserSignedIn {
                 Text("Profile View")
             } else {
-                Text("Onboarding View")
+                OnboardingView()
             }
             
             // if user is signed in: profile view

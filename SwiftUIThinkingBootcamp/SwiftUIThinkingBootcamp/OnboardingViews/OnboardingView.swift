@@ -19,10 +19,28 @@ struct OnboardingView: View {
      * 2 - Add Age
      * 3 - Add gender
      */
-    @State var onboardingState: Int = 3
-    @State var textFieldName: String = ""
-    @State var slideAge: CGFloat = 25
-    @State var pickerGender: String = ""
+    @State var onboardingState: Int = 0
+    
+    // Onboarding inputs
+    @State var onboardingName: String = ""
+    @State var onboardingAge: CGFloat = 25
+    @State var onboardingGender: String = ""
+    
+    // Onboarding alert check
+    @State var showAlert: Bool = false
+    @State var alertTitle: String = ""
+    
+    // Onboarding App Storage
+    @AppStorage(OnboardingStorageKey.onboardingName.rawValue) var currentUserName: String?
+    @AppStorage(OnboardingStorageKey.onboardingAge.rawValue) var currentUserAge: Int?
+    @AppStorage(OnboardingStorageKey.onboardingGender.rawValue) var currentUserGender: String?
+    @AppStorage(OnboardingStorageKey.signedIn.rawValue) var currentUserSignedIn: Bool = false
+    
+    // Onboarding transitions states
+    let transition: AnyTransition = .asymmetric(
+        insertion: .move(edge: .trailing),  // enter rigth side
+        removal: .move(edge: .leading)      // leave left side
+    )
     
     /// View Body: block  responsable for acts as entry point in this view.
     var body: some View {
@@ -31,12 +49,16 @@ struct OnboardingView: View {
             switch onboardingState {
             case 0:
                 welcomeSection
+                    .transition(transition)
             case 1:
                 addNameSection
+                    .transition(transition)
             case 2:
                 addAgeSection
+                    .transition(transition)
             case 3:
                 addGenderSection
+                    .transition(transition)
             default:
                 RoundedRectangle(cornerRadius: 25.0)
                     .foregroundStyle(.green)
@@ -48,6 +70,8 @@ struct OnboardingView: View {
                 bottomButtonLayer
             }
             .padding(32)
+        }.alert(isPresented: $showAlert) {
+            Alert(title: Text(alertTitle))
         }
     }
 
@@ -63,7 +87,7 @@ struct OnboardingView: View {
 extension OnboardingView {
     /// This is the foreground layer that holds a OnboardingView
     private var bottomButtonLayer: some View {
-        Text("Sign in")
+        Text(getButtonLabel())
             .font(.headline)
             .foregroundStyle(.purple)
             .frame(height: 55)
@@ -71,7 +95,7 @@ extension OnboardingView {
             .background(Color.white)
             .cornerRadius(10)
             .onTapGesture {
-                
+                handleNextButtonPressed()
             }
     }
     
@@ -122,7 +146,7 @@ extension OnboardingView {
                 .fontWeight(.semibold)
                 .foregroundStyle(.white)
             
-            TextField("Enter your name...", text: $textFieldName)
+            TextField("Enter your name...", text: $onboardingName)
                 .font(.headline)
                 .frame(height: 55)
                 .padding(.horizontal)
@@ -147,12 +171,12 @@ extension OnboardingView {
                 .fontWeight(.semibold)
                 .foregroundStyle(.white)
             
-            Text(String(format: "%.0f", slideAge))
+            Text(String(format: "%.0f", onboardingAge))
                 .font(.body)
                 .fontWeight(.bold)
                 .foregroundStyle(.white)
             
-            Slider(value: $slideAge, in: 18...100, step: 1)
+            Slider(value: $onboardingAge, in: 18...100, step: 1)
                 .accentColor(.white)
             
             Spacer()
@@ -175,7 +199,7 @@ extension OnboardingView {
             
             // Menu with Picker
             Menu {
-                Picker(selection: $pickerGender) {
+                Picker(selection: $onboardingGender) {
                     Text("Male").tag("male")
                     Text("Female").tag("female")
                     Text("Non-binary").tag("non-binary")
@@ -184,7 +208,7 @@ extension OnboardingView {
                 }
                 
             } label: {
-                Text(pickerGender.count > 0 ? "\(pickerGender)".capitalized : "Select a gender")
+                Text(onboardingGender.count > 0 ? "\(onboardingGender)".capitalized : "Select a gender")
                     .foregroundStyle(.purple)
                     .font(.headline)
                     .frame(height: 55)
@@ -199,5 +223,91 @@ extension OnboardingView {
             Spacer()
         }
         .padding(32)
+    }
+}
+
+// MARK: FUNCTIONS
+extension OnboardingView {
+    
+    /// Handle Onboarding button.
+    ///
+    /// This function is responsable for manage tap gesture on the footer button on the onboarding screen
+    /// ```
+    /// handleNextButtonPressed()
+    /// ```
+    ///
+    func handleNextButtonPressed() {
+        
+        // CHECK INPUTS
+        switch onboardingState {
+        case 1:
+            guard onboardingName.count >= 3 else {
+                showAlertOnboarding(title: "😩 \nPlease, your name must be at least 3 characters long!")
+                return
+            }
+        case 3:
+            guard onboardingGender.count > 1 else {
+                showAlertOnboarding(title: "😬 \nPlease, select a gender before moving foward!")
+                return
+            }
+            break
+        default:
+            break
+        }
+        
+        // GO TO THE NEXT SECTION
+        if onboardingState == 3 {
+            signIn()
+        } else {
+            withAnimation(.spring) {
+                onboardingState += 1
+            }
+        }
+    }
+    
+    /// Handle Onboarding alert.
+    ///
+    /// This function is responsable for manage alerts on the onboarding screen
+    /// ```
+    /// showAlertOnboarding(title: "Please, enter a value")
+    /// ```
+    ///
+    func showAlertOnboarding(title: String) {
+        showAlert.toggle()
+        alertTitle = title
+    }
+    
+    /// Handle Onboarding signedIn..
+    ///
+    /// This function is responsable for manage signedIn on the onboarding screen.
+    /// ```
+    /// signIn()
+    /// ```
+    func signIn() {
+        currentUserName = onboardingName
+        currentUserAge = Int(onboardingAge)
+        currentUserGender = onboardingGender
+        withAnimation(.spring) {
+            currentUserSignedIn = true
+        }
+    }
+    
+    /// Gets a string with a specified label.
+    ///
+    /// This function creates and returns an label immediately. The string will have a label based on the onboardingState.
+    /// ```
+    /// getButtonLabel()
+    /// ```
+    ///
+    /// - Returns: Returs an string with a label:
+    ///     - 0:  Sign up;
+    ///     - 3: Finish;
+    ///     - otherwise: next.
+    func getButtonLabel() -> String {
+        switch onboardingState {
+        case 0: return "Sign up"
+        case 3: return "Finish"
+        default: return "Next"
+        }
     }
 }
