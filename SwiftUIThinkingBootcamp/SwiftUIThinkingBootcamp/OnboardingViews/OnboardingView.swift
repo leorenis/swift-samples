@@ -19,9 +19,10 @@ struct OnboardingView: View {
      * 2 - Add Age
      * 3 - Add gender
      */
-    @State var onboardingState: Int = 2
+    @State var onboardingState: Int = 3
     @State var textFieldName: String = ""
     @State var slideAge: CGFloat = 25
+    @State var pickerGender: String = ""
     
     /// View Body: block  responsable for acts as entry point in this view.
     var body: some View {
@@ -34,6 +35,8 @@ struct OnboardingView: View {
                 addNameSection
             case 2:
                 addAgeSection
+            case 3:
+                addGenderSection
             default:
                 RoundedRectangle(cornerRadius: 25.0)
                     .foregroundStyle(.green)
@@ -144,8 +147,53 @@ extension OnboardingView {
                 .fontWeight(.semibold)
                 .foregroundStyle(.white)
             
+            Text(String(format: "%.0f", slideAge))
+                .font(.body)
+                .fontWeight(.bold)
+                .foregroundStyle(.white)
+            
             Slider(value: $slideAge, in: 18...100, step: 1)
                 .accentColor(.white)
+            
+            Spacer()
+            Spacer()
+        }
+        .padding(32)
+    }
+    
+    /// Foreground layer that holds a OnboardingView
+    /// This snippet shows add gender section
+    ///
+    private var addGenderSection: some View {
+        VStack(spacing: 40) {
+            Spacer()
+            
+            Text("What's your gender?")
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+                .foregroundStyle(.white)
+            
+            // Menu with Picker
+            Menu {
+                Picker(selection: $pickerGender) {
+                    Text("Male").tag("male")
+                    Text("Female").tag("female")
+                    Text("Non-binary").tag("non-binary")
+                } label: {
+                    Text("select a gender")
+                }
+                
+            } label: {
+                Text(pickerGender.count > 0 ? "\(pickerGender)".capitalized : "Select a gender")
+                    .foregroundStyle(.purple)
+                    .font(.headline)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white)
+                    .cornerRadius(8)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                
+            }
             
             Spacer()
             Spacer()
