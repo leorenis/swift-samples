@@ -19,7 +19,7 @@ struct OnboardingView: View {
      * 2 - Add Age
      * 3 - Add gender
      */
-    @State var onboardingState: Int = 0
+    @State var onboardingState: Int = SectionOption.welcome.rawValue
     
     // Onboarding inputs
     @State var onboardingName: String = ""
@@ -47,16 +47,16 @@ struct OnboardingView: View {
         ZStack {
             // Content
             switch onboardingState {
-            case 0:
+            case SectionOption.welcome.rawValue:
                 welcomeSection
                     .transition(transition)
-            case 1:
+            case SectionOption.addName.rawValue:
                 addNameSection
                     .transition(transition)
-            case 2:
+            case SectionOption.addAge.rawValue:
                 addAgeSection
                     .transition(transition)
-            case 3:
+            case SectionOption.addGender.rawValue:
                 addGenderSection
                     .transition(transition)
             default:
@@ -226,6 +226,18 @@ extension OnboardingView {
     }
 }
 
+// MARK: ENUMS
+extension OnboardingView {
+
+    /// A enum to provide options key. The main goal is avoid magic constants in the code.
+    enum SectionOption: Int {
+        case welcome = 0
+        case addName = 1
+        case addAge = 2
+        case addGender = 3
+    }
+}
+
 // MARK: FUNCTIONS
 extension OnboardingView {
     
@@ -240,12 +252,12 @@ extension OnboardingView {
         
         // CHECK INPUTS
         switch onboardingState {
-        case 1:
+        case SectionOption.addName.rawValue:
             guard onboardingName.count >= 3 else {
                 showAlertOnboarding(title: "😩 \nPlease, your name must be at least 3 characters long!")
                 return
             }
-        case 3:
+        case SectionOption.addGender.rawValue:
             guard onboardingGender.count > 1 else {
                 showAlertOnboarding(title: "😬 \nPlease, select a gender before moving foward!")
                 return
@@ -256,7 +268,7 @@ extension OnboardingView {
         }
         
         // GO TO THE NEXT SECTION
-        if onboardingState == 3 {
+        if onboardingState == SectionOption.addGender.rawValue {
             signIn()
         } else {
             withAnimation(.spring) {
@@ -305,8 +317,8 @@ extension OnboardingView {
     ///     - otherwise: next.
     func getButtonLabel() -> String {
         switch onboardingState {
-        case 0: return "Sign up"
-        case 3: return "Finish"
+        case SectionOption.welcome.rawValue: return "Sign up"
+        case SectionOption.addGender.rawValue: return "Finish"
         default: return "Next"
         }
     }
