@@ -23,7 +23,7 @@ struct OnboardingView: View {
     
     // Onboarding inputs
     @State var onboardingName: String = ""
-    @State var onboardingAge: CGFloat = 25
+    @State var onboardingAge: CGFloat = 25.0
     @State var onboardingGender: String = ""
     
     // Onboarding alert check
@@ -61,7 +61,7 @@ struct OnboardingView: View {
                     .transition(transition)
             default:
                 RoundedRectangle(cornerRadius: 25.0)
-                    .foregroundStyle(.green)
+                    .foregroundStyle(.purple)
             }
             
             // Buttons
@@ -271,7 +271,7 @@ extension OnboardingView {
         if onboardingState == SectionOption.addGender.rawValue {
             signIn()
         } else {
-            withAnimation(.spring) {
+            withAnimation(.spring()) {
                 onboardingState += 1
             }
         }
@@ -299,7 +299,7 @@ extension OnboardingView {
         currentUserName = onboardingName
         currentUserAge = Int(onboardingAge)
         currentUserGender = onboardingGender
-        withAnimation(.spring) {
+        withAnimation(.spring()) {
             currentUserSignedIn = true
         }
     }

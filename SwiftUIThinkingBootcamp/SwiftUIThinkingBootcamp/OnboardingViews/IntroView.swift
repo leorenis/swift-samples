@@ -36,15 +36,10 @@ struct IntroView: View {
             .ignoresSafeArea(.all)
             
             if currentUserSignedIn {
-                Text("Profile View")
+                ProfileView()
             } else {
                 OnboardingView()
             }
-            
-            // if user is signed in: profile view
-            // else onboarding view
-            
-            
         }
     }
 }
