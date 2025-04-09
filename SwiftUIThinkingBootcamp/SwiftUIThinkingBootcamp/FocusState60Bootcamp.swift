@@ -23,13 +23,22 @@ struct FocusState60Bootcamp: View {
 ///
 struct FocusLoginView: View {
     
+    /// A enum to provide options key. The main goal is avoid magic constants in the code.
+    ///
+    enum FieldOptions: Hashable {
+        case username, password
+    }
+    
     // MARK: PROPERTIES
     // username
-    @FocusState private var usernameInFocus: Bool
+    // @FocusState private var usernameInFocus: Bool
     @State private var username: String = ""
     
-    @FocusState private var passwordInFocus: Bool
+    // @FocusState private var passwordInFocus: Bool
     @State private var password: String = ""
+    
+    // Focus state from enum fields
+    @FocusState private var fieldInFocus: FieldOptions?
     
     var body: some View {
         Spacer()
@@ -55,25 +64,29 @@ struct FocusLoginView: View {
                 .padding(.horizontal)
                 .overlay(
                     Rectangle()
-                        .fill(usernameInFocus ? .blue : .gray)
+                        .fill(fieldInFocus == .username ? .blue : .gray)
                         .frame(height: 1)
                         .offset(y: 24)
                 )
                 .frame(height: 50)
                 .background(.thinMaterial)
-                .focused($usernameInFocus)
+                .textInputAutocapitalization(.never)
+                .focused($fieldInFocus, equals: .username)
+                //.focused($usernameInFocus)
             
-            TextField("Enter password...", text: $password)
+            SecureField("Enter password...", text: $password)
                 .padding(.horizontal)
                 .overlay(
                     Rectangle()
-                        .fill(passwordInFocus ? .blue : .gray)
+                        .fill(fieldInFocus == .password ? .blue : .gray)
                         .frame(height: 1)
                         .offset(y: 24)
                 )
                 .frame(height: 50)
                 .background(.thinMaterial)
-                .focused($passwordInFocus)
+                .textInputAutocapitalization(.never)
+                .focused($fieldInFocus, equals: .password)
+                //.focused($passwordInFocus)
             
             Button("Sing up 🚀".uppercased()) {
                 let usernameIsValid = !username.isEmpty
@@ -82,11 +95,9 @@ struct FocusLoginView: View {
                 if usernameIsValid && passwordIsValid {
                     print("Login success")
                 } else if usernameIsValid {
-                    usernameInFocus = false
-                    passwordInFocus = true
+                    fieldInFocus = .password
                 } else {
-                    usernameInFocus = true
-                    passwordInFocus = false
+                    fieldInFocus = .username
                 }
             }
         }
