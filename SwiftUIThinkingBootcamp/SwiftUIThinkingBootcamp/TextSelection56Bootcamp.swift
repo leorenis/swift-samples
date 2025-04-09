@@ -25,9 +25,6 @@ struct TextSelection56Bootcamp: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal)
         .background(Color("AdaptiveColor"))
-        
-        
-        
     }
 }
 
