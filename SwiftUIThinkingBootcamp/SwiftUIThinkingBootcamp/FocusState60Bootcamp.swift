@@ -2,14 +2,16 @@
 //  FocusState60Bootcamp.swift
 //  SwiftUIThinkingBootcamp
 //
-//  Created by Leo Renis Santos on 09/04/25.
+//  Created by Leo on 09/04/25.
 //
 
 import SwiftUI
 
+/// A data struct to provide a Model of Fruits.
+///
 struct FocusState60Bootcamp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
     }
 }
 
