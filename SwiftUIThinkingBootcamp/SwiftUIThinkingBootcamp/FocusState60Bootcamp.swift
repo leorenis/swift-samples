@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// A data struct to provide a Model of Fruits.
+/// A data struct to provide struct to practicing FocusState.
 ///
 struct FocusState60Bootcamp: View {
     var body: some View {
