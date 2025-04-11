@@ -72,6 +72,7 @@ struct FocusLoginView: View {
                 .background(.thinMaterial)
                 .textInputAutocapitalization(.never)
                 .focused($fieldInFocus, equals: .username)
+                .submitLabel(.continue)
                 //.focused($usernameInFocus)
             
             SecureField("Enter password...", text: $password)
