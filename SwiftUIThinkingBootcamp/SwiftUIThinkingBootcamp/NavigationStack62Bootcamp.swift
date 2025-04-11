@@ -11,7 +11,29 @@ import SwiftUI
 struct NavigationStack62Bootcamp: View {
     
     // MARK: PROPERTIES
+    @State private var stackPath: [String] = []
+    
     var body: some View {
+        lazyNavigationView
+        navigationPathView
+    }
+    
+    var navigationPathView: some View {
+        /// Strategy should be used in complex app navigations.
+        NavigationStack(path: $stackPath) {
+            VStack (spacing: 40) {
+                Button("Super segue!") {
+                    stackPath.append(contentsOf: ["Nav1", "Nav2", "Nav3"])
+                }
+            }
+            .navigationTitle("Navigation path")
+            .navigationDestination(for: String.self) { value in
+                Text("Detail: \(value)")
+            }
+        }
+    }
+    
+    var lazyNavigationView: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
