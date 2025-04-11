@@ -16,13 +16,29 @@ struct NavigationStack62Bootcamp: View {
             ScrollView {
                 VStack(spacing: 20) {
                     ForEach(0..<10) { index in
-                        NavigationLink(destination: MyDetailDestinationView(value: index)) {
+                        /**
+                         * Caution:
+                         * - EAGER aproach. ISSUE: All my destination view is been Loading when NavigationStack used.
+                         *   e.g:
+                         *      NavigationLink(destination: MyDetailDestinationView(value: index)) {
+                         *          Text("Click me \(index)")
+                         *      }
+                         *
+                         * Solution:
+                         * - LAZY: See the current aproach.
+                         *  e.g:
+                         *      NavigationLink(value: index) {...}
+                         */
+                        NavigationLink(value: index) {
                             Text("Click me \(index)")
                         }
                     }
                 }
             }
             .navigationTitle("Navigation stack")
+            .navigationDestination(for: Int.self) { value in
+                MyDetailDestinationView(value: value)
+            }
         }
     }
 }
