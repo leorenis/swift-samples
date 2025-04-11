@@ -33,11 +33,28 @@ struct NavigationStack62Bootcamp: View {
                             Text("Click me \(index)")
                         }
                     }
+                    
+                    /**
+                     * Lets try another fruits array, now
+                     *  Huum... The link does't works!! Why?
+                     *      Because the navigationDestination expect for Int.self. I MUST add a new .navigationDestination(for: String.self
+                     *
+                     *  We can have multiple destination for multiple datatypes!!
+                     */
+                    let fruits: [String] = ["Banana", "Peaches", "Pear", "Orange", "Guava", "Papaya"]
+                    ForEach(fruits, id: \.self) { fruit in
+                        NavigationLink(value: fruit) {
+                            Text("Link: \(fruit)")
+                        }
+                    }
                 }
             }
             .navigationTitle("Navigation stack")
             .navigationDestination(for: Int.self) { value in
                 MyDetailDestinationView(value: value)
+            }
+            .navigationDestination(for: String.self) { fruit in
+                Text(fruit)
             }
         }
     }
