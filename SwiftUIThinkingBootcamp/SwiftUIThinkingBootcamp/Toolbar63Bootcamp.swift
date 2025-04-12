@@ -9,12 +9,28 @@ import SwiftUI
 
 /// A data struct to provide struct to practicing FocusState.
 struct Toolbar63Bootcamp: View {
+    
+    // MARK: PROPERTIES
+    @State private var text: String = ""
+    
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.indigo
+                Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1))
                     .ignoresSafeArea(edges: .all)
+                
+                ScrollView {
+                    TextField("Placeholder...", text: $text)
+                        .padding()
+                    
+                    ForEach (0..<50) { _ in
+                        Rectangle()
+                            .fill(.indigo)
+                            .frame(width: 200, height: 200)
+                    }
+                }
             }
+            
             .navigationTitle("Toolbar")
             /*.navigationBarItems(                         // DEPRECATED
                 leading: Image(systemName: "heart.fill"),
@@ -30,8 +46,14 @@ struct Toolbar63Bootcamp: View {
                         Image(systemName: "gear")
 //                    }
                 }
+                ToolbarItem(placement: .keyboard) { // build app to see the toolbar item on keyboard.
+                    Image(systemName: "key")
+                }
                 
             }
+//            .toolbar(.hidden, for: .navigationBar)
+//            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
         }
     }
 }
