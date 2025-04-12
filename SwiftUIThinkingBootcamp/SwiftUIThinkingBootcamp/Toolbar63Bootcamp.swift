@@ -10,7 +10,29 @@ import SwiftUI
 /// A data struct to provide struct to practicing FocusState.
 struct Toolbar63Bootcamp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ZStack {
+                Color.indigo
+                    .ignoresSafeArea(edges: .all)
+            }
+            .navigationTitle("Toolbar")
+            /*.navigationBarItems(                         // DEPRECATED
+                leading: Image(systemName: "heart.fill"),
+                trailing: Image(systemName: "gear")
+            )*/
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading, content: {
+                    Image(systemName: "heart.fill")
+                })
+                ToolbarItem(placement: .automatic) {
+//                    HStack {
+//                        Image(systemName: "house.fill")
+                        Image(systemName: "gear")
+//                    }
+                }
+                
+            }
+        }
     }
 }
 
