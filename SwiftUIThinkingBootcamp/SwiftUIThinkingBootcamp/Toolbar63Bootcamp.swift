@@ -12,9 +12,10 @@ struct Toolbar63Bootcamp: View {
     
     // MARK: PROPERTIES
     @State private var text: String = ""
+    @State private var paths: [String] = []
     
     var body: some View {
-        NavigationStack {
+        NavigationStack (path: $paths) {
             ZStack {
                 Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1))
                     .ignoresSafeArea(edges: .all)
@@ -54,6 +55,19 @@ struct Toolbar63Bootcamp: View {
 //            .toolbar(.hidden, for: .navigationBar)
 //            .toolbarBackground(.hidden, for: .navigationBar)
             .toolbarColorScheme(.dark, for: .navigationBar)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarTitleMenu {
+                Button("Screen one") {
+                    paths.append("Screen one")
+                }
+                Button("Screen two") {
+                    paths.append("Screen two")
+                }
+            }
+            .navigationDestination(for: String.self) { value in
+                Text("Destination for \(value)")
+            }
+            
         }
     }
 }
