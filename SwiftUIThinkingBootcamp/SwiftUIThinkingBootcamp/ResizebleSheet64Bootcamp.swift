@@ -27,9 +27,9 @@ struct ResizebleSheet64Bootcamp: View {
                 }
                 .sheet(isPresented: $showSheet) {
                     MyNextSheetView(detents: $detents)
-                        .presentationDetents([.fraction(0.2), .height(200),.medium, .large], selection: $detents)
-                        .presentationDragIndicator(.automatic)
-                        .interactiveDismissDisabled(true)
+//                        .presentationDetents([.fraction(0.2), .height(200),.medium, .large], selection: $detents)
+//                        .presentationDragIndicator(.automatic)
+//                        .interactiveDismissDisabled(true)
                 }
             }
         }
@@ -62,6 +62,9 @@ struct MyNextSheetView: View {
                 }
             }
         }
+        .presentationDetents([.fraction(0.2), .height(200),.medium, .large], selection: $detents)
+        .presentationDragIndicator(.automatic)
+        .interactiveDismissDisabled(true)
     }
 }
 
