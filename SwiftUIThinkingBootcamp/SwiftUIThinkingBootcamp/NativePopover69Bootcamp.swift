@@ -24,11 +24,18 @@ struct NativePopover69Bootcamp: View {
             Button("Click me") {
                 showPopover.toggle()
             }
-            .popover(isPresented: $showPopover) {
+            .padding()
+            .background(Color.yellow)
+            .popover(isPresented: $showPopover, attachmentAnchor: .point(.top), content: {
                 Text("Hello, popover!")
                     .padding()
                     .presentationCompactAdaptation(.popover)
-            }
+            })
+//            .popover(isPresented: $showPopover) {
+//                Text("Hello, popover!")
+//                    .padding()
+//                    .presentationCompactAdaptation(.popover)
+//            }
         }
     }
 }
