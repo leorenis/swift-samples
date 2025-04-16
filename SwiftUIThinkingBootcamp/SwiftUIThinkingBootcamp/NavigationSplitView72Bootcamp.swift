@@ -14,6 +14,7 @@ struct NavigationSplitView72Bootcamp: View {
     // MARK: PROPERTIES
     @State private var visibility: NavigationSplitViewVisibility = .all
     @State private var selectedCategory: FoodCategory? = nil
+    @State private var selectedFruit: Fruit? = nil
     
     var body: some View {
         
@@ -22,6 +23,7 @@ struct NavigationSplitView72Bootcamp: View {
                 ForEach(FoodCategory.allCases, id: \.self) { category in
                     Button(category.rawValue.capitalized) {
                         selectedCategory = category
+                        selectedFruit = nil
                     }
                 }
             }
@@ -34,7 +36,7 @@ struct NavigationSplitView72Bootcamp: View {
                         List {
                             ForEach(Fruit.allCases, id: \.self) { fruit in
                                 Button(fruit.rawValue.capitalized) {
-                                    
+                                  selectedFruit = fruit
                                 }
                             }
                         }
@@ -44,9 +46,13 @@ struct NavigationSplitView72Bootcamp: View {
             }
         }
         detail: {
-            Color.green
+            if let selectedFruit {
+                Text("You selected: \(selectedFruit.rawValue.capitalized)")
+                    .font(.headline)
+                    .navigationTitle(selectedFruit.rawValue.capitalized)
+            }
         }
-        .navigationSplitViewStyle(.prominentDetail)
+        .navigationSplitViewStyle(.balanced)
         
     }
 }
