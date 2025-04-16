@@ -12,12 +12,17 @@ import SwiftUI
 struct NavigationSplitView72Bootcamp: View {
     
     // MARK: PROPERTIES
-    @State private var visibility: NavigationSplitViewVisibility = .automatic
+    @State private var visibility: NavigationSplitViewVisibility = .all
     
     var body: some View {
         
         NavigationSplitView(columnVisibility: $visibility) {
-            Color.red
+            List {
+                ForEach(FoodCategory.allCases, id: \.self) { category in
+                    Text(category.rawValue.capitalized)
+                }
+            }
+            .navigationTitle("All categories")
         } content: {
             Color.blue
         }
@@ -25,7 +30,6 @@ struct NavigationSplitView72Bootcamp: View {
             Color.green
         }
         .navigationSplitViewStyle(.prominentDetail)
-
         
     }
 }
@@ -33,4 +37,10 @@ struct NavigationSplitView72Bootcamp: View {
 // MARK: PREVIEW
 #Preview {
     NavigationSplitView72Bootcamp()
+}
+
+/// A enum to provide options key. The main goal is avoid magic constants in the code.
+///
+enum FoodCategory: String, CaseIterable {
+    case fruits, vegetables, meats
 }
