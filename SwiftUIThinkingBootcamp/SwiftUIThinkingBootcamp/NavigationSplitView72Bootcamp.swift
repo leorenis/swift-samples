@@ -43,6 +43,8 @@ struct NavigationSplitView72Bootcamp: View {
                     default: EmptyView()
                     }
                 }.navigationTitle("Categories")
+            } else {
+                Text("Please select a category.")
             }
         }
         detail: {
@@ -50,6 +52,12 @@ struct NavigationSplitView72Bootcamp: View {
                 Text("You selected: \(selectedFruit.rawValue.capitalized)")
                     .font(.headline)
                     .navigationTitle(selectedFruit.rawValue.capitalized)
+            } else {
+                Image(systemName: "hand.rays")
+                    .font(.system(size: 52))
+                    .font(.largeTitle)
+                    .foregroundStyle(.secondary)
+                    
             }
         }
         .navigationSplitViewStyle(.balanced)
