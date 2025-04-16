@@ -13,18 +13,35 @@ struct NavigationSplitView72Bootcamp: View {
     
     // MARK: PROPERTIES
     @State private var visibility: NavigationSplitViewVisibility = .all
+    @State private var selectedCategory: FoodCategory? = nil
     
     var body: some View {
         
         NavigationSplitView(columnVisibility: $visibility) {
             List {
                 ForEach(FoodCategory.allCases, id: \.self) { category in
-                    Text(category.rawValue.capitalized)
+                    Button(category.rawValue.capitalized) {
+                        selectedCategory = category
+                    }
                 }
             }
             .navigationTitle("All categories")
         } content: {
-            Color.blue
+            if let selectedCategory {
+                Group {
+                    switch selectedCategory {
+                    case .fruits:
+                        List {
+                            ForEach(Fruit.allCases, id: \.self) { fruit in
+                                Button(fruit.rawValue.capitalized) {
+                                    
+                                }
+                            }
+                        }
+                    default: EmptyView()
+                    }
+                }.navigationTitle("Categories")
+            }
         }
         detail: {
             Color.green
@@ -44,3 +61,4 @@ struct NavigationSplitView72Bootcamp: View {
 enum FoodCategory: String, CaseIterable {
     case fruits, vegetables, meats
 }
+

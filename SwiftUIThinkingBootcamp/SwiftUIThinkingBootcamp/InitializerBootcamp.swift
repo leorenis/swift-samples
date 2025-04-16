@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum Fruit {
+enum Fruit: String, CaseIterable {
     case apple, orange, peaches
     var title: String {
         switch self {
