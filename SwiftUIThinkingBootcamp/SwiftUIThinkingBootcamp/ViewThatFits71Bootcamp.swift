@@ -10,7 +10,29 @@ import SwiftUI
 /// A data struct to provide struct to practicing ViewFits.
 struct ViewThatFits71Bootcamp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            // Background
+            Color.teal
+                .edgesIgnoringSafeArea(.all)
+            
+            // Foreground
+            
+            /**
+             *  ViewThatFits selects the first child whose ideal size on the constrained axes fits within the proposed size. This means that you provide views in order of preference. Usually this order is largest to smallest
+             */
+            ViewThatFits {
+                Text("This is some text that will overflow, I hope you see it in action here!")
+                Text("This is some text that will overflow, I hope you see it!")
+                Text("This is some text that will overflow!")
+            }
+//            .lineLimit(1)
+//            .minimumScaleFactor(0.3)
+                
+        }
+        .frame(height: 300)
+        .padding(16)
+        .font(.headline)
+        
     }
 }
 
