@@ -12,10 +12,11 @@ import SwiftUI
 struct NavigationSplitView72Bootcamp: View {
     
     // MARK: PROPERTIES
+    @State private var visibility: NavigationSplitViewVisibility = .automatic
     
     var body: some View {
         
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $visibility) {
             Color.red
         } content: {
             Color.blue
@@ -23,6 +24,7 @@ struct NavigationSplitView72Bootcamp: View {
         detail: {
             Color.green
         }
+        .navigationSplitViewStyle(.prominentDetail)
 
         
     }
