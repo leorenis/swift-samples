@@ -20,7 +20,7 @@ struct ViewThatFits71Bootcamp: View {
             /**
              *  ViewThatFits selects the first child whose ideal size on the constrained axes fits within the proposed size. This means that you provide views in order of preference. Usually this order is largest to smallest
              */
-            ViewThatFits {
+            ViewThatFits (in: .horizontal) {
                 Text("This is some text that will overflow, I hope you see it in action here!")
                 Text("This is some text that will overflow, I hope you see it!")
                 Text("This is some text that will overflow!")
