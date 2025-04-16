@@ -23,10 +23,11 @@ struct NavigationSplitView72Bootcamp: View {
              * Refactoring: Changing List to act as a ForEach passing Binding selection: $selectedItem. This is amazing, because turn List able shows both on iPad and iPhone experiences. This is Amazing!
              */
             List(FoodCategory.allCases, id: \.rawValue, selection: $selectedCategory) { category in
-                Button(category.rawValue.capitalized) {
-                    selectedCategory = category
-                    selectedFruit = nil
-                }
+                NavigationLink(category.rawValue.capitalized, value: category)
+//                Button(category.rawValue.capitalized) {
+//                    selectedCategory = category
+//                    selectedFruit = nil
+//                }
             }
 
 //            List {
@@ -44,11 +45,13 @@ struct NavigationSplitView72Bootcamp: View {
                     switch selectedCategory {
                     case .fruits:
                         List(Fruit.allCases, id: \.rawValue, selection: $selectedFruit) { fruit in
-                            Button(fruit.rawValue.capitalized) {
-                              selectedFruit = fruit
-                            }
+                            NavigationLink(fruit.rawValue.capitalized, value: fruit)
+//                            Button(fruit.rawValue.capitalized) {
+//                              selectedFruit = fruit
+//                            }
                         }
-                    default: EmptyView()
+                    default:
+                        EmptyView() // To be implemented
                     }
                 }.navigationTitle("Categories")
             } else {
