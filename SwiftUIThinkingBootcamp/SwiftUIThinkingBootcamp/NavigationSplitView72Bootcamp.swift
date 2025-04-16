@@ -19,25 +19,33 @@ struct NavigationSplitView72Bootcamp: View {
     var body: some View {
         
         NavigationSplitView(columnVisibility: $visibility) {
-            List {
-                ForEach(FoodCategory.allCases, id: \.self) { category in
-                    Button(category.rawValue.capitalized) {
-                        selectedCategory = category
-                        selectedFruit = nil
-                    }
+            /**
+             * Refactoring: Changing List to act as a ForEach passing Binding selection: $selectedItem. This is amazing, because turn List able shows both on iPad and iPhone experiences. This is Amazing!
+             */
+            List(FoodCategory.allCases, id: \.rawValue, selection: $selectedCategory) { category in
+                Button(category.rawValue.capitalized) {
+                    selectedCategory = category
+                    selectedFruit = nil
                 }
             }
+
+//            List {
+//                ForEach(FoodCategory.allCases, id: \.self) { category in
+//                    Button(category.rawValue.capitalized) {
+//                        selectedCategory = category
+//                        selectedFruit = nil
+//                    }
+//                }
+//            }
             .navigationTitle("All categories")
         } content: {
             if let selectedCategory {
                 Group {
                     switch selectedCategory {
                     case .fruits:
-                        List {
-                            ForEach(Fruit.allCases, id: \.self) { fruit in
-                                Button(fruit.rawValue.capitalized) {
-                                  selectedFruit = fruit
-                                }
+                        List(Fruit.allCases, id: \.rawValue, selection: $selectedFruit) { fruit in
+                            Button(fruit.rawValue.capitalized) {
+                              selectedFruit = fruit
                             }
                         }
                     default: EmptyView()
