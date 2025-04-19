@@ -11,11 +11,14 @@ import SwiftUI
 /// A data struct to provide struct to practicing GridView iOS 16+.
 struct GridView73Bootcamp: View {
     
+    private let dimensions: Int = 4
+    
     // MARK: BODY VIEW
     var body: some View {
         
         // Shows Grid Rows sample
-        showGridRowsSample
+        // showGridRowsSample
+        showGridRowsAndcolumnsSample
     }
     
     // MARK: FUNCTIONS
@@ -37,11 +40,6 @@ struct GridView73Bootcamp: View {
             .foregroundStyle(.primary)
             .background(Color("AdaptiveColor"))
     }
-}
-
-// MARK: PREVIEW
-#Preview {
-    GridView73Bootcamp()
 }
 
 // MARK: EXTENSIONS
@@ -66,4 +64,24 @@ extension GridView73Bootcamp {
             }
         }
     }
+    
+    /// View to show grid contain rows and cols
+    ///
+    var showGridRowsAndcolumnsSample: some View {
+        Grid() {
+            ForEach (0..<dimensions, id: \.self) { row in
+                GridRow {
+                    ForEach (0..<dimensions, id: \.self) { column in
+                        let cellNumber = (row * dimensions) + (column + 1)
+                        cell(value: cellNumber)
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: PREVIEW
+#Preview {
+    GridView73Bootcamp()
 }
