@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GridBootcamp: View {
+struct LazyGridBootcamp: View {
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 4, alignment: nil), // Case Horizontal: change to GridRow : 22:00 swiftfullthinking
         GridItem(.flexible(), spacing: 4, alignment: nil),
@@ -49,5 +49,5 @@ struct GridBootcamp: View {
 }
 
 #Preview {
-    GridBootcamp()
+    LazyGridBootcamp()
 }
