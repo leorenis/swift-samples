@@ -14,12 +14,30 @@ struct ContentUnavailableView74Bootcamp: View {
         
         /// Checks for iOS 17+
         if #available(iOS 17.0, *) {
-            ContentUnavailableView(
-                "Empty state",
-                systemImage: "magnifyingglass",
-                description: Text("Content not found!")
-            )
+            
+            // emptyStateView
+            // noInternetConectionView
+            ContentUnavailableView.search(text: "players")
+        } else {
+            // Fallback on earlier versions
+            // FakeContentUnavailableView
         }
+    }
+    
+    var emptyStateView: some View {
+        ContentUnavailableView(
+            "Empty state",
+            systemImage: "magnifyingglass",
+            description: Text("Content not found!")
+        )
+    }
+    
+    var noInternetConectionView: some View {
+        ContentUnavailableView(
+            "No internet connection",
+            systemImage: "wifi.slash",
+            description: Text("Please connect to the internet.")
+        )
     }
 }
 
