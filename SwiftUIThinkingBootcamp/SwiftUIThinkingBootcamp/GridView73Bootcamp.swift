@@ -19,7 +19,16 @@ struct GridView73Bootcamp: View {
         // Shows Grid Rows sample
         // showGridRowsSample
         // showGridRowsAndcolumnsSample
-        showCellColumnsGridLayoutSample
+        // showCellColumnsGridLayoutSample
+        
+        NavigationStack {
+            List {
+                NavigationLink("Grid Layout", destination: showCellColumnsGridLayoutSample)
+                NavigationLink("Grid Rows & Columns", destination: showGridRowsAndcolumnsSample)
+                NavigationLink("Grid Rows", destination: showGridRowsSample)
+            }
+            .navigationTitle("Grid samples")
+        }
     }
     
     // MARK: FUNCTIONS
