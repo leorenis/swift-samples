@@ -18,7 +18,8 @@ struct GridView73Bootcamp: View {
         
         // Shows Grid Rows sample
         // showGridRowsSample
-        showGridRowsAndcolumnsSample
+        // showGridRowsAndcolumnsSample
+        showCellColumnsGridLayoutSample
     }
     
     // MARK: FUNCTIONS
@@ -68,7 +69,7 @@ extension GridView73Bootcamp {
     /// View to show grid contain rows and cols
     ///
     var showGridRowsAndcolumnsSample: some View {
-        Grid() {
+        Grid(alignment: .center) {
             ForEach (0..<dimensions, id: \.self) { row in
                 GridRow {
                     ForEach (0..<dimensions, id: \.self) { column in
@@ -76,6 +77,38 @@ extension GridView73Bootcamp {
                         cell(value: cellNumber)
                     }
                 }
+            }
+        }
+    }
+    
+    /// View to show grid contain rows and cols creating a modern Grid Layout
+    ///  Inspired by @BigMtnStudio
+    ///  https://x.com/BigMtnStudio/status/1750486218901467163/photo/1
+    ///  iOS 16+
+    ///
+    var showCellColumnsGridLayoutSample: some View {
+        Grid {
+            GridRow {
+                Color.green.opacity(0.5)
+                    .gridCellColumns(3)
+            }
+            
+            GridRow {
+                Color.blue.opacity(0.5)
+                Color.red.opacity(0.5).gridCellColumns(2)
+            }
+            
+            GridRow {
+                Color.blue.opacity(0.5)
+                Color.orange.opacity(0.5)
+                Color.red.opacity(0.5)
+            }
+            
+            GridRow {
+                Color.orange.opacity(0.5)
+                    .gridCellColumns(2)
+                
+                Color.red.opacity(0.5)
             }
         }
     }
