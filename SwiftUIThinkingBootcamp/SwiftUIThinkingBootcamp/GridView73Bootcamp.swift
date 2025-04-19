@@ -17,6 +17,9 @@ struct GridView73Bootcamp: View {
                 cell(value: 2)
                 cell(value: 3)
             }
+            // cell(value: 10000000000)
+            Divider()
+                .gridCellUnsizedAxes(.horizontal)
             GridRow {
                 cell(value: 4)
                 cell(value: 5)
@@ -41,8 +44,8 @@ struct GridView73Bootcamp: View {
         Text("\(value)")
             .font(.title)
             .padding()
-            .foregroundStyle(.white)
-            .background(Color.blue)
+            .foregroundStyle(.primary)
+            .background(Color("AdaptiveColor"))
     }
 }
 
