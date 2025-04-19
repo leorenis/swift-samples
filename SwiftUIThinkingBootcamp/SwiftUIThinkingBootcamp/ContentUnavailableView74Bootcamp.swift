@@ -8,10 +8,18 @@
 
 import SwiftUI
 
-/// A data struct to provide struct to practicing ContentUnavailableView iOS 16+.
+/// A data struct to provide struct to practicing ContentUnavailableView iOS 17+.
 struct ContentUnavailableView74Bootcamp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        /// Checks for iOS 17+
+        if #available(iOS 17.0, *) {
+            ContentUnavailableView(
+                "Empty state",
+                systemImage: "magnifyingglass",
+                description: Text("Content not found!")
+            )
+        }
     }
 }
 
