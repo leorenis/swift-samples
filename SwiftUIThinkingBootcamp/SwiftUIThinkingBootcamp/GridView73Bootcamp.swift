@@ -10,22 +10,12 @@ import SwiftUI
 
 /// A data struct to provide struct to practicing GridView iOS 16+.
 struct GridView73Bootcamp: View {
+    
+    // MARK: BODY VIEW
     var body: some View {
-        Grid {
-            GridRow {
-                cell(value: 1)
-                cell(value: 2)
-                cell(value: 3)
-            }
-            // cell(value: 10000000000)
-            Divider()
-                .gridCellUnsizedAxes(.horizontal)
-            GridRow {
-                cell(value: 4)
-                cell(value: 5)
-            }
-        }
         
+        // Shows Grid Rows sample
+        showGridRowsSample
     }
     
     // MARK: FUNCTIONS
@@ -52,4 +42,28 @@ struct GridView73Bootcamp: View {
 // MARK: PREVIEW
 #Preview {
     GridView73Bootcamp()
+}
+
+// MARK: EXTENSIONS
+
+extension GridView73Bootcamp {
+    
+    /// View to Show first exemple, using Grid and Rows
+    ///
+    var showGridRowsSample: some View {
+        Grid {
+            GridRow {
+                cell(value: 1)
+                cell(value: 2)
+                cell(value: 3)
+            }
+            // cell(value: 10000000000)
+            Divider()
+                .gridCellUnsizedAxes(.horizontal)
+            GridRow {
+                cell(value: 4)
+                cell(value: 5)
+            }
+        }
+    }
 }
