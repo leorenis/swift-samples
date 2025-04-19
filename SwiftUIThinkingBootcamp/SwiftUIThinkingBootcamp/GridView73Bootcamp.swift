@@ -22,11 +22,21 @@ struct GridView73Bootcamp: View {
                 cell(value: 5)
             }
         }
+        
     }
     
     // MARK: FUNCTIONS
     
-    
+    /// Gets some view with a styled Text View.
+    ///
+    /// This function creates and returns a Styled Text View.
+    /// ```
+    /// cell(value: 1) -> Text("\(value)")
+    /// ```
+    ///
+    /// - Warning: This is a training porpose.
+    /// - Parameter Int: This is a number to appear on the cell center.
+    /// - Returns: Returs a Text with a number.
     private func cell(value: Int) -> some View {
         Text("\(value)")
             .font(.title)
