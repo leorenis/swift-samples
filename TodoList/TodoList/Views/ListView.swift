@@ -15,11 +15,14 @@ struct ListView: View {
         TaskModel(title:"This the second task",isCompleted: false),
         TaskModel(title:"Third",isCompleted: false),
     ]
+    
+    /// View Body: block is responsable for acts as entry point in this view.
     var body: some View {
         List {
             ForEach(tasks) { task in
                 ListRowView(task: task)
             }
+            .onDelete(perform: deleteTask)
         }
         .listStyle(PlainListStyle())
         .navigationTitle("Tasks 🚀")
@@ -31,6 +34,19 @@ struct ListView: View {
                 NavigationLink("Add", destination: AddView())
             }
         }
+    }
+    
+    
+    /// performs remove method in array to delete  some task at IndexSet from tasks array.
+    ///
+    ///```
+    ///deleteTask(indexSet)
+    ///```
+    /// - Parameters index : this is the IndexSet
+    /// - Complexity: O(*n*) where *n* is the length of the collection.
+    ///
+    private func deleteTask(indexSet: IndexSet) {
+        tasks.remove(atOffsets: indexSet)
     }
 }
 
