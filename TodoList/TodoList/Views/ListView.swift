@@ -11,9 +11,9 @@ struct ListView: View {
     
     // MARK: PROPERTIES
     @State private var tasks: [TaskModel] = [
-        TaskModel(title: "This the first task", isCompleted: true, order: 0),
-        TaskModel(title:"This the second task",isCompleted: false, order: 1),
-        TaskModel(title:"Third",isCompleted: false, order: 2),
+        TaskModel(title: "This the first task", isCompleted: true),
+        TaskModel(title:"This the second task", isCompleted: false),
+        TaskModel(title:"Third", isCompleted: false),
     ]
     
     /// View Body: block is responsable for acts as entry point in this view.
@@ -66,7 +66,6 @@ struct ListView: View {
     ///
     /// - Complexity: O(*n* log *n*), where *n* is the length of the collection.
     private func moveTask(from source: IndexSet, to destination: Int) {
-        print("\(source) move \(destination)")
         tasks.move(fromOffsets: source, toOffset: destination)
     }
 }
