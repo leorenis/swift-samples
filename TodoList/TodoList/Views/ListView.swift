@@ -10,15 +10,15 @@ import SwiftUI
 struct ListView: View {
     
     // MARK: PROPERTIES
-    @State private var tasks: [String] = [
-        "This the first task",
-        "This the second task",
-        "Third",
+    @State private var tasks: [TaskModel] = [
+        TaskModel(title: "This the first task", isCompleted: true),
+        TaskModel(title:"This the second task",isCompleted: false),
+        TaskModel(title:"Third",isCompleted: false),
     ]
     var body: some View {
         List {
-            ForEach(tasks, id: \.self) { task in
-                ListRowView(title: task)
+            ForEach(tasks) { task in
+                ListRowView(task: task)
             }
         }
         .listStyle(PlainListStyle())

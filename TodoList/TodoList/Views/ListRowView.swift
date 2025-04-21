@@ -14,14 +14,16 @@ import SwiftUI
 struct ListRowView: View {
     
     // MARK: PROPERTIES
-    var title: String
+    var task: TaskModel
     
     /// View Body: block is responsable for acts as entry point in this view.
     var body: some View {
         HStack {
-            Image(systemName: "checkmark.circle")
-            Text(title)
+            Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                .foregroundStyle(Color(.systemBlue))
+            Text(task.title)
             Spacer()
         }
+        .font(.body)
     }
 }
