@@ -2,6 +2,7 @@
 //  EnvironmentObject51Bootcamo.swift
 //  SwiftUIThinkingBootcamp
 //  Episode: https://youtu.be/VWZ-h_N1wDk?si=IUuCJpFG2OYcmp8X
+//  Migrating: https://developer.apple.com/documentation/swiftui/migrating-from-the-observable-object-protocol-to-the-observable-macro
 
 //
 //  Created by Leo on 05/04/25.
@@ -78,7 +79,7 @@ struct ProductDetailsView: View {
     /**
      * Although we're NOT using this  @ObservedObject var viewModel on this second screen, we have acces to it.
      * Except to pass to third  view ProductInfoView. This sounds like good, but if we had ten subviews in our hierarchy?
-     *   - The answer is: environmentObject on struct EnvironmentObject51Bootcamo.
+     *   - The answer is: environmentObject on struct EnvironmentObject51Bootcamp.
      *       ```
      *        NavigationStack {
      *          // all code here.
