@@ -10,7 +10,7 @@
 import SwiftUI
 
 class ObservableViewModel: ObservableObject {
-    @Published var title: String = "Morning"
+    @Published var title: String = "Greetings!"
 }
 
 /// A data struct to provide struct to practicing Observable.
@@ -23,15 +23,17 @@ struct Observable76Bootcamp: View {
     var body: some View {
         VStack(spacing: 20) {
             Button(viewModel.title) {
-                viewModel.title = "Morning..."
+                viewModel.title = "Greetings..."
             }
             
             GreetingsObserbableView(viewModel: viewModel)
+            GreetingsEnvironmentView()
         }
+        .environmentObject(viewModel)
     }
 }
 
-/// A data struct to provide struct to practicing Observable.
+/// A data struct to provide struct to practicing Observable from @ObservedObject.
 struct GreetingsObserbableView: View {
     // MARK: PROPERTIES
     @ObservedObject var viewModel: ObservableViewModel
@@ -39,7 +41,21 @@ struct GreetingsObserbableView: View {
     /// View Body: block  responsable for acts as entry point in this view.
     var body: some View {
         Button(viewModel.title) {
-            viewModel.title = "Morning greeting"
+            viewModel.title = "Greeting observed object"
+        }
+    }
+}
+
+/// A data struct to provide struct to practicing Observable from @Environment.
+struct GreetingsEnvironmentView: View {
+    
+    // MARK: PROPERTIES
+    @EnvironmentObject var viewModel: ObservableViewModel
+    
+    /// View Body: block  responsable for acts as entry point in this view.
+    var body: some View {
+        Button(viewModel.title) {
+            viewModel.title = "Greeting environment object"
         }
     }
 }
