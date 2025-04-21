@@ -37,7 +37,6 @@ struct ListView: View {
         }
     }
     
-    
     /// performs remove method in array to delete  some task at IndexSet from tasks array.
     ///
     ///```
@@ -69,7 +68,6 @@ struct ListView: View {
         tasks.move(fromOffsets: source, toOffset: destination)
     }
 }
-
 
 // MARK: PREVIEW
 #Preview {
