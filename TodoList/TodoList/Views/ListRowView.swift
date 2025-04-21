@@ -2,17 +2,26 @@
 //  ListRowView.swift
 //  TodoList
 //
-//  Created by Leo Renis Santos on 21/04/25.
+//  Created by Leo on 21/04/25.
 //
 
 import SwiftUI
 
+/// A structure that computes row views on demand.
+///
+/// - Parameters:
+///   - title: The sections title view.
 struct ListRowView: View {
+    
+    // MARK: PROPERTIES
+    var title: String
+    
+    /// View Body: block is responsable for acts as entry point in this view.
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Image(systemName: "checkmark.circle")
+            Text(title)
+            Spacer()
+        }
     }
-}
-
-#Preview {
-    ListRowView()
 }
