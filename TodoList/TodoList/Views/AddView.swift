@@ -17,9 +17,14 @@ struct AddView: View {
     @State var text: String = ""
     @State var textFocused: Bool = false
     @FocusState var fieldInFocus: FieldOptions?
+    // List view
     @EnvironmentObject var listViewModel: ListViewModel
     // iOS 15.0+
     @Environment(\.dismiss) private var dismiss
+    // Alert
+    @State var showAlert: Bool = false
+    @State var alertTitle: String = ""
+    
     
     /// A enum to provide options key. The main goal is avoid magic constants in the code.
     ///
@@ -52,23 +57,7 @@ struct AddView: View {
             .padding()
         }
         .navigationTitle("Add new item ✍🏽")
-    }
-    
-    /// Check validations and call add call  method to create a new task.
-    ///
-    ///```
-    ///buttonSavePressed()
-    ///```
-    ///
-    /// - Complexity: O(1) constant.
-    ///
-    private func buttonSavePressed() {
-        if text.count < 3 {
-            fieldInFocus = .text
-            return;
-        }
-        listViewModel.createTask(title: text)
-        dismiss()
+        .alert(isPresented: $showAlert, content: getAlert)
     }
 }
 
@@ -78,4 +67,56 @@ struct AddView: View {
         AddView()
     }
     .environmentObject(ListViewModel())
+}
+
+// MARK: FUNCTIONS
+extension AddView {
+    
+    /// Call add  method to create a new task when text is valid.
+    ///
+    ///```
+    ///buttonSavePressed()
+    ///```
+    ///
+    /// - Complexity: O(1) constant.
+    ///
+    private func buttonSavePressed() {
+        if isValidText() {
+            listViewModel.createTask(title: text)
+            dismiss()
+        } else {
+            showAlert = true
+            alertTitle = "Please, enter a task with more than 3 characters."
+            fieldInFocus = .text
+        }
+    }
+    
+    /// Check if text is valid.
+    ///
+    /// When text is valid, returns true. Otherwise false.
+    ///
+    ///```
+    ///isValidText()
+    ///```
+    ///
+    /// - Complexity: O(n), where n is the length of the string.
+    ///
+    private func isValidText() -> Bool {
+        return text.count > 3
+    }
+    
+    /// Gets an alert with specified title.
+    ///
+    /// This function creates and returns an alert immediately. The alert will have a title, but will NOT have a message.
+    ///
+    ///```
+    ///getAlert() -> Alert(title: Text(alertTitle))
+    ///```
+    /// - Warning: There is no additional message in this alert.
+    /// - Returns: Returns an alert with a title.
+    /// - Complexity: O(1) constant.
+    ///
+    private func getAlert() -> Alert {
+        return Alert(title: Text(alertTitle))
+    }
 }
