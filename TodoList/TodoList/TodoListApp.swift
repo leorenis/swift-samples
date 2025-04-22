@@ -18,11 +18,16 @@ import SwiftUI
 
 @main
 struct TodoListApp: App {
+    // MARK: PROPERTIES
+    @StateObject private var listViewModel: ListViewModel = ListViewModel()
+    
+    /// View Body: block is responsable for acts as entry point in this view.
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 ListView()
             }
+            .environmentObject(listViewModel)
         }
     }
 }
