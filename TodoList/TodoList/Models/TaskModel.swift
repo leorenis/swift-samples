@@ -36,7 +36,7 @@ struct TaskModel: Identifiable {
     /// - Returns: Returns a new TaskModel changing the isCompleted property.
     /// - Complexity: O(1) on average, only create a new TaskModel with the same data, only toggle isCompleted property.
     ///
-    mutating func toggleCompletion() -> TaskModel {
+    func toggleCompletion() -> TaskModel {
         return TaskModel(id: id, title: title, isCompleted: !isCompleted)
     }
 }

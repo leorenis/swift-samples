@@ -81,5 +81,29 @@ class ListViewModel: ObservableObject {
         let newTask = TaskModel(title: title, isCompleted: false)
         tasks.append(newTask)
     }
+    
+    /// Performs update method to update the clicked task.
+    ///
+    ///```
+    ///updateTask(task: TaskModel)
+    ///```
+    /// - Parameters:
+    ///    - task : task to be  updated
+    ///
+    /// - Complexity: O(n), where n is the length of the collection.
+    ///
+    func updateTask(task: TaskModel) {
+//        if let index = tasks.firstIndex(where: { (existingTask) -> Bool in
+//            return existingTask.id == task.id
+//        }) {
+//            // run the code
+//        }
+
+        // Short sintax
+        if let index = tasks.firstIndex(where: { $0.id == task.id}) {
+            tasks[index] = task.toggleCompletion()
+        }
+        
+    }
 }
 
