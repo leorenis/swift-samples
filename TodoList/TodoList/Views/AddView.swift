@@ -85,8 +85,8 @@ extension AddView {
             listViewModel.createTask(title: text)
             dismiss()
         } else {
-            showAlert = true
-            alertTitle = "Please, enter a task with more than 3 characters."
+            alertTitle = "Please, enter a task with more than 3 characters. 👀😮🙃"
+            showAlert.toggle()
             fieldInFocus = .text
         }
     }
