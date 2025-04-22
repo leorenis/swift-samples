@@ -66,5 +66,20 @@ class ListViewModel: ObservableObject {
     func moveTask(from source: IndexSet, to destination: Int) {
         tasks.move(fromOffsets: source, toOffset: destination)
     }
+    
+    /// Performs create method to append new task in array.
+    ///
+    ///```
+    ///createTask(title: "Title new task")
+    ///```
+    /// - Parameters:
+    ///    - title : title for a new task
+    ///
+    /// - Complexity: O(1) on average, over many calls to append(_:) on the same array.
+    ///
+    func createTask(title: String) {
+        let newTask = TaskModel(title: title, isCompleted: false)
+        tasks.append(newTask)
+    }
 }
 

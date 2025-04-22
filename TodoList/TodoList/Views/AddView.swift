@@ -17,6 +17,9 @@ struct AddView: View {
     @State var text: String = ""
     @State var textFocused: Bool = false
     @FocusState var fieldInFocus: FieldOptions?
+    @EnvironmentObject var listViewModel: ListViewModel
+    // iOS 15.0+
+    @Environment(\.dismiss) private var dismiss
     
     /// A enum to provide options key. The main goal is avoid magic constants in the code.
     ///
@@ -36,11 +39,7 @@ struct AddView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .focused($fieldInFocus, equals: .text)
                 
-                Button {
-                    if text.count < 3 {
-                        fieldInFocus = .text
-                    }
-                } label: {
+                Button (action: buttonSavePressed) {
                     Text("Save".uppercased())
                         .font(.headline)
                         .frame(maxWidth: .infinity, minHeight: 55.0, alignment: .center)
@@ -54,6 +53,23 @@ struct AddView: View {
         }
         .navigationTitle("Add new item ✍🏽")
     }
+    
+    /// Check validations and call add call  method to create a new task.
+    ///
+    ///```
+    ///buttonSavePressed()
+    ///```
+    ///
+    /// - Complexity: O(1) constant.
+    ///
+    private func buttonSavePressed() {
+        if text.count < 3 {
+            fieldInFocus = .text
+            return;
+        }
+        listViewModel.createTask(title: text)
+        dismiss()
+    }
 }
 
 // MARK: PREVIEW
@@ -61,4 +77,5 @@ struct AddView: View {
     NavigationStack {
         AddView()
     }
+    .environmentObject(ListViewModel())
 }
