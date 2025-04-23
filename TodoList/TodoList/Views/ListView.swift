@@ -40,9 +40,17 @@ struct ListView: View {
 }
 
 // MARK: PREVIEW
-#Preview {
+#Preview(traits: .portrait) {
     NavigationStack {
         ListView()
     }
+    .environmentObject(ListViewModel())
+}
+
+#Preview(traits: .portrait) {
+    NavigationStack {
+        ListView()
+    }
+    .preferredColorScheme(.dark)
     .environmentObject(ListViewModel())
 }
