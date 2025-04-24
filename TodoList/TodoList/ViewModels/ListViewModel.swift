@@ -12,7 +12,13 @@ import Foundation
 ///     - https://github.com/leorenis/swift-samples/blob/main/SwiftUIThinkingBootcamp/SwiftUIThinkingBootcamp/Observable76Bootcamp.swift
 ///
 class ListViewModel: ObservableObject {
-    @Published var tasks: [TaskModel] = []
+    // MARK: PROPERTIES
+    @Published var tasks: [TaskModel] = [] {    // Using Conputed Property
+        didSet {                                // didSet gets called anytime we set this tasks
+            saveTasks()
+        }
+    }
+    let tasksListKey: String = "tasksListKey"
     
     init() {
         loadTasks()
@@ -118,7 +124,7 @@ class ListViewModel: ObservableObject {
         /// The example below shows how to encode an instance of a simple GroceryProduct type from a JSON object.
         /// The type adopts Codable so that it’s encodable as JSON using a JSONEncoder instance.
         if let encodedData = try? JSONEncoder().encode(tasks) {
-            UserDefaults.standard.set(encodedData, forKey: StorageOptionsKey.tasksListKey.rawValue)
+            UserDefaults.standard.set(encodedData, forKey: tasksListKey)
         }
     }
 }
