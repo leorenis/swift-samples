@@ -16,7 +16,7 @@ struct ListView: View {
     var body: some View {
         ZStack {
             if listViewModel.tasks.isEmpty {
-                Text("No tasks yet!")
+                EmptyStateView()
             } else {
                 List {
                     ForEach(listViewModel.tasks) { task in
