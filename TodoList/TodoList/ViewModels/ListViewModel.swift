@@ -107,3 +107,6 @@ class ListViewModel: ObservableObject {
     }
 }
 
+/// Importante:
+///     - @AppStorage should be used if you're going to use it in the view directly;
+///     - Since we're in a class, it's better to use  User Defaults. 
