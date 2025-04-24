@@ -7,7 +7,12 @@
 
 import SwiftUI
 
+/// A structure that computes EmptyState.
+///
 struct EmptyStateView: View {
+    // MARK: PROPERTIES
+    
+    /// View Body: block is responsable for acts as entry point in this view.
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
@@ -39,6 +44,7 @@ struct EmptyStateView: View {
     }
 }
 
+// MARK: PREVIEW
 #Preview {
     NavigationStack {
         EmptyStateView()
