@@ -8,7 +8,9 @@
 import Foundation
 
 /// Imutable struct to represents TaskModel
-struct TaskModel: Identifiable {
+///     - Tip: Protocol Codable: Codable is a type alias for the Encodable and Decodable protocols.
+///       When you use Codable as a type or a generic constraint, it matches any type that conforms to both protocols.
+struct TaskModel: Identifiable, Codable {
     let id: String
     let title: String
     let isCompleted: Bool
@@ -40,3 +42,4 @@ struct TaskModel: Identifiable {
         return TaskModel(id: id, title: title, isCompleted: !isCompleted)
     }
 }
+

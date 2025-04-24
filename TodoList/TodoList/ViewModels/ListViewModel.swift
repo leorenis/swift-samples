@@ -105,8 +105,24 @@ class ListViewModel: ObservableObject {
         }
         
     }
+    
+    /// Saves data tasks in user defaults better experience and use in the next session.
+    ///
+    ///```
+    ///saveTasks()
+    ///```
+    ///
+    /// - Complexity: O(1), saves key value in user defaults.
+    ///
+    func saveTasks() {
+        /// The example below shows how to encode an instance of a simple GroceryProduct type from a JSON object.
+        /// The type adopts Codable so that it’s encodable as JSON using a JSONEncoder instance.
+        if let encodedData = try? JSONEncoder().encode(tasks) {
+            UserDefaults.standard.set(encodedData, forKey: StorageOptionsKey.tasksListKey.rawValue)
+        }
+    }
 }
 
 /// Importante:
 ///     - @AppStorage should be used if you're going to use it in the view directly;
-///     - Since we're in a class, it's better to use  User Defaults. 
+///     - Since we're in a class, it's better to use  User Defaults.
