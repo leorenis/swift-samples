@@ -42,7 +42,8 @@ struct AppStorage52Bootcamp: View {
                 currentUsername = name
                 /// Important: Use this only to save small pieces of data. To large data, prefer a external database.
                 /// Tip: When we use @AppStorage, the state became able to update data directly by assing value to a variable.
-                ///   - We don't need use class UserDefaults anymore.
+                ///   - We use class UserDefaults anymore when we area in a Class.
+                ///   - We use @AppStorage when we are directly in a View, like this scenario here.
                 // UserDefaults.standard.set(name, forKey: OptionsKey.username.key)
             }
         }
