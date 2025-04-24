@@ -33,14 +33,23 @@ class ListViewModel: ObservableObject {
     /// - Complexity: O(m) on average, where m is the length of newElements, over many calls to append(contentsOf:) on the same array.
     ///
     private func loadTasks() {
-        let fakeTasks = [
-            TaskModel(title: "This the first task", isCompleted: true),
-            TaskModel(title:"This the second task", isCompleted: false),
-            TaskModel(title:"Third", isCompleted: false),
-        ]
-        tasks.append(contentsOf: fakeTasks)
+//        let fakeTasks = [
+//            TaskModel(title: "This the first task", isCompleted: true),
+//            TaskModel(title:"This the second task", isCompleted: false),
+//            TaskModel(title:"Third", isCompleted: false),
+//        ]
+//        tasks.append(contentsOf: fakeTasks)
+
+//        When a guard is a failure, returns
+//        guard let data = UserDefaults.standard.data(forKey: tasksListKey) else { return }
+//        guard let savedTasks = try? JSONDecoder().decode([TaskModel].self, from: data) else { return }
+        
+        guard
+            let data = UserDefaults.standard.data(forKey: tasksListKey),
+            let savedTasks = try? JSONDecoder().decode([TaskModel].self, from: data)
+        else { return }
+        self.tasks = savedTasks
     }
-    
     
     /// Performs remove method in array to delete  some task at IndexSet from tasks array.
     ///
