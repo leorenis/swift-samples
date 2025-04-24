@@ -48,6 +48,7 @@ class ListViewModel: ObservableObject {
             let data = UserDefaults.standard.data(forKey: tasksListKey),
             let savedTasks = try? JSONDecoder().decode([TaskModel].self, from: data)
         else { return }
+        
         self.tasks = savedTasks
     }
     

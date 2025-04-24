@@ -14,19 +14,25 @@ struct ListView: View {
     
     /// View Body: block is responsable for acts as entry point in this view.
     var body: some View {
-        List {
-            ForEach(listViewModel.tasks) { task in
-                ListRowView(task: task)
-                    .onTapGesture {
-                        withAnimation(.linear) {
-                            listViewModel.updateTask(task: task)
-                        }
+        ZStack {
+            if listViewModel.tasks.isEmpty {
+                Text("No tasks yet!")
+            } else {
+                List {
+                    ForEach(listViewModel.tasks) { task in
+                        ListRowView(task: task)
+                            .onTapGesture {
+                                withAnimation(.linear) {
+                                    listViewModel.updateTask(task: task)
+                                }
+                            }
                     }
+                    .onDelete(perform: listViewModel.deleteTask)
+                    .onMove(perform: listViewModel.moveTask)
+                }
+                .listStyle(PlainListStyle())
             }
-            .onDelete(perform: listViewModel.deleteTask)
-            .onMove(perform: listViewModel.moveTask)
         }
-        .listStyle(PlainListStyle())
         .navigationTitle("Tasks 🚀")
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
