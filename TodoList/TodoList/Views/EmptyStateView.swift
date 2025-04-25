@@ -11,6 +11,8 @@ import SwiftUI
 ///
 struct EmptyStateView: View {
     // MARK: PROPERTIES
+    @State private var animate: Bool = false
+    let secundaryAccentColor: Color = Color(#colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1))
     
     /// View Body: block is responsable for acts as entry point in this view.
     var body: some View {
@@ -30,17 +32,49 @@ struct EmptyStateView: View {
                             .font(.headline)
                             .frame(height: 55)
                             .frame(maxWidth: .infinity)
-                            .background(Color.accentColor)
+                            .background(animate ? secundaryAccentColor : Color.accentColor)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                             
                     }
+                    .padding(.horizontal, animate ? 30 : 20)
+                    .shadow(
+                        color: animate ? secundaryAccentColor.opacity(0.7) : Color.accentColor.opacity(0.7),
+                        radius: animate ? 30 : 10,
+                        x: 0,
+                        y: animate ? 50 : 30
+                    )
+                    .scaleEffect(animate ? 1.1 : 1)
+                    .offset(y: animate ? -7 : 0)
                     
             }
             .frame(maxWidth: 400)
             .multilineTextAlignment(.center)
             .padding(40)
+            .onAppear(perform: addAnimationOneSecondAfter)
         }
         .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.5)
+    }
+    
+    /// Performs animate on appear after 1s.
+    ///
+    ///```
+    ///addAnimationOneSecondAfter()
+    ///```
+    ///
+    /// - Complexity: O(1) change the animation value only.
+    ///
+    private func addAnimationOneSecondAfter() {
+        guard !animate else { return }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            withAnimation(
+                Animation
+                    .easeInOut(duration: 2.0)
+                    .repeatForever()
+            ) {
+                animate.toggle()
+            }
+        }
     }
 }
 
