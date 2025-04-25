@@ -17,7 +17,7 @@ struct EmptyStateView: View {
     /// View Body: block is responsable for acts as entry point in this view.
     var body: some View {
         ScrollView {
-            VStack(spacing: 10) {
+            VStack(spacing: 8) {
                 Text("No tasks found!")
                     .font(.title)
                     .fontWeight(.semibold)
@@ -44,7 +44,7 @@ struct EmptyStateView: View {
                         y: animate ? 50 : 30
                     )
                     .scaleEffect(animate ? 1.1 : 1)
-                    .offset(y: animate ? -7 : 0)
+                    .offset(y: animate ? -8 : 0)
                     
             }
             .frame(maxWidth: 400)
@@ -66,7 +66,7 @@ struct EmptyStateView: View {
     private func addAnimationOneSecondAfter() {
         guard !animate else { return }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             withAnimation(
                 Animation
                     .easeInOut(duration: 2.0)
