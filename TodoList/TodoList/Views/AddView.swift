@@ -40,7 +40,7 @@ struct AddView: View {
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
-                    .background(Color(.systemGray6))
+                    .background(Color(.secondarySystemBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .focused($fieldInFocus, equals: .text)
                 

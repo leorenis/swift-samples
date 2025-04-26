@@ -20,7 +20,7 @@ struct ListRowView: View {
     var body: some View {
         HStack {
             Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
-                .foregroundStyle(Color(.systemBlue))
+                .foregroundStyle(Color(.accent))
             Text(task.title)
             Spacer()
         }
