@@ -12,7 +12,7 @@ struct ListView: View {
     // MARK: PROPERTIES
     @EnvironmentObject private var listViewModel: ListViewModel
     
-    /// View Body: block is responsable for acts as entry point in this view.
+    /// View body: block is responsable for acts as entry point in this view.
     var body: some View {
         ZStack {
             if listViewModel.tasks.isEmpty {
