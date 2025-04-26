@@ -12,7 +12,7 @@ import SwiftUI
 struct EmptyStateView: View {
     // MARK: PROPERTIES
     @State private var animate: Bool = false
-    let secundaryAccentColor: Color = Color(#colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1))
+    let secundaryAccentColor: Color = Color(.accentSecondary)
     
     /// View Body: block is responsable for acts as entry point in this view.
     var body: some View {
