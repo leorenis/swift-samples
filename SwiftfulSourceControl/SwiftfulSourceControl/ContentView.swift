@@ -15,6 +15,10 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Git Source Control in Swift!")
                 .foregroundStyle(.primary)
+            
+            Button("Click me") {
+                // code here
+            }
         }
         .padding()
     }
