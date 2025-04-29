@@ -10,6 +10,8 @@
  * Commit: Save ("checkpoint") on out current branch.
  * Stage: Prepare changes for a commit. (git add .)
  * Stash: Save changes for later
+ * Push: Sendo local commits to remote repo
+ * Pull: Fetch remote commits to local repo
  */
 
 /**
