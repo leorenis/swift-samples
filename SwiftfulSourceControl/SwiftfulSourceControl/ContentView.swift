@@ -2,8 +2,15 @@
 //  ContentView.swift
 //  SwiftfulSourceControl
 //
-//  Created by Leo Renis Santos on 28/04/25.
+//  Created by Leo on 28/04/25.
 //
+
+/**
+ * Clone: Cpying the repo locally
+ * Commit: Save ("checkpoint") on out current branch.
+ * Stage: Prepare changes for a commit. (git add .)
+ * Stash: Save changes for later
+ */
 
 /**
  * Sugestion: Commit messages.
