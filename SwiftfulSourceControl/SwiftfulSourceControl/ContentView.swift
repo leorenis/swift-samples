@@ -39,7 +39,6 @@ struct ContentView: View {
             
             Button("Click me") {
                 // code here
-                // Stash 1
             }
             RoundedRectangle(cornerRadius: 8)
                 .background(.thinMaterial).opacity(0.1)
