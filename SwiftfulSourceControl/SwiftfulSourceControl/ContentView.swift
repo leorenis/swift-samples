@@ -40,6 +40,9 @@ struct ContentView: View {
             Button("Click me") {
                 // code here
             }
+            
+            RoundedRectangle(cornerRadius: 8)
+                .background(.thinMaterial).opacity(0.1)
         }
         .padding()
     }
