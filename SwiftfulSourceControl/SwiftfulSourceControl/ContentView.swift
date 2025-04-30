@@ -54,7 +54,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack(spacing: 16) {
-            Image(systemName: "heart.fill")
+            Image(systemName: "heart")
                 .font(.largeTitle)
                 .foregroundStyle(.tint)
             Text("Git Source Control in Swift!")
