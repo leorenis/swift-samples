@@ -52,9 +52,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showColor: Bool = false
     var body: some View {
         VStack(spacing: 16) {
-            Image(systemName: "heart")
+            Image(systemName: "heart.fill")
                 .font(.largeTitle)
                 .foregroundStyle(.tint)
             Text("Git Source Control in Swift!")
