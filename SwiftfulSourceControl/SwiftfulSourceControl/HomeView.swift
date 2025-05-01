@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Image(systemName: "globe")
+        Image(systemName: "arrow.up.circle")
             .font(.largeTitle)
             .fontWeight(.light)
             .foregroundStyle(Color(.systemCyan))
