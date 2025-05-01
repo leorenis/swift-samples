@@ -55,13 +55,14 @@ struct ContentView: View {
     @State private var showColor: Bool = false
     var body: some View {
         VStack(spacing: 16) {
-            Image(systemName: "heart.fill")
+            Image(systemName: "heart")
                 .font(.largeTitle)
                 .foregroundStyle(.tint)
             Text("Git Source Control in Swift!")
                 .foregroundStyle(.primary)
+                .font(.body)
             
-            Button("Click me") {
+            Button("show animation") {
                 withAnimation(.easeInOut) {
                     showColor.toggle()
                 }
