@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var animation: Bool = false
     var body: some View {
-        Image(systemName: "globe")
-            .font(.largeTitle)
-            .fontWeight(.light)
-            .foregroundStyle(Color(.systemCyan))
+        VStack {
+            Image(systemName: "arrow.up.circle")
+                .font(.largeTitle)
+                .fontWeight(.light)
+                .foregroundStyle(animation ? Color.cyan : Color.blue)
+                .padding(.vertical, animation ? 0 : -30)
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                withAnimation(.easeInOut(duration: 1).repeatForever()) {
+                    animation.toggle()
+                }
+            }
+        }
     }
 }
 

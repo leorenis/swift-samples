@@ -50,6 +50,7 @@
  * They are saying exactly what we should to do to solve differents status point from repositories: Remote and Local.
  * first: git pull
  * then: git push
+ *
  */
 
 import SwiftUI
@@ -65,7 +66,7 @@ struct ContentView: View {
                 .foregroundStyle(.primary)
                 .font(.body)
             
-            Button("show animation") {
+            Button("Show animation") {
                 withAnimation(.easeInOut) {
                     showColor.toggle()
                 }
