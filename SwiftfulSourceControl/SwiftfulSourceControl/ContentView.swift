@@ -15,6 +15,7 @@
  * Merge: Joining two differents branch
  * Rebase: Moving one branch on top of another branch
  * Cherry picking: Copying one commit from one branch to another
+ * Pull Request (PR): Request to merge branch.
  */
 
 /**
