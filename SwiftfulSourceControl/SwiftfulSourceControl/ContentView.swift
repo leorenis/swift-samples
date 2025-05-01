@@ -57,7 +57,7 @@ struct ContentView: View {
         VStack(spacing: 16) {
             Image(systemName: "heart")
                 .font(.largeTitle)
-                .foregroundStyle(.tint)
+                .foregroundStyle(Color(.systemCyan))
             Text("Git Source Control in Swift!")
                 .foregroundStyle(.primary)
                 .font(.body)
