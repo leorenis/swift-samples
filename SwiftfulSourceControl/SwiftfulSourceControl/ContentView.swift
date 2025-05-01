@@ -67,7 +67,8 @@ struct ContentView: View {
                 }
             }
             RoundedRectangle(cornerRadius: 8)
-                .background(.thinMaterial).opacity(0.1)
+                .background(.thinMaterial)
+                .opacity(showColor ? 0.5 : 0.1)
         }
         .padding()
     }
