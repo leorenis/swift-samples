@@ -62,7 +62,9 @@ struct ContentView: View {
                 .foregroundStyle(.primary)
             
             Button("Click me") {
-                // code here
+                withAnimation(.easeInOut) {
+                    showColor.toggle()
+                }
             }
             RoundedRectangle(cornerRadius: 8)
                 .background(.thinMaterial).opacity(0.1)
