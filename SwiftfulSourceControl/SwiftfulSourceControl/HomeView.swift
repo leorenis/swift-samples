@@ -18,6 +18,7 @@ struct HomeView: View {
                 .padding(.vertical, animation ? 0 : -30)
         }
         .onAppear {
+            guard !animation else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 withAnimation(.easeInOut(duration: 1).repeatForever()) {
                     animation.toggle()
