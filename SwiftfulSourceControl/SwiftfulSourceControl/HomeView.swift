@@ -7,8 +7,11 @@
 
 import SwiftUI
 
+// Struct Home view
 struct HomeView: View {
+    // MARK: PROPERTIES
     @State private var animation: Bool = false
+    
     var body: some View {
         VStack {
             Image(systemName: "arrow.up.circle")
