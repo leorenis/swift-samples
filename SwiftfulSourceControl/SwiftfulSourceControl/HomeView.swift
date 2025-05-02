@@ -14,7 +14,7 @@ struct HomeView: View {
             Image(systemName: "arrow.up.circle")
                 .font(.largeTitle)
                 .fontWeight(.light)
-                .foregroundStyle(animation ? Color.cyan : Color.blue)
+                .foregroundStyle(animation ? Color.indigo : Color.blue)
                 .padding(.vertical, animation ? 0 : -30)
         }
         .onAppear {
