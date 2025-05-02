@@ -1,0 +1,43 @@
+# CODEOWNERS
+# This file is used by GitHub to determine who owns which parts of the repository.
+# Any changes to files in a path will require review from the listed owners.
+
+# Global owner for everything as fallback
+*                                           @leorenis
+
+# === Documentation ===
+/README.md                                  @leorenis
+/docs/                                      @leorenis
+
+# === Frontend ===
+/frontend/                                  @leorenis
+/frontend/components/                       @leorenis
+/frontend/styles/                           @leorenis
+
+# === Backend ===
+/backend/                                   @leorenis
+/backend/api/                               @leorenis
+/backend/models/                            @leorenis
+
+# === Configuration ===
+/config/                                    @leorenis
+.env*                                       @leorenis
+
+# === Docker & DevOps ===
+/docker/                                    @leorenis
+/docker/nginx/                              @leorenis
+/docker/postgres/                           @leorenis
+/docker-compose.yml                         @leorenis
+
+# === CI/CD ===
+/.github/workflows/                         @leorenis
+
+# === Scripts ===
+/scripts/                                   @leorenis
+*.sh                                        @leorenis
+*.rb                                        @leorenis  # For CocoaPods, Gems, etc.
+
+# === Tests ===
+/tests/                                     @leorenis
+/frontend/tests/                            @leorenis
+/backend/tests/                             @leorenis
