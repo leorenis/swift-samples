@@ -12,6 +12,7 @@ struct HomeView: View {
     // MARK: PROPERTIES
     @State private var animation: Bool = false
     
+    // body is some view to display elements on the screen.
     var body: some View {
         VStack {
             Image(systemName: "arrow.up.circle")
