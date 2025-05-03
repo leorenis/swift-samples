@@ -1,2 +1,6 @@
 .DS_Store
-*/UserInterfaceState.xcuserstate
+# Xcode projects Settings
+xcuserdata/
+project.xcworkspace/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
