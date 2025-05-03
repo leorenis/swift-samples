@@ -2,7 +2,7 @@
 
 Just learning a litle bit more about source control.
 
-### Section here
+## How it Works
 <details>
 <sumary> Details (Click to expand) </sumary>
 <br />
