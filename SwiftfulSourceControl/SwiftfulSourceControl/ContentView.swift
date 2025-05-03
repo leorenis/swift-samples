@@ -6,7 +6,7 @@
 //
 
 /**
- * Clone: Cpying the repo locally
+ * Clone: Copying the repo locally
  * Commit: Save ("checkpoint") on out current branch.
  * Stage: Prepare changes for a commit. (git add .)
  * Stash: Save changes for later
