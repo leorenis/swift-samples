@@ -17,6 +17,11 @@
  * Cherry picking: Copying one commit from one branch to another
  * Pull Request (PR): Request to merge branch
  * PR Squash and Merge = Squash all commits into ONE and then merge ONE Commit
+ * Protecting branches
+ * CODEOWNERS
+ * GitIgnore
+ * Readme
+ * Releases
  */
 
 /**
