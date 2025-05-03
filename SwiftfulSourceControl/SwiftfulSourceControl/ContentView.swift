@@ -21,7 +21,7 @@
  * CODEOWNERS
  * GitIgnore
  * Readme
- * Releases
+ * Releases, Tags, Versioning
  */
 
 /**
