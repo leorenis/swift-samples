@@ -10,7 +10,7 @@ import SwiftUI
 // Struct Home view
 struct HomeView: View {
     // MARK: PROPERTIES
-    @State private var animation: Bool = true
+    @State private var animation: Bool = false
     
     // body is some view to display elements on the screen.
     var body: some View {
@@ -19,7 +19,7 @@ struct HomeView: View {
                 .font(.largeTitle)
                 .fontWeight(.light)
                 .foregroundStyle(animation ? Color.indigo : Color.blue)
-                .padding(.vertical, animation ? 0 : -35)
+                .padding(.vertical, animation ? 0 : -30)
         }
         .onAppear {
             guard !animation else { return }
