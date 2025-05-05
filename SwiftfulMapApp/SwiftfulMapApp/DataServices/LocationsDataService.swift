@@ -2,7 +2,7 @@
 //  LocationsDataService.swift
 //  MapTest
 //
-//  Created by Nick Sarno on 11/26/21.
+//  Created by Nick Sarno.
 //
 
 import Foundation
