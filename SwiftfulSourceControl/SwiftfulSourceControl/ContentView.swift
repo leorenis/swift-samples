@@ -22,6 +22,7 @@
  * GitIgnore
  * Readme
  * Releases, Tags, Versioning
+ * Git Flow (Main, Hotfix, Release, Develop, Features)
  */
 
 /**
