@@ -2,12 +2,17 @@
 //  ContentView.swift
 //  SwiftfulMapApp
 //
-//  Created by Leo Renis Santos on 05/05/25.
+//  Created by Leo on 05/05/25.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+/// A data struct to provide struct to LocationsView.
+struct LocationsView: View {
+    
+    // MARK: PROPERTIES
+    
+    /// View Body: block  responsable for acts as entry point in this view.
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -19,6 +24,7 @@ struct ContentView: View {
     }
 }
 
+// MARK: PREVIEW
 #Preview {
-    ContentView()
+    LocationsView()
 }
