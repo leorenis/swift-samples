@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 /// A data struct to provide struct to LocationsView.
 struct LocationsView: View {
@@ -15,14 +16,10 @@ struct LocationsView: View {
     
     /// View Body: block  responsable for acts as entry point in this view.
     var body: some View {
-        VStack {
-            List {
-                ForEach(vm.locations) {
-                    Text($0.name)
-                }
-            }
+        ZStack {
+            Map(position: $vm.mapPosition)
+                .ignoresSafeArea()
         }
-        .padding()
     }
 }
 

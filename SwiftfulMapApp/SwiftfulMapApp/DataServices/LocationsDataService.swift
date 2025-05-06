@@ -67,4 +67,15 @@ class LocationsDataService {
             link: "https://en.wikipedia.org/wiki/Louvre"),
     ]
     
+    static let fallbackLocation: Location = Location(
+        name: "National Park Blue Whole",
+        cityName: "DVG",
+        coordinates: CLLocationCoordinate2D(latitude: -13.2950, longitude: -46.3930),
+        description: "The Park Blue Whole, is the world's most-visited park and a historic monument in DVG, Brazil. It is the home of some of the best-known works of art. A central landmark of the city, it is located on the Right Bank of the Seine in the city's 1st arrondissement.",
+        imageNames: [
+            "paris-louvre-1",
+        ],
+        link: "https://www.geografos.com.br/cidades-goias/divinopolis-de-goias.php"
+    )
+    
 }
