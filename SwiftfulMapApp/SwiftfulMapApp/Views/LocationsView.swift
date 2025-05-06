@@ -27,8 +27,8 @@ struct LocationsView: View {
     var body: some View {
         VStack {
             List {
-                ForEach(vm.locations, id: \.id) { location in
-                    Text("\(location.name)")
+                ForEach(vm.locations) {
+                    Text($0.name)
                 }
             }
         }

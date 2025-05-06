@@ -8,10 +8,14 @@
 import SwiftUI
 
 @main
-struct SwiftfulMapAppApp: App {
+struct SwiftfulMapApp: App {
+    // MARK: PROPERTIES
+    @StateObject private var vm = LocationsViewModel()
+    
     var body: some Scene {
         WindowGroup {
             LocationsView()
+                .environmentObject(vm)
         }
     }
 }
