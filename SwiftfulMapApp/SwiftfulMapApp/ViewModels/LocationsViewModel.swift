@@ -23,6 +23,7 @@ class LocationsViewModel: ObservableObject {
     }
     @Published var mapPosition: MapCameraPosition = MapCameraPosition.region(MKCoordinateRegion())
     let mapSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+    @Published var showLocationsList: Bool = false
     
     /// Creates initialization to Locations from LocationsDataService.
     init() {
@@ -52,6 +53,18 @@ class LocationsViewModel: ObservableObject {
                     span: mapSpan
                 )
             )
+        }
+    }
+    
+    /// Performs toggle showlocationsList
+    ///
+    ///```
+    ///toggleLocationsList(location)
+    ///```
+    ///
+    private func toggleLocationsList() {
+        withAnimation(.easeInOut) {
+            showLocationsList.toggle()
         }
     }
 }

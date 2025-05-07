@@ -33,20 +33,21 @@ extension LocationsView {
     private var header: some View {
         VStack {
             Text(vm.mapLocation.name + ", " + vm.mapLocation.cityName)
-                .font(.title2)
+                .font(.title3)
                 .fontWeight(.black)
                 .foregroundStyle(.primary)
-                .frame(maxWidth: .infinity)
                 .frame(height: 55)
-                .background(.thinMaterial)
+                .frame(maxWidth: .infinity)
                 .overlay(alignment: .leading, content: {
                     Image(systemName: "arrow.down")
                         .font(.headline)
                         .foregroundStyle(.primary)
                         .padding()
+                        .rotationEffect(Angle(degrees: 180))
                         
                 })
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .background(.thinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 15)
         }
     }
