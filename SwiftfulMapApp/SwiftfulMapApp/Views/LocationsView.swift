@@ -19,6 +19,35 @@ struct LocationsView: View {
         ZStack {
             Map(position: $vm.mapPosition)
                 .ignoresSafeArea()
+            
+            VStack {
+                header
+                    .padding()
+                Spacer()
+            }
+        }
+    }
+}
+
+extension LocationsView {
+    private var header: some View {
+        VStack {
+            Text(vm.mapLocation.name + ", " + vm.mapLocation.cityName)
+                .font(.title2)
+                .fontWeight(.black)
+                .foregroundStyle(.primary)
+                .frame(maxWidth: .infinity)
+                .frame(height: 55)
+                .background(.thinMaterial)
+                .overlay(alignment: .leading, content: {
+                    Image(systemName: "arrow.down")
+                        .font(.headline)
+                        .foregroundStyle(.primary)
+                        .padding()
+                        
+                })
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 15)
         }
     }
 }
