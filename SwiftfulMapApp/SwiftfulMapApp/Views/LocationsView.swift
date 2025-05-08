@@ -45,7 +45,6 @@ extension LocationsView {
                             .foregroundStyle(.primary)
                             .padding()
                             .rotationEffect(Angle(degrees: vm.showLocationsList ? 180 : 0))
-                            
                     })
                     .background(.thinMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
