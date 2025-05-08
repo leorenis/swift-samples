@@ -24,6 +24,7 @@ struct LocationsView: View {
                 header
                     .padding()
                 Spacer()
+                
             }
         }
     }
@@ -51,7 +52,14 @@ extension LocationsView {
                     .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 15)
             }
             .foregroundStyle(.primary)
+            
+            if vm.showLocationsList {
+                LocationsListView()
+            }
         }
+        .background(.thinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 15)
     }
 }
 
