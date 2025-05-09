@@ -15,17 +15,21 @@ struct LocationsListView: View {
     var body: some View {
         List {
             ForEach(vm.locations) { location in
-                listViewRow(location: location)
+                Button {
+                    vm.showNextLocation(nextLocation: location)
+                } label: {
+                    listRowView(location: location)
+                }
+                .padding(.vertical, 4)
+                .listRowBackground(Color.clear)
             }
-            .padding(.vertical, 4)
-            .listRowBackground(Color.clear)
         }
         .listStyle(PlainListStyle())
     }
 }
 
 extension LocationsListView {
-    private func listViewRow(location: Location) -> some View {
+    private func listRowView(location: Location) -> some View {
         HStack {
             if let imageName = location.imageNames.first {
                 Image(imageName)
@@ -41,7 +45,6 @@ extension LocationsListView {
                 
                 Text(location.cityName)
                     .font(.subheadline)
-                
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }

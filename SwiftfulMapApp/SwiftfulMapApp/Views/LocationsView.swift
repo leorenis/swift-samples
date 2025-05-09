@@ -40,6 +40,7 @@ extension LocationsView {
                     .foregroundStyle(.primary)
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
+                    .animation(.none, value: vm.mapLocation)
                     .overlay(alignment: .leading, content: {
                         Image(systemName: "arrow.down")
                             .font(.headline)
@@ -47,7 +48,7 @@ extension LocationsView {
                             .padding()
                             .rotationEffect(Angle(degrees: vm.showLocationsList ? 180 : 0))
                     })
-                    .background(.thinMaterial)
+                    .background(.regularMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 15)
             }
@@ -57,7 +58,7 @@ extension LocationsView {
                 LocationsListView()
             }
         }
-        .background(.thinMaterial)
+        .background(.regularMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 15)
     }
