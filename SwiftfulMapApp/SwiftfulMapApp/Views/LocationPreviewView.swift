@@ -2,17 +2,60 @@
 //  LocationPreviewView.swift
 //  SwiftfulMapApp
 //
-//  Created by Leo Renis Santos on 10/05/25.
+//  Created by Leo on 10/05/25.
 //
 
 import SwiftUI
 
 struct LocationPreviewView: View {
+    
+    // MARK: PROPERTIES
+    let location: Location
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 16.0) {
+            imageSection
+            titleSection
+        }
     }
 }
 
+// MARK: EXTENSIONS
+
+extension LocationPreviewView {
+    private var imageSection: some View {
+        ZStack {
+            if let imageName = location.imageNames.first {
+                Image(imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 100)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
+        }
+        .padding(6)
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+    
+    private var titleSection: some View {
+        VStack (alignment: .leading, spacing: 4) {
+            Text(location.name)
+                .font(.title2)
+                .fontWeight(.bold)
+            
+            Text(location.cityName)
+                .font(.subheadline)
+        }
+    }
+}
+
+// MARK: PREVIEW
 #Preview {
-    LocationPreviewView()
+    ZStack {
+        Color.indigo
+            .ignoresSafeArea(edges: .all)
+        
+        LocationPreviewView(location: LocationsDataService.fallbackLocation)
+    }
 }
