@@ -28,6 +28,7 @@ struct LocationPreviewView: View {
         .background(
             RoundedRectangle(cornerRadius: 8)
                 .fill(.ultraThinMaterial)
+                .offset(y: 65)
         )
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
@@ -91,6 +92,7 @@ extension LocationPreviewView {
         Color.indigo.ignoresSafeArea()
         
         LocationPreviewView(location: LocationsDataService.fallbackLocation)
+            .padding()
             
     }.environmentObject(LocationsViewModel())
 }
