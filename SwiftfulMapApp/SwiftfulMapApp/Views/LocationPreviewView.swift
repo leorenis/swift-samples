@@ -13,10 +13,23 @@ struct LocationPreviewView: View {
     let location: Location
     
     var body: some View {
-        VStack(spacing: 16.0) {
-            imageSection
-            titleSection
+        HStack (alignment: .bottom, spacing: 0) {
+            VStack(alignment: .leading, spacing: 16) {
+                imageSection
+                titleSection
+            }
+            Spacer()
+            VStack(spacing: 8) {
+                learnMoreButton
+                nextButton
+            }
         }
+        .padding(20)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(.ultraThinMaterial)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
 
@@ -28,7 +41,7 @@ extension LocationPreviewView {
             if let imageName = location.imageNames.first {
                 Image(imageName)
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
                     .frame(width: 100, height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
@@ -39,7 +52,7 @@ extension LocationPreviewView {
     }
     
     private var titleSection: some View {
-        VStack (alignment: .leading, spacing: 4) {
+        VStack (alignment: .leading) {
             Text(location.name)
                 .font(.title2)
                 .fontWeight(.bold)
@@ -48,14 +61,36 @@ extension LocationPreviewView {
                 .font(.subheadline)
         }
     }
+    
+    private var learnMoreButton: some View {
+        Button {
+            
+        } label: {
+            Text("Learn more")
+                .font(.headline)
+                .frame(width: 125, height: 36)
+        }
+        .buttonStyle(.borderedProminent)
+    }
+    
+    private var nextButton: some View {
+        Button {
+            
+        } label: {
+            Text("Next")
+                .font(.headline)
+                .frame(width: 125, height: 36)
+        }
+        .buttonStyle(.bordered)
+    }
 }
 
 // MARK: PREVIEW
 #Preview {
     ZStack {
-        Color.indigo
-            .ignoresSafeArea(edges: .all)
+        Color.indigo.ignoresSafeArea()
         
         LocationPreviewView(location: LocationsDataService.fallbackLocation)
-    }
+            
+    }.environmentObject(LocationsViewModel())
 }
