@@ -10,6 +10,7 @@ import SwiftUI
 struct LocationPreviewView: View {
     
     // MARK: PROPERTIES
+    @EnvironmentObject private var vm: LocationsViewModel
     let location: Location
     
     var body: some View {
@@ -78,10 +79,10 @@ extension LocationPreviewView {
     }
     
     /// Button to make the nextButton view
-    /// 
+    ///
     private var nextButton: some View {
         Button {
-            
+            vm.nextButtonPressed()
         } label: {
             Text("Next")
                 .font(.headline)
