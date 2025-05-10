@@ -69,14 +69,19 @@ extension LocationsView {
     /// ZStack to make the locationsPreview view
     private var locationsPreviewStack: some View {
         ZStack {
-            LocationPreviewView(location: vm.mapLocation)
-                .shadow(color: Color.black.opacity(0.3), radius: 20)
-                .padding()
-                // We use asymmetric transition when we wanna put some animation on insertion and one another on the removal.
-                .transition(.asymmetric(
-                    insertion: .move(edge: .trailing),
-                    removal: .move(edge: .leading)
-                ))
+            // We use ForEach instead directly vm.mapLocation, because we wanna use the transition animation.
+            ForEach(vm.locations) { location in
+                if vm.mapLocation == location {
+                    LocationPreviewView(location: vm.mapLocation)
+                        .shadow(color: Color.black.opacity(0.3), radius: 20)
+                        .padding()
+                        // We use asymmetric transition when we wanna put some animation on insertion and one another on the removal.
+                        .transition(.asymmetric(
+                            insertion: .move(edge: .trailing),
+                            removal: .move(edge: .leading)
+                        ))
+                }
+            }
         }
     }
 }

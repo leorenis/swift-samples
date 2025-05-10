@@ -74,10 +74,31 @@ class LocationsViewModel: ObservableObject {
     ///showNextLocation(nextLocation)
     ///```
     ///
+    /// - Parameters:
+    ///    - location : this is a Location
+    ///
     func showNextLocation(nextLocation: Location) {
         withAnimation (.easeInOut){
             mapLocation = nextLocation
             showLocationsList = false
         }
+    }
+    
+    /// Performs update Location to next index.
+    ///
+    /// This function try to find next index in locations array, when find it, call function showNextLocation passing the next.
+    /// Otherwise, return first location.
+    ///
+    ///```
+    ///nextButtonPressed()
+    ///```
+    /// - Complexity: O(*n*) where *n* is the index to be found.
+    func nextButtonPressed() {
+        // Get the current index
+        
+        // Check if the currentIndex is valid
+        
+        // Next index IS valid
+        
     }
 }
