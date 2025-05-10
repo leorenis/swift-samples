@@ -20,17 +20,20 @@ struct LocationsView: View {
             Map(position: $vm.mapPosition)
                 .ignoresSafeArea()
             
-            VStack {
+            VStack(spacing: 0) {
                 header
                     .padding()
                 Spacer()
                 
+                locationsPreviewStack
             }
         }
     }
 }
 
+// MARK: EXTENTIONS
 extension LocationsView {
+    /// VStack to make the header view
     private var header: some View {
         VStack {
             Button(action: vm.toggleLocationsList) {
@@ -61,6 +64,15 @@ extension LocationsView {
         .background(.regularMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 15)
+    }
+    
+    /// ZStack to make the locationsPreview view
+    private var locationsPreviewStack: some View {
+        ZStack {
+            LocationPreviewView(location: vm.mapLocation)
+                .shadow(color: Color.black.opacity(0.3), radius: 20)
+                .padding()
+        }
     }
 }
 

@@ -35,7 +35,6 @@ struct LocationPreviewView: View {
 }
 
 // MARK: EXTENSIONS
-
 extension LocationPreviewView {
     private var imageSection: some View {
         ZStack {
@@ -52,6 +51,8 @@ extension LocationPreviewView {
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
     
+    /// VStack to make the titleSection view.
+    ///
     private var titleSection: some View {
         VStack (alignment: .leading) {
             Text(location.name)
@@ -63,6 +64,8 @@ extension LocationPreviewView {
         }
     }
     
+    /// Button to make the learnMoreButton view
+    ///
     private var learnMoreButton: some View {
         Button {
             
@@ -74,6 +77,8 @@ extension LocationPreviewView {
         .buttonStyle(.borderedProminent)
     }
     
+    /// Button to make the nextButton view
+    /// 
     private var nextButton: some View {
         Button {
             
