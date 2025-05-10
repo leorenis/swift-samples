@@ -72,6 +72,11 @@ extension LocationsView {
             LocationPreviewView(location: vm.mapLocation)
                 .shadow(color: Color.black.opacity(0.3), radius: 20)
                 .padding()
+                // We use asymmetric transition when we wanna put some animation on insertion and one another on the removal.
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading)
+                ))
         }
     }
 }
