@@ -69,7 +69,7 @@ extension LocationsView {
     /// ZStack to make the locationsPreview view
     private var locationsPreviewStack: some View {
         ZStack {
-            // We use ForEach instead directly vm.mapLocation, because we wanna use the transition animation.
+            // We used ForEach instead directly vm.mapLocation, because we wanna use the transition animation.
             ForEach(vm.locations) { location in
                 if vm.mapLocation == location {
                     LocationPreviewView(location: vm.mapLocation)
