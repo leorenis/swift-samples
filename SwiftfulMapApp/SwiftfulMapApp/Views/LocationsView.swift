@@ -17,8 +17,19 @@ struct LocationsView: View {
     /// View Body: block  responsable for acts as entry point in this view.
     var body: some View {
         ZStack {
-            Map(position: $vm.mapPosition)
-                .ignoresSafeArea()
+            Map(position: $vm.mapPosition) {
+                ForEach(vm.locations) { location in
+                    Annotation(location.name, coordinate: location.coordinates) {
+                        LocationMapAnnotationView()
+                            .scaleEffect(vm.mapLocation == location ? 1 : 0.7)
+                            .shadow(radius: 8)
+                            .onTapGesture {
+                                vm.showNextLocation(nextLocation: location)
+                            }
+                    }
+                }
+            }
+            .ignoresSafeArea()
             
             VStack(spacing: 0) {
                 header
