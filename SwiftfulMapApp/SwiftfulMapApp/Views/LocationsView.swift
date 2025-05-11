@@ -17,25 +17,14 @@ struct LocationsView: View {
     /// View Body: block  responsable for acts as entry point in this view.
     var body: some View {
         ZStack {
-            Map(position: $vm.mapPosition) {
-                ForEach(vm.locations) { location in
-                    Annotation(location.name, coordinate: location.coordinates) {
-                        LocationMapAnnotationView()
-                            .scaleEffect(vm.mapLocation == location ? 1 : 0.7)
-                            .shadow(radius: 8)
-                            .onTapGesture {
-                                vm.showNextLocation(nextLocation: location)
-                            }
-                    }
-                }
-            }
-            .ignoresSafeArea()
-            
+            mapLayer
+                .ignoresSafeArea()
+
             VStack(spacing: 0) {
                 header
                     .padding()
                 Spacer()
-                
+
                 locationsPreviewStack
             }
         }
@@ -44,6 +33,23 @@ struct LocationsView: View {
 
 // MARK: EXTENTIONS
 extension LocationsView {
+    
+    // Map Layer to show Map View
+    private var mapLayer: some View {
+        Map(position: $vm.mapPosition) {
+            ForEach(vm.locations) { location in
+                Annotation(location.name, coordinate: location.coordinates) {
+                    LocationMapAnnotationView()
+                        .scaleEffect(vm.mapLocation == location ? 1 : 0.7)
+                        .shadow(radius: 8)
+                        .onTapGesture {
+                            vm.showNextLocation(nextLocation: location)
+                        }
+                }
+            }
+        }
+    }
+    
     /// VStack to make the header view
     private var header: some View {
         VStack {
@@ -95,6 +101,7 @@ extension LocationsView {
             }
         }
     }
+    
 }
 
 // MARK: PREVIEW
