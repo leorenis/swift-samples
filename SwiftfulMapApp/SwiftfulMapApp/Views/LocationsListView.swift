@@ -7,11 +7,13 @@
 
 import SwiftUI
 
+/// A data struct to provide  LocationsListView.
 struct LocationsListView: View {
     
     // MARK: PROPERTIES
     @EnvironmentObject private var vm: LocationsViewModel
     
+    /// View Body: block  responsable for acts as entry point in this view.
     var body: some View {
         List {
             ForEach(vm.locations) { location in
@@ -28,6 +30,7 @@ struct LocationsListView: View {
     }
 }
 
+// MARK: EXTENSIONS
 extension LocationsListView {
     private func listRowView(location: Location) -> some View {
         HStack {

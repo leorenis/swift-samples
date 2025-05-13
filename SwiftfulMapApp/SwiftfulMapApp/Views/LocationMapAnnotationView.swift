@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A data struct to provide  LocationMapAnnotationView.
 struct LocationMapAnnotationView: View {
     
     // MARK: PROPERTIES

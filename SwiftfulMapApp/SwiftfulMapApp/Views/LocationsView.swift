@@ -34,7 +34,7 @@ struct LocationsView: View {
 // MARK: EXTENTIONS
 extension LocationsView {
     
-    // Map Layer to show Map View
+    /// Map Layer to show Map View.
     private var mapLayer: some View {
         Map(position: $vm.mapPosition) {
             ForEach(vm.locations) { location in
