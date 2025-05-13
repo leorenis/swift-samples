@@ -88,11 +88,13 @@ extension LocationDetailView {
     
     /// Map Layer to show Map View.
     private var mapLayer: some View {
-        Map(position: $vm.mapPosition) {
+        Map(position: .constant(.region(MKCoordinateRegion(
+            center: location.coordinates,
+            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        )))) {
             Annotation(location.name, coordinate: location.coordinates) {
                 LocationMapAnnotationView()
-                    .scaleEffect(1)
-                    .shadow(radius: 8)
+                    .shadow(radius: 10)
             }
         }
         .allowsHitTesting(false) // Disables gesture.
@@ -103,7 +105,7 @@ extension LocationDetailView {
     /// Button layer to show back option button
     private var backButton: some View {
         Button {
-            
+            vm.sheetLocation = nil
         } label: {
             Image(systemName: "xmark")
         }
