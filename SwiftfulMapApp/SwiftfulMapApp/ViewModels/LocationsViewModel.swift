@@ -23,7 +23,12 @@ class LocationsViewModel: ObservableObject {
     }
     @Published var mapPosition: MapCameraPosition = MapCameraPosition.region(MKCoordinateRegion())
     let mapSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+    
+    // show list of locations
     @Published var showLocationsList: Bool = false
+    
+    // show location details via sheet
+    @Published var sheetLocation: Location? = nil
     
     /// Creates initialization to Locations from LocationsDataService.
     init() {
