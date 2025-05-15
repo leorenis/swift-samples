@@ -13,6 +13,7 @@ struct LocationsView: View {
     
     // MARK: PROPERTIES
     @EnvironmentObject private var vm: LocationsViewModel
+    let maxWidthForIpad: CGFloat = 700
     
     /// View Body: block  responsable for acts as entry point in this view.
     var body: some View {
@@ -23,6 +24,7 @@ struct LocationsView: View {
             VStack(spacing: 0) {
                 header
                     .padding()
+                    .frame(maxWidth: maxWidthForIpad)
                 Spacer()
 
                 locationsPreviewStack
