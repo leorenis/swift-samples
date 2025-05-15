@@ -3,6 +3,7 @@
 //  SwiftfulMapApp
 //
 //  Created by Leo on 05/05/25.
+// Episode: https://youtu.be/s4RniydY1xc?list=PLwvDm4Vfkdpha5eVTjLM0eRlJ7-yDDwBk&t=480
 //
 
 import SwiftUI
@@ -97,6 +98,8 @@ extension LocationsView {
                     LocationPreviewView(location: vm.mapLocation)
                         .shadow(color: Color.black.opacity(0.3), radius: 20)
                         .padding()
+                        .frame(maxWidth: maxWidthForIpad) // adjusts for ipad
+                        .frame(maxWidth: .infinity)       // setting new frame for transition. See Nick's explain
                         // We use asymmetric transition when we wanna put some animation on insertion and one another on the removal.
                         .transition(.asymmetric(
                             insertion: .move(edge: .trailing),
