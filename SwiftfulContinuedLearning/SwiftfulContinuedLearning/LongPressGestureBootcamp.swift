@@ -11,6 +11,7 @@ struct LongPressGestureBootcamp: View {
     
     // MARK: PROPERTIES
     @State private var isCompleted = false
+    @State private var isSuccess = false
     
     // MARK: BODY
     var body: some View {
@@ -40,8 +41,8 @@ extension LongPressGestureBootcamp {
     private var realExempleLongPressGestureView: some View {
         VStack {
             Rectangle()
-                .fill(Color.blue)
-                .frame(maxWidth: 10)
+                .fill(isSuccess ? Color.green : Color.blue)
+                .frame(maxWidth: isCompleted ? .infinity : 0)
                 .frame(height: 55)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color.gray)
@@ -52,12 +53,39 @@ extension LongPressGestureBootcamp {
                     .padding()
                     .background(Color(.systemCyan))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .onLongPressGesture(minimumDuration: 1.0, maximumDistance: 50, perform: {
+                        // at the min duration
+                        withAnimation(.easeInOut) {
+                            isSuccess = true
+                        }
+                    }, onPressingChanged: { isPressing in
+                        // Start of press -> min duration
+                        if isPressing {
+                            withAnimation(.easeInOut(duration: 1.0)) {
+                                isCompleted = true
+                            }
+                        } else {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                if (!isSuccess) {
+                                    withAnimation(.easeInOut) {
+                                        isCompleted = false
+                                    }
+                                }
+                            }
+                        }
+                    })
                 
                 Text("Reset")
                     .colorInvert()
                     .padding()
                     .background(Color(.systemPink))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .onTapGesture {
+                        withAnimation(.easeInOut) {
+                            isCompleted = false
+                            isSuccess = false
+                        }
+                    }
             }
                 
         }
