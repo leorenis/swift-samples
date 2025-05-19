@@ -53,7 +53,12 @@ extension LongPressGestureBootcamp {
                     .padding()
                     .background(Color(.systemCyan))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .onLongPressGesture(minimumDuration: 1.0, maximumDistance: 50) { (isPressing) in
+                    .onLongPressGesture(minimumDuration: 1.0, maximumDistance: 50, perform: {
+                        // at the min duration
+                        withAnimation(.easeInOut) {
+                            isSuccess = true
+                        }
+                    }, onPressingChanged: { isPressing in
                         // Start of press -> min duration
                         if isPressing {
                             withAnimation(.easeInOut(duration: 1.0)) {
@@ -68,12 +73,7 @@ extension LongPressGestureBootcamp {
                                 }
                             }
                         }
-                    } perform: {
-                        // at the min duration
-                        withAnimation(.easeInOut) {
-                            isSuccess = true
-                        }
-                    }
+                    })
                 
                 
                 Text("Reset")
