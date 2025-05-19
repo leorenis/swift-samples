@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  SwiftfulContinuedLearning
 //
-//  Created by Leo Renis Santos on 19/05/25.
+//  Created by Leo on 19/05/25.
 //
 
 import SwiftUI
