@@ -14,13 +14,42 @@ struct MagnificationGestureBootcamp: View {
     
     // MARK: BODY
     var body: some View {
-        simpleView
+        realWorldView
         
     }
 }
 
 // MARK: EXTENSIONS
 extension MagnificationGestureBootcamp {
+    /// Real world exemple using MagnificationGesture
+    private var realWorldView: some View {
+        VStack(spacing: 12) {
+            HStack {
+                Circle()
+                    .frame(width: 35, height: 35)
+                Text("Swiftful Thinking")
+                Spacer()
+                Image(systemName: "ellipsis")
+                
+            }
+            .padding(.horizontal)
+            Rectangle()
+                .frame(height: 300)
+            
+            HStack {
+                Image(systemName: "heart.fill")
+                Image(systemName: "text.bubble.fill")
+                Spacer()
+            }
+            .padding(.horizontal)
+            .font(.headline)
+            
+            Text("This is the caption from my photo!")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
+        }
+    }
+    
     /// A tiny simple exemple to gesture Magnification.
     private var simpleView: some View {
         VStack {
