@@ -9,7 +9,13 @@ import SwiftUI
 
 struct RotationGestureBootcamp: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Rotate me!")
+            .colorInvert()
+            .font(.largeTitle)
+            .fontWeight(.semibold)
+            .padding(50)
+            .background(Color.blue)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 
