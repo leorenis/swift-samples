@@ -15,6 +15,7 @@ struct MagnificationGestureBootcamp: View {
     // MARK: BODY
     var body: some View {
         simpleView
+        
     }
 }
 
@@ -22,22 +23,27 @@ struct MagnificationGestureBootcamp: View {
 extension MagnificationGestureBootcamp {
     /// A tiny simple exemple to gesture Magnification.
     private var simpleView: some View {
-        Text("Zoom me in!")
-            .padding(40)
-            .font(.title2)
-            .background(Color.yellow)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            .scaleEffect(1 + currentAmount + lastAmount)
-            .gesture(
-                MagnificationGesture()
-                    .onChanged { value in
-                        currentAmount = value - 1
-                    }
-                    .onEnded { value in
-                        lastAmount += currentAmount
-                        currentAmount = 0
-                    }
-            )
+        VStack {
+            Text("Zoom me in!")
+                .padding(40)
+                .font(.title2)
+                .background(Color.yellow)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .scaleEffect(1 + currentAmount + lastAmount)
+                .gesture(
+                    MagnificationGesture()
+                        .onChanged { value in
+                            currentAmount = value - 1
+                        }
+                        .onEnded { value in
+                            lastAmount += currentAmount
+                            currentAmount = 0
+                        }
+                )
+            
+            Text("Current amount: \(currentAmount)")
+            Text("Last amount: \(lastAmount)")
+        }
     }
 }
 
