@@ -14,7 +14,7 @@ struct MagnificationGestureBootcamp: View {
     
     // MARK: BODY
     var body: some View {
-        realWorldView
+        feedMockView
         
     }
 }
@@ -22,8 +22,9 @@ struct MagnificationGestureBootcamp: View {
 // MARK: EXTENSIONS
 extension MagnificationGestureBootcamp {
     /// Real world exemple using MagnificationGesture
-    private var realWorldView: some View {
+    private var feedMockView: some View {
         VStack(spacing: 12) {
+            // Header feed
             HStack {
                 Circle()
                     .frame(width: 35, height: 35)
@@ -33,9 +34,12 @@ extension MagnificationGestureBootcamp {
                 
             }
             .padding(.horizontal)
+            
+            // Photo fake
             Rectangle()
                 .frame(height: 300)
             
+            // Footer
             HStack {
                 Image(systemName: "heart.fill")
                 Image(systemName: "text.bubble.fill")
