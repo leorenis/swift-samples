@@ -38,6 +38,18 @@ extension MagnificationGestureBootcamp {
             // Photo fake
             Rectangle()
                 .frame(height: 300)
+                .scaleEffect(1 + currentAmount)
+                .gesture(
+                    MagnificationGesture()
+                        .onChanged { value in
+                            currentAmount = value - 1
+                        }
+                        .onEnded { value in
+                            withAnimation(.spring()) {
+                                currentAmount = 0
+                            }
+                        }
+                )
             
             // Footer
             HStack {
