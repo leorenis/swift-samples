@@ -41,8 +41,12 @@ extension MagnificationGestureBootcamp {
                         }
                 )
             
-            Text("Current amount: \(currentAmount)")
-            Text("Last amount: \(lastAmount)")
+            // Group text info.
+            Group {
+                Text("Current amount: \(currentAmount)")
+                Text("Last amount: \(lastAmount)")
+            }
+            .font(.headline)
         }
     }
 }
