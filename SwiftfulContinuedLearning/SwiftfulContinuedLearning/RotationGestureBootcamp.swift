@@ -2,7 +2,7 @@
 //  RotationGestureBootcamp.swift
 //  SwiftfulContinuedLearning
 //
-//  Created by Leo Renis Santos on 20/05/25.
+//  Created by Leo on 20/05/25.
 //
 
 import SwiftUI
