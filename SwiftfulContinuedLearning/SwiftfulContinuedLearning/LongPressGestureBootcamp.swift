@@ -1,7 +1,7 @@
 //
 //  LongPressGestureBootcamp.swift
 //  SwiftfulContinuedLearning
-//
+//  Episode: https://youtu.be/Ioux-yqewNs?si=JSPx6lgom8k0Kta-
 //  Created by Leo on 19/05/25.
 //
 
