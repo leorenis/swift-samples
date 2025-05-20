@@ -18,7 +18,9 @@ struct MagnificationGestureBootcamp: View {
     }
 }
 
+// MARK: EXTENSIONS
 extension MagnificationGestureBootcamp {
+    /// A tiny simple exemple to gesture Magnification.
     private var simpleView: some View {
         Text("Zoom me in!")
             .padding(40)
