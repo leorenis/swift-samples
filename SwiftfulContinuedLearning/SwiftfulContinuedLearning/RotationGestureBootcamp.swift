@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct RotationGestureBootcamp: View {
+    
+    // MARK: PROPERTIES
+    @State private var angle: Angle = Angle(degrees: 0)
+    
+    // MARK: BODY
     var body: some View {
         Text("Rotate me!")
             .colorInvert()
@@ -16,9 +21,22 @@ struct RotationGestureBootcamp: View {
             .padding(50)
             .background(Color.blue)
             .clipShape(RoundedRectangle(cornerRadius: 12))
+            .rotationEffect(angle)
+            .gesture(
+                RotationGesture()
+                    .onChanged { value in
+                        angle = value
+                    }
+                    .onEnded { value in
+                        withAnimation(.spring()) {
+                            angle = .zero
+                        }
+                    }
+            )
     }
 }
 
+// MARK: PREVIEW
 #Preview {
     RotationGestureBootcamp()
 }
