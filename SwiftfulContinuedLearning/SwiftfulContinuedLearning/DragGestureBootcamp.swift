@@ -8,11 +8,40 @@
 import SwiftUI
 
 struct DragGestureBootcamp: View {
+    // MARK: PROPERTIES
+    @State private var offset: CGSize = .zero
+    // MARK: BODY
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        simpleDragView
     }
 }
 
+// MARK: EXTENSIONS
+extension DragGestureBootcamp {
+    /// A simple rectangle view to basics sample gesture
+    private var simpleDragView: some View {
+        VStack {
+            RoundedRectangle(cornerRadius: 20)
+                .frame(width: 100, height: 100)
+                .offset(offset)
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                            withAnimation(.spring()) {
+                                offset = value.translation
+                            }
+                        }
+                        .onEnded { value in
+                            withAnimation(.spring()){
+                                offset = .zero
+                            }
+                        }
+                )
+        }
+    }
+}
+
+// MARK: PREVIEW
 #Preview {
     DragGestureBootcamp()
 }
