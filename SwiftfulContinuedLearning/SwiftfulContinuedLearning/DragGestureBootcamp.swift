@@ -20,10 +20,15 @@ struct DragGestureBootcamp: View {
 extension DragGestureBootcamp {
     /// A simple rectangle view to basics sample gesture
     private var simpleDragView: some View {
-        VStack {
+        ZStack {
+            VStack {
+                Text("\(offset.width)")
+                Spacer()
+            }
             RoundedRectangle(cornerRadius: 20)
-                .frame(width: 100, height: 100)
+                .frame(width: 300, height: 500)
                 .offset(offset)
+                .scaleEffect(1.0)
                 .gesture(
                     DragGesture()
                         .onChanged { value in
