@@ -2,7 +2,7 @@
 //  DragGestureBootcamp.swift
 //  SwiftfulContinuedLearning
 //
-//  Created by Leo Renis Santos on 21/05/25.
+//  Created by Leo on 21/05/25.
 //
 
 import SwiftUI
