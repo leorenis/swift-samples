@@ -13,7 +13,7 @@ struct DragGestureBootcamp2: View {
     @State private var currentDragOffsetY: CGFloat = 0
     @State private var endingOffsetY: CGFloat = 0
     let LIMIT_DRAG_UP: CGFloat = -150
-    let LIMIT_DRAG_DOWN: CGFloat = -150
+    let LIMIT_DRAG_DOWN: CGFloat = 150
     
     // MARK: BODY
     var body: some View {
@@ -36,14 +36,16 @@ struct DragGestureBootcamp2: View {
                                 if currentDragOffsetY < LIMIT_DRAG_UP {
                                     endingOffsetY = -startingOffsetY
                                     currentDragOffsetY = 0
-                                }
-                                else {
+                                } else if endingOffsetY != 0 && currentDragOffsetY > LIMIT_DRAG_DOWN {
+                                    endingOffsetY = 0
+                                    currentDragOffsetY = 0
+                                } else {
                                     currentDragOffsetY = 0
                                 }
                             }
                         }
                 )
-            Text("\(currentDragOffsetY)")
+            // Text("\(currentDragOffsetY)")
         }
         .ignoresSafeArea(edges: .bottom)
     }
