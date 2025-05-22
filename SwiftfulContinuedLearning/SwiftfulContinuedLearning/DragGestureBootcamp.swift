@@ -29,6 +29,7 @@ extension DragGestureBootcamp {
                 .frame(width: 300, height: 500)
                 .offset(offset)
                 .scaleEffect(getScaleAmount())
+                .rotationEffect(Angle(degrees: getRotationAmount()))
                 .gesture(
                     DragGesture()
                         .onChanged { value in
@@ -42,10 +43,11 @@ extension DragGestureBootcamp {
                             }
                         }
                 )
+                .foregroundStyle(Color.indigo)
         }
     }
 }
-/// methods extension
+/// Methods extension
 extension DragGestureBootcamp {
     /// Gets scale amount based on offset.
     ///
@@ -62,6 +64,25 @@ extension DragGestureBootcamp {
         let current = abs(offset.width)
         let percentage = current / max
         return 1.0 - min(percentage, 0.5) * 0.5
+    }
+    
+    /// Gets rotation amount based on offset.
+    ///
+    /// This method returns a Double as result:
+    ///
+    /// ```
+    /// getRotationAmount() -> CGFloat
+    /// ```
+    ///
+    /// - Returns
+    ///     - CGFloat value scaleEffect
+    private func getRotationAmount() -> Double {
+        let max = UIScreen.main.bounds.width / 2
+        let currentAmount = offset.width
+        let percentage = currentAmount / max
+        let percentAsDouble = Double(percentage)
+        let maxAngle: Double = 10
+        return percentAsDouble * maxAngle
     }
 }
 // MARK: PREVIEW
