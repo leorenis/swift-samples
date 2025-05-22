@@ -9,6 +9,11 @@ import SwiftUI
 /// Drag Gesture training
 struct DragGestureBootcamp2: View {
     // MARK: PROPERTIES
+    @State private var startingOffsetY: CGFloat = UIScreen.main.bounds.height * 0.83
+    @State private var currentDragOffsetY: CGFloat = 0
+    @State private var endingOffsetY: CGFloat = 0
+    let LIMIT_DRAG_UP: CGFloat = -150
+    let LIMIT_DRAG_DOWN: CGFloat = -150
     
     // MARK: BODY
     var body: some View {
@@ -16,6 +21,29 @@ struct DragGestureBootcamp2: View {
             Color.green.ignoresSafeArea()
             
             DragSignUpView()
+                .offset(y: startingOffsetY)
+                .offset(y: currentDragOffsetY)
+                .offset(y: endingOffsetY)
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                            withAnimation(.spring()) {
+                                currentDragOffsetY = value.translation.height
+                            }
+                        }
+                        .onEnded { value in
+                            withAnimation(.spring()) {
+                                if currentDragOffsetY < LIMIT_DRAG_UP {
+                                    endingOffsetY = -startingOffsetY
+                                    currentDragOffsetY = 0
+                                }
+                                else {
+                                    currentDragOffsetY = 0
+                                }
+                            }
+                        }
+                )
+            Text("\(currentDragOffsetY)")
         }
         .ignoresSafeArea(edges: .bottom)
     }
