@@ -28,7 +28,7 @@ extension DragGestureBootcamp {
             RoundedRectangle(cornerRadius: 20)
                 .frame(width: 300, height: 500)
                 .offset(offset)
-                .scaleEffect(1.0)
+                .scaleEffect(getScaleAmount())
                 .gesture(
                     DragGesture()
                         .onChanged { value in
@@ -45,7 +45,25 @@ extension DragGestureBootcamp {
         }
     }
 }
-
+/// methods extension
+extension DragGestureBootcamp {
+    /// Gets scale amount based on offset.
+    ///
+    /// This method returns a CGFloat as result:
+    ///
+    /// ```
+    /// getScaleAmount() -> CGFloat
+    /// ```
+    ///
+    /// - Returns
+    ///     - CGFloat value scaleEffect
+    private func getScaleAmount() -> CGFloat {
+        let max = UIScreen.main.bounds.width / 2
+        let current = abs(offset.width)
+        let percentage = current / max
+        return 1.0 - min(percentage, 0.5) * 0.5
+    }
+}
 // MARK: PREVIEW
 #Preview {
     DragGestureBootcamp()
