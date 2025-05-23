@@ -22,11 +22,8 @@ struct ScrollViewReaderBootcamp: View {
                 .keyboardType(.numberPad)
             
             Button("Click to scroll") {
-                withAnimation (.spring()) {
-                    if let index = Int(scrollContent) {
-                        scrollToIndex = index
-                    }
-                    // proxy.scrollTo(30, anchor: .bottom)
+                if let index = Int(scrollContent) {
+                    scrollToIndex = index
                 }
             }
             
@@ -48,7 +45,6 @@ struct ScrollViewReaderBootcamp: View {
                             proxy.scrollTo(scrollToIndex, anchor: .bottom)
                         }
                     }
-                    
                 }
             }
         }
