@@ -14,11 +14,31 @@ struct GeometryReaderBootcamp: View {
     
     //MARK: BODY
     var body: some View {
+        withGeometryCalcView
+        .ignoresSafeArea()
+    }
+}
+
+// MARK: EXTENSIONS
+extension GeometryReaderBootcamp {
+    /// Simulate problem when landscape mode.
+    private var noGeometryCalcView: some View {
         HStack(spacing: 0) {
             Rectangle().fill(Color.red)
+                .frame(width: UIScreen.main.bounds.width * 0.6)
             Rectangle().fill(Color.blue)
         }
-        .ignoresSafeArea()
+    }
+    
+    /// Simulate solution using geometry reader to infer width.
+    private var withGeometryCalcView: some View {
+        GeometryReader { geometry in
+            HStack(spacing: 0) {
+                Rectangle().fill(Color.red)
+                    .frame(width: geometry.size.width * 0.6)
+                Rectangle().fill(Color.blue)
+            }
+        }
     }
 }
 
