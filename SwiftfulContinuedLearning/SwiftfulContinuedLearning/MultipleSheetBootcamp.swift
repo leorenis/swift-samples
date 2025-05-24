@@ -5,6 +5,16 @@
 //  Created by Leo on 24/05/25.
 //
 
+/**
+ * Problem: When content: closure is created, @State selectedModel still starting title.
+ * The content is created, before selectedModel receive the current value, in this case a new RandomModel(...)
+ *
+ *  Solution:
+ *  1. use a binding;
+ *  2. use multiple .sheets;
+ *  3. use $item approach.
+ */
+
 import SwiftUI
 /// Tricks
 /// How to: Multiple sheets in a SwiftUI View
@@ -26,9 +36,8 @@ struct MultipleSheetBootcamp: View {
                 showSheet.toggle()
             }
         }
-        // OBS: When content: closure is created, @State selectedModel still starting title. The content is created, before selectedModel receive the current value, in this case a new RandomModel(...)
         .sheet(isPresented: $showSheet, content: {
-            NextScreenSheetView(selectedModel: selectedModel)
+            NextScreenSheetView(selectedModel: $selectedModel)
         })
     }
 }
@@ -47,7 +56,7 @@ struct RandomModel: Identifiable {
 // MARK: VIEWS
 struct NextScreenSheetView: View {
     // MARK: PROPERTIES
-    let selectedModel: RandomModel
+    @Binding var selectedModel: RandomModel
     var body: some View {
         ZStack {
             Text("\(selectedModel.title)")
