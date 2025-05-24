@@ -26,6 +26,7 @@ struct MultipleSheetBootcamp: View {
                 showSheet.toggle()
             }
         }
+        // OBS: When content: closure is created, @State selectedModel still starting title. The content is created, before selectedModel receive the current value, in this case a new RandomModel(...)
         .sheet(isPresented: $showSheet, content: {
             NextScreenSheetView(selectedModel: selectedModel)
         })
