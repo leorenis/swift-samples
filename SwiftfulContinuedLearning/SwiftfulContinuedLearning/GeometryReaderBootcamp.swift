@@ -14,7 +14,7 @@ struct GeometryReaderBootcamp: View {
     
     //MARK: BODY
     var body: some View {
-        withGeometryCalcView
+        withGeoReaderScrollView
         .ignoresSafeArea()
     }
 }
@@ -39,6 +39,22 @@ extension GeometryReaderBootcamp {
                 Rectangle().fill(Color.blue)
             }
         }
+    }
+    
+    /// Scroll view to simulate effect using geometry reader, rotation3DEffect and horizontal scroll.
+    private var withGeoReaderScrollView: some View {
+        ScrollView(.horizontal, showsIndicators: false, content: {
+            HStack {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.teal)
+                    .rotation3DEffect(
+                        Angle(degrees: 45),
+                        axis: (x: 0.0, y: 1.0, z: 0.0)
+                    )
+                    .frame(width: 300, height: 300)
+                    .padding()
+            }
+        })
     }
 }
 
