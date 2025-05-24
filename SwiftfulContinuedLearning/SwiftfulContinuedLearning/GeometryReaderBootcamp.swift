@@ -82,6 +82,9 @@ extension GeometryReaderBootcamp {
     private func getPercentage(geo: GeometryProxy) -> Double {
         let distance = UIScreen.main.bounds.width / 2
         let currentX = geo.frame(in: .global).midX
+//        print("distance: \(distance)")
+//        print("currentX: \(currentX)")
+//        print("Result: \(Double(1 - (currentX / distance))) \n")
         return Double(1 - (currentX / distance))
     }
 }
