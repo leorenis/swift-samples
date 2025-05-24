@@ -45,16 +45,44 @@ extension GeometryReaderBootcamp {
     private var withGeoReaderScrollView: some View {
         ScrollView(.horizontal, showsIndicators: false, content: {
             HStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.teal)
-                    .rotation3DEffect(
-                        Angle(degrees: 45),
-                        axis: (x: 0.0, y: 1.0, z: 0.0)
-                    )
-                    .frame(width: 300, height: 300)
+                ForEach(0..<20) { index in
+                    GeometryReader { geometry in
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color(#colorLiteral(red: 1, green: 0.5144756436, blue: 0, alpha: 1)))
+                            .rotation3DEffect(
+                                Angle(degrees: getPercentage(geo: geometry) * 40),
+                                axis: (x: 0.0, y: 1.0, z: 0.0)
+                            )
+                    }
+                    .frame(width: 300, height: 250)
                     .padding()
+                }
             }
         })
+    }
+}
+
+// MARK: FUNCTIONS
+extension GeometryReaderBootcamp {
+    
+    /// Gets the Angle percentage calculation
+    ///
+    /// This method calculates the right position to create the 3DEffect.
+    ///
+    /// ```
+    ///     getPercentage(geo: GeometryProxy) -> Double
+    /// ```
+    /// - Parameters:
+    ///   - geo: GeometryProxy parameter.
+    /// - Returns:
+    ///   - Double value contain the angle.
+    /// - Complexity
+    ///     - *O(1)* constant.
+    ///
+    private func getPercentage(geo: GeometryProxy) -> Double {
+        let distance = UIScreen.main.bounds.width / 2
+        let currentX = geo.frame(in: .global).midX
+        return Double(1 - (currentX / distance))
     }
 }
 
