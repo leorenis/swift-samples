@@ -37,7 +37,7 @@ struct MultipleSheetBootcamp: View {
             
             Button("Sheet 2") {
                 selectedModel = RandomModel(title: "Title sheet Two")
-                showSheet.toggle()
+                showSheet2.toggle()
             }
             .sheet(isPresented: $showSheet2, content: {
                 NextScreenSheetView(selectedModel: RandomModel(title: "Sheet two"))
