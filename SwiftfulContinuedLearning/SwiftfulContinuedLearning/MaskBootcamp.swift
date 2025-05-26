@@ -44,7 +44,14 @@ extension MaskBootcamp {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 Rectangle()
-                    .foregroundStyle(Color(.systemYellow))
+                    //.foregroundStyle(Color(.systemYellow))
+                    .fill(
+                        LinearGradient(
+                            gradient: Gradient(colors: [Color(.systemYellow), Color(.systemOrange)]),
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
                     .frame(width: CGFloat(rating) / 5 * geometry.size.width)
             }
         }
