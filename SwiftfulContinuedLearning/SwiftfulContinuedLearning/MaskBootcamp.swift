@@ -10,12 +10,13 @@ import SwiftUI
 /// Mask struct to learning how to mask in SwiftUI.
 struct MaskBootcamp: View {
     // MARK: PROPERTIES
-    @State private var rating: Int = 3
+    @State private var rating: Int = 4
     
     // MARK: BODY
     var body: some View {
         ZStack {
             starsView
+                .overlay( overlayView)
         }
     }
 }
@@ -28,10 +29,21 @@ extension MaskBootcamp {
             ForEach(1..<6) { index in
                 Image(systemName: "star.fill")
                     .font(.largeTitle)
-                    .foregroundStyle(rating >= index ? Color.yellow : Color.gray)
+                    .foregroundStyle(Color(.systemGray))
                     .onTapGesture {
                         rating = index
                     }
+            }
+        }
+    }
+    
+    /// Gets a view Overlay view with geometry reader to provide a Rectangle using in a mask effect.
+    private var overlayView: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .foregroundStyle(Color(.systemYellow))
+                    .frame(width: CGFloat(rating) / 5 * geometry.size.width)
             }
         }
     }
