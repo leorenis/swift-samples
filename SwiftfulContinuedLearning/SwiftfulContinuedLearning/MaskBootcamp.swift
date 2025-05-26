@@ -10,13 +10,13 @@ import SwiftUI
 /// Mask struct to learning how to mask in SwiftUI.
 struct MaskBootcamp: View {
     // MARK: PROPERTIES
-    @State private var rating: Int = 4
+    @State private var rating: Int = 0
     
     // MARK: BODY
     var body: some View {
         ZStack {
             starsView
-                .overlay( overlayView)
+                .overlay(overlayView.mask(starsView))
         }
     }
 }
@@ -31,7 +31,9 @@ extension MaskBootcamp {
                     .font(.largeTitle)
                     .foregroundStyle(Color(.systemGray))
                     .onTapGesture {
-                        rating = index
+                        withAnimation(.easeInOut) {
+                            rating = index
+                        }
                     }
             }
         }
@@ -46,6 +48,7 @@ extension MaskBootcamp {
                     .frame(width: CGFloat(rating) / 5 * geometry.size.width)
             }
         }
+        .allowsHitTesting(false) // Disable click. Only starsView must receive tap
     }
 }
 
