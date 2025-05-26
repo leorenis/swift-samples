@@ -22,6 +22,7 @@ struct MultipleSheetBootcamp: View {
     // MARK: PROPERTIES
     @State private var selectedModel: RandomModel = RandomModel(title: "Starting title")
     @State private var showSheet: Bool = false
+    @State private var showSheet2: Bool = false
     
     // MARK: BODY
     var body: some View {
@@ -30,15 +31,22 @@ struct MultipleSheetBootcamp: View {
                 selectedModel = RandomModel(title: "Title sheet One")
                 showSheet.toggle()
             }
+            .sheet(isPresented: $showSheet) {
+                NextScreenSheetView(selectedModel: RandomModel(title: "Sheet one"))
+            }
             
             Button("Sheet 2") {
                 selectedModel = RandomModel(title: "Title sheet Two")
                 showSheet.toggle()
             }
+            .sheet(isPresented: $showSheet2, content: {
+                NextScreenSheetView(selectedModel: RandomModel(title: "Sheet two"))
+            })
         }
-        .sheet(isPresented: $showSheet, content: {
-            NextScreenSheetView(selectedModel: $selectedModel)
-        })
+//  We can't use sheet in different hierarchy. So, in solution 2 we comment the code bellow.
+//        .sheet(isPresented: $showSheet, content: {
+//            NextScreenSheetView(selectedModel: $selectedModel)
+//        })
     }
 }
 // MARK: PREVIEW
@@ -56,7 +64,8 @@ struct RandomModel: Identifiable {
 // MARK: VIEWS
 struct NextScreenSheetView: View {
     // MARK: PROPERTIES
-    @Binding var selectedModel: RandomModel
+    // @Binding var selectedModel: RandomModel // solution 1
+    let selectedModel: RandomModel
     var body: some View {
         ZStack {
             Text("\(selectedModel.title)")
