@@ -20,35 +20,26 @@ import SwiftUI
 /// How to: Multiple sheets in a SwiftUI View
 struct MultipleSheetBootcamp: View {
     // MARK: PROPERTIES
-    @State private var selectedModel: RandomModel = RandomModel(title: "Starting title")
-    @State private var showSheet: Bool = false
-    @State private var showSheet2: Bool = false
+    @State private var selectedModel: RandomModel? = nil
     
     // MARK: BODY
     var body: some View {
-        VStack(spacing: 20) {
-            Button("Sheet 1") {
-                selectedModel = RandomModel(title: "Title sheet One")
-                showSheet.toggle()
+        // Solution 3
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 12) {
+                ForEach(0..<20) { index in
+                    Button("Sheet \(index)") {
+                        selectedModel = RandomModel(title: "Title sheet \(index)")
+                    }
+                }
             }
-            .sheet(isPresented: $showSheet) {
-                NextScreenSheetView(selectedModel: RandomModel(title: "Sheet one"))
-            }
-            
-            Button("Sheet 2") {
-                selectedModel = RandomModel(title: "Title sheet Two")
-                showSheet2.toggle()
-            }
-            .sheet(isPresented: $showSheet2, content: {
-                NextScreenSheetView(selectedModel: RandomModel(title: "Sheet two"))
+            .sheet(item: $selectedModel, content: { model in
+                NextScreenSheetView(selectedModel: model)
             })
         }
-//  We can't use sheet in different hierarchy. So, in solution 2 we comment the code bellow.
-//        .sheet(isPresented: $showSheet, content: {
-//            NextScreenSheetView(selectedModel: $selectedModel)
-//        })
     }
 }
+
 // MARK: PREVIEW
 #Preview {
     MultipleSheetBootcamp()
@@ -74,3 +65,7 @@ struct NextScreenSheetView: View {
         }
     }
 }
+
+/**
+ * We can't use sheet in different hierarchy. So, in solution 2 we comment the code bellow.
+ */
