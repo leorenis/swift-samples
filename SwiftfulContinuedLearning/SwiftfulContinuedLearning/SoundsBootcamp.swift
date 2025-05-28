@@ -14,6 +14,8 @@ import AVKit
 /// Class SoundManager is a Singleton responsible for manager sounds in our App.
 class SoundManager {
     
+    private init() {} // As a singleton, its must not be initialized out of this class.
+    
     // MARK: PROPERTIES
     static let instance = SoundManager() // Singleton
     var player: AVAudioPlayer?
