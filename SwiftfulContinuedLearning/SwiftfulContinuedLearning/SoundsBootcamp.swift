@@ -21,7 +21,7 @@ enum SoundOption: String {
 class SoundManager {
     
     // MARK: PROPERTIES
-    static let instance = SoundManager()
+    static let instance = SoundManager() // Singleton
     var player: AVAudioPlayer?
     
     // MARK: FUNCTIONS
