@@ -9,12 +9,6 @@
 import SwiftUI
 import AVKit
 
-// MARK: ENUM
-enum SoundOption: String {
-    case tada
-    case badum
-}
-
 // MARK: CLASSES
 
 /// Class SoundManager is a Singleton responsible for manager sounds in our App.
@@ -23,6 +17,12 @@ class SoundManager {
     // MARK: PROPERTIES
     static let instance = SoundManager() // Singleton
     var player: AVAudioPlayer?
+    
+    // MARK: ENUM
+    enum SoundOption: String {
+        case tada
+        case badum
+    }
     
     // MARK: FUNCTIONS
     
@@ -45,8 +45,8 @@ class SoundManager {
             print("Error playing sound: \(error.localizedDescription)")
         }
     }
-    
 }
+
 /// Struct used to training how to create sounds effect.
 struct SoundsBootcamp: View {
     // MARK: PROPERTIES
