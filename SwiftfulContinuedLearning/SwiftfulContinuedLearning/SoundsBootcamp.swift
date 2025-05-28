@@ -9,6 +9,12 @@
 import SwiftUI
 import AVKit
 
+// MARK: ENUM
+enum SoundOption: String {
+    case tada
+    case badum
+}
+
 // MARK: CLASSES
 
 /// Class SoundManager is a Singleton responsible for manager sounds in our App.
@@ -22,11 +28,16 @@ class SoundManager {
     
     /// Plays sound in a singleton instance.
     ///
+    /// Play sound conforms enum value SoundOption. When no sound passed as argument, default value is SoundOption.tada.
+    ///
+    /// - Parameters:
+    ///    - sound: Sound option
+    ///
     /// ```
-    ///     playSound()
+    ///     playSound(sound: SoundOption = .tada)
     /// ```
-    func playSound() {
-        guard let url = URL(string: "") else { return }
+    func playSound(sound: SoundOption = .tada) {
+        guard let url = Bundle.main.url(forResource: sound.rawValue, withExtension: ".mp3") else { return }
         do {
             player = try AVAudioPlayer(contentsOf: url)
             player?.play()
@@ -44,10 +55,10 @@ struct SoundsBootcamp: View {
     var body: some View {
         VStack(spacing: 24) {
             Button("Play sound one") {
-                
+                SoundManager.instance.playSound()
             }
             Button("Play sound two") {
-                
+                SoundManager.instance.playSound(sound: .badum)
             }
         }
     }
