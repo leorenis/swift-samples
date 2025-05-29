@@ -2,17 +2,20 @@
 //  HapticsBootcamp.swift
 //  SwiftfulContinuedLearning
 //
-//  Created by Leo Renis Santos on 29/05/25.
+//  Created by Leo on 29/05/25.
 //
 
 import SwiftUI
 
+/// Struct used to training how to create Haptics vibrations.
 struct HapticsBootcamp: View {
+    // MARK: BODY
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Hello, Haptics!")
     }
 }
 
+// MARK: PREVIEW
 #Preview {
     HapticsBootcamp()
 }
