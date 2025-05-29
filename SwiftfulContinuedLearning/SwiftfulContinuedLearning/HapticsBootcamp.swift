@@ -50,7 +50,11 @@ class HapticsManager {
 struct HapticsBootcamp: View {
     // MARK: BODY
     var body: some View {
-        Text("Hello, Haptics!")
+        VStack (spacing: 12) {
+            Button("Success") { HapticsManager.instance.notification(type: .success) }
+            
+            Button("Impact") { HapticsManager.instance.impact(style: .light)}
+        }
     }
 }
 
