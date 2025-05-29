@@ -23,11 +23,15 @@ class HapticsManager {
     ///
     /// Performs notification in a singleton instance of HapticsManager.
     ///
+    /// - Parameters:
+    ///    - type: FeedbackType
+    ///
     /// ```
-    ///     notification(sound: .tada)
+    ///     notification(type: .success)
     /// ```
-    func notification() {
-        
+    func notification(type: UINotificationFeedbackGenerator.FeedbackType) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(type)
     }
     
     /// Perform impact in a singleton instance.
@@ -35,10 +39,11 @@ class HapticsManager {
     /// Performs impact in a singleton instance of HapticsManager.
     ///
     /// ```
-    ///     impact(sound: .tada)
+    ///     impact(style: .light)
     /// ```
-    func impact() {
-        
+    func impact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+        let generator = UIImpactFeedbackGenerator(style: style)
+        generator.impactOccurred()
     }
 }
 /// Struct used to training how to create Haptics vibrations.
