@@ -36,7 +36,7 @@ class SoundManager {
     ///    - sound: Sound option
     ///
     /// ```
-    ///     playSound(sound: SoundOption = .tada)
+    ///     playSound(sound: .tada)
     /// ```
     func playSound(sound: SoundOption = .tada) {
         guard let url = Bundle.main.url(forResource: sound.rawValue, withExtension: ".mp3") else { return }
