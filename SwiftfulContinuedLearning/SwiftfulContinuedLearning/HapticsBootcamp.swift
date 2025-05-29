@@ -51,9 +51,17 @@ struct HapticsBootcamp: View {
     // MARK: BODY
     var body: some View {
         VStack (spacing: 12) {
-            Button("Success") { HapticsManager.instance.notification(type: .success) }
+            Button("success") { HapticsManager.instance.notification(type: .success) }
+            Button("warning") { HapticsManager.instance.notification(type: .warning) }
+            Button("error") { HapticsManager.instance.notification(type: .error) }
             
-            Button("Impact") { HapticsManager.instance.impact(style: .light)}
+            Divider()
+            
+            Button("soft") { HapticsManager.instance.impact(style: .soft)}
+            Button("light") { HapticsManager.instance.impact(style: .light)}
+            Button("medium") { HapticsManager.instance.impact(style: .medium)}
+            Button("rigid") { HapticsManager.instance.impact(style: .rigid)}
+            Button("heavy") { HapticsManager.instance.impact(style: .heavy)}
         }
     }
 }
