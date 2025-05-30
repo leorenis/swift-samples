@@ -47,6 +47,9 @@ struct LocalNotificationBootcamp: View {
             Button("Request permission") {
                 NotificationManager.instance.requestAuthorization()
             }
+            Button("Schedule notification") {
+                NotificationManager.instance.scheduleNotification()
+            }
         }
     }
 }
