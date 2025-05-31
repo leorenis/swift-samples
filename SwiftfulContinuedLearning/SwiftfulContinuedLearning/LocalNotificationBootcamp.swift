@@ -56,7 +56,7 @@ class NotificationManager {
          */
         
         // 1. Time
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
         
         // 2. Calendar
 //        var dateComponents = DateComponents()
@@ -65,11 +65,11 @@ class NotificationManager {
 //        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         
         // 3. Location
-        let coordinates = CLLocationCoordinate2D(latitude: 40.00, longitude: 50.00)
-        let region = CLCircularRegion(center: coordinates, radius: 100, identifier: UUID().uuidString)
-        region.notifyOnEntry = true
-        region.notifyOnExit = false
-        let trigger = UNLocationNotificationTrigger(region: region, repeats: false)
+//        let coordinates = CLLocationCoordinate2D(latitude: 40.00, longitude: 50.00)
+//        let region = CLCircularRegion(center: coordinates, radius: 100, identifier: UUID().uuidString)
+//        region.notifyOnEntry = true
+//        region.notifyOnExit = false
+//        let trigger = UNLocationNotificationTrigger(region: region, repeats: false)
         
         let request = UNNotificationRequest(
             identifier: UUID().uuidString,
@@ -88,6 +88,18 @@ class NotificationManager {
     func notificationBadgeRestore() {
         UNUserNotificationCenter.current().setBadgeCount(0)
     }
+    
+    /// Cancel all schedule notifications.
+    ///
+    /// Performs schedule cancelation from notifications.
+    ///
+    /// ```
+    ///     cancelNotification()
+    /// ```
+    func cancelNotification() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+    }
 }
 
 /// Struct used to training how to create  Local Notifications.
@@ -100,6 +112,9 @@ struct LocalNotificationBootcamp: View {
             }
             Button("Schedule notification") {
                 NotificationManager.instance.scheduleNotification()
+            }
+            Button("Cancel notifications") {
+                NotificationManager.instance.cancelNotification()
             }
         }
         .onAppear {
