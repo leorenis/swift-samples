@@ -54,10 +54,17 @@ class NotificationManager {
          * 1. Time   |   2. Calendar   |   3. Location
          */
         
-        // time
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
-        // calendar
-        // location
+        // 1. Time
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
+        
+        // 2. Calendar
+        var dateComponents = DateComponents()
+        dateComponents.hour = 12
+        dateComponents.minute = 08
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
+        // 3. Location
+        
         
         let request = UNNotificationRequest(
             identifier: UUID().uuidString,
