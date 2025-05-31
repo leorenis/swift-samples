@@ -40,7 +40,7 @@ class NotificationManager {
     /// Schedules notification by using UNMutableNotificationContent.
     ///
     /// ```
-    ///     scheduleNotification(type: .success)
+    ///     scheduleNotification()
     /// ```
     func scheduleNotification() {
         let content = UNMutableNotificationContent()
@@ -57,6 +57,17 @@ class NotificationManager {
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
     }
+    
+    /// Restore badge count.
+    ///
+    /// Restores badge count on the app icon.
+    ///
+    /// ```
+    ///     notificationBadgeRestore()
+    /// ```
+    func notificationBadgeRestore() {
+        UNUserNotificationCenter.current().setBadgeCount(0)
+    }
 }
 
 /// Struct used to training how to create  Local Notifications.
@@ -70,6 +81,9 @@ struct LocalNotificationBootcamp: View {
             Button("Schedule notification") {
                 NotificationManager.instance.scheduleNotification()
             }
+        }
+        .onAppear {
+            NotificationManager.instance.notificationBadgeRestore()
         }
     }
 }
