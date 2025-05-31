@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UserNotifications
+import CoreLocation
 
 /// Class NotificationManager is a Singleton responsible for manager LocalNotification in our App.
 class NotificationManager {
@@ -58,13 +59,17 @@ class NotificationManager {
 //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
         
         // 2. Calendar
-        var dateComponents = DateComponents()
-        dateComponents.hour = 12
-        dateComponents.minute = 08
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+//        var dateComponents = DateComponents()
+//        dateComponents.hour = 12
+//        dateComponents.minute = 08
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         
         // 3. Location
-        
+        let coordinates = CLLocationCoordinate2D(latitude: 40.00, longitude: 50.00)
+        let region = CLCircularRegion(center: coordinates, radius: 100, identifier: UUID().uuidString)
+        region.notifyOnEntry = true
+        region.notifyOnExit = false
+        let trigger = UNLocationNotificationTrigger(region: region, repeats: false)
         
         let request = UNNotificationRequest(
             identifier: UUID().uuidString,
