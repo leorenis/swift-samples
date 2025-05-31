@@ -49,12 +49,20 @@ class NotificationManager {
         content.sound = .default
         content.badge = 1
         
+        /**
+         * There are three ways to trigger.
+         * 1. Time   |   2. Calendar   |   3. Location
+         */
+        
         // time
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
         // calendar
         // location
         
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: content,
+            trigger: trigger)
         UNUserNotificationCenter.current().add(request)
     }
     
