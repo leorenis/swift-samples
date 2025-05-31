@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Class v is a Singleton responsible for manager haptics in our App.
+/// Class HapticsManager is a Singleton responsible for manager haptics in our App.
 class HapticsManager {
     
     private init() {} // As a singleton, its must not be initialized out of this class.

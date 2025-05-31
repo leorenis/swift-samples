@@ -8,6 +8,7 @@
 import SwiftUI
 import UserNotifications
 
+/// Class NotificationManager is a Singleton responsible for manager LocalNotification in our App.
 class NotificationManager {
     
     // MARK: PROPERTIES
