@@ -49,7 +49,9 @@ struct SampleUserModel: Identifiable {
 
 // MARK: VIEW MODELS
 @Observable class SampleArrayModificationViewModel {
-    var dataArray: [SampleUserModel] = []
+    private var dataArray: [SampleUserModel] = []
+    private var filteredArray: [SampleUserModel] = []
+    
     init() {
         getUsers()
     }
@@ -68,6 +70,12 @@ struct SampleUserModel: Identifiable {
             SampleUserModel(name: "Peter Brown", points: 32, isVerified: false),
         ]
         self.dataArray.append(contentsOf: users)
+    }
+    
+    func updateFilteredArray() {
+        // sort
+        // filter
+        // map
     }
 }
 
