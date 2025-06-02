@@ -34,6 +34,10 @@ struct ArraysBootcamp: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .padding(.horizontal)
                 }
+                Divider()
+                
+                Text("Total points: \(vm.totalPoints)")
+                Text(vm.mappedArray.joined(separator: ", "))
             }
         }
     }
@@ -51,6 +55,8 @@ struct SampleUserModel: Identifiable {
 @Observable class SampleArrayModificationViewModel {
     var dataArray: [SampleUserModel] = []
     var filteredArray: [SampleUserModel] = []
+    var mappedArray: [String] = []
+    var totalPoints: Int = 0
     
     init() {
         getUsers()
@@ -85,7 +91,16 @@ struct SampleUserModel: Identifiable {
 //            return user.isVerified
 //        })
         filteredArray = dataArray.filter { $0.isVerified }
+        
         // map
+        mappedArray = dataArray.map({ user -> String in
+            return user.name
+        })
+        
+        // Reduce
+        totalPoints = dataArray.reduce(into: 0) { result, user in
+            return result += user.points
+        }
     }
 }
 
