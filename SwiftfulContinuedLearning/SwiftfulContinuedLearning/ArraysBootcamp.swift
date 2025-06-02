@@ -100,7 +100,7 @@ struct SampleUserModel: Identifiable {
         mappedArray = filteredArray.compactMap({ user -> String? in
             return user.name
         })
-        mappedArray = dataArray.compactMap(\.name)
+        mappedArray = dataArray.sorted{$0.points > $1.points}.filter{$0.isVerified}.compactMap(\.name)
         
         // Reduce
         totalPoints = filteredArray.reduce(into: 0) { result, user in
