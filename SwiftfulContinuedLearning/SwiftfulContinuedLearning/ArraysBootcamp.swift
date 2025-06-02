@@ -75,13 +75,17 @@ struct SampleUserModel: Identifiable {
     
     private func updateFilteredArray() {
         // sort
-        // filter
-        // map
-        
 //        filteredArray = dataArray.sorted(by: { user1, user2 in
 //            return user1.points > user2.points
 //        })
-        filteredArray = dataArray.sorted { $0.points > $1.points }
+//        filteredArray = dataArray.sorted { $0.points > $1.points }
+        
+        // filter
+//        filteredArray = dataArray.filter({ user -> Bool in
+//            return user.isVerified
+//        })
+        filteredArray = dataArray.filter { $0.isVerified }
+        // map
     }
 }
 
