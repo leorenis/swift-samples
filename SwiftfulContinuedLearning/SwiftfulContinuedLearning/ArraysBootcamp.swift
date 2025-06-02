@@ -97,6 +97,10 @@ struct SampleUserModel: Identifiable {
 //            return user.name
 //        })
         mappedArray = filteredArray.map { $0.name }
+        mappedArray = filteredArray.compactMap({ user -> String? in
+            return user.name
+        })
+        mappedArray = dataArray.compactMap(\.name)
         
         // Reduce
         totalPoints = filteredArray.reduce(into: 0) { result, user in
