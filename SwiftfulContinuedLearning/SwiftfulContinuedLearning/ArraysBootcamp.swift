@@ -93,12 +93,13 @@ struct SampleUserModel: Identifiable {
         filteredArray = dataArray.filter { $0.isVerified }
         
         // map
-        mappedArray = dataArray.map({ user -> String in
-            return user.name
-        })
+//        mappedArray = dataArray.map({ user -> String in
+//            return user.name
+//        })
+        mappedArray = filteredArray.map { $0.name }
         
         // Reduce
-        totalPoints = dataArray.reduce(into: 0) { result, user in
+        totalPoints = filteredArray.reduce(into: 0) { result, user in
             return result += user.points
         }
     }
