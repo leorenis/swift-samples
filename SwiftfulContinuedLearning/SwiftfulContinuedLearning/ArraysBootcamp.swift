@@ -15,7 +15,7 @@ struct ArraysBootcamp: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                ForEach(vm.dataArray) { user in
+                ForEach(vm.filteredArray) { user in
                     VStack (alignment: .leading) {
                         Text(user.name)
                             .font(.headline)
@@ -54,6 +54,7 @@ struct SampleUserModel: Identifiable {
     
     init() {
         getUsers()
+        updateFilteredArray()
     }
     
     private func getUsers() {
@@ -76,6 +77,11 @@ struct SampleUserModel: Identifiable {
         // sort
         // filter
         // map
+        
+//        filteredArray = dataArray.sorted(by: { user1, user2 in
+//            return user1.points > user2.points
+//        })
+        filteredArray = dataArray.sorted { $0.points > $1.points }
     }
 }
 
