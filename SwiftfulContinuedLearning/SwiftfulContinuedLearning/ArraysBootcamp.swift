@@ -13,7 +13,29 @@ struct ArraysBootcamp: View {
     @State private var vm = SampleArrayModificationViewModel()
     // MARK: BODY
     var body: some View {
-        Text("Hello, Arrays!")
+        ScrollView {
+            VStack(spacing: 20) {
+                ForEach(vm.dataArray) { user in
+                    VStack (alignment: .leading) {
+                        Text(user.name)
+                            .font(.headline)
+                        HStack {
+                            Text("Points: \(user.points)")
+                            Spacer()
+                            if user.isVerified {
+                                Image(systemName: "flame.fill")
+                                    
+                            }
+                        }
+                    }
+                    .foregroundStyle(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .padding(.horizontal)
+                }
+            }
+        }
     }
 }
 
