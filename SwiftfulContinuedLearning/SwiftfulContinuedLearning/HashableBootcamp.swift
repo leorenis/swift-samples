@@ -9,9 +9,19 @@ import SwiftUI
 
 // Struct to training hashable.
 struct HashableBootcamp: View {
+    // MARK: PROPERTIES
+    let data: [String] = ["ONE", "TWO", "THREE", "FOUR", "FIVE"]
+    
     // MARK: BODY
     var body: some View {
-        Text("Hello, Hashable!")
+        ScrollView {
+            VStack(spacing: 24) {
+                ForEach(data, id: \.self) { item in
+                    Text(item)
+                        .font(.headline)
+                }
+            }
+        }
     }
 }
 
