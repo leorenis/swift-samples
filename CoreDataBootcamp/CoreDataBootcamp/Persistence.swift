@@ -2,7 +2,7 @@
 //  Persistence.swift
 //  CoreDataBootcamp
 //
-//  Created by Leo Renis Santos on 03/06/25.
+//  Created by Leo on 03/06/25.
 //
 
 import CoreData
