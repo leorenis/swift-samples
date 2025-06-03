@@ -16,7 +16,7 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         for index in 0..<10 {
             let newFruit = FruitEntity(context: viewContext)
-            newFruit.name = "Orange \(index)"
+            newFruit.name = "Apple \(index)"
         }
         do {
             try viewContext.save()
