@@ -12,18 +12,18 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var items: FetchedResults<FruitEntity>
 
     var body: some View {
         NavigationStack {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text("Item at \(item.name ?? "No name")")
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(item.name ?? "No name")
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -45,8 +45,8 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newItem = FruitEntity(context: viewContext)
+            newItem.name = "Lemon"
 
             do {
                 try viewContext.save()
