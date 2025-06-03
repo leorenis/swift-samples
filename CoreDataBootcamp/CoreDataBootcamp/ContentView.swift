@@ -12,18 +12,19 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
+//        entity: FruitEntity.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \FruitEntity.name, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<FruitEntity>
+        animation: .default,
+    ) private var fruits: FetchedResults<FruitEntity>
 
     var body: some View {
         NavigationStack {
             List {
-                ForEach(items) { item in
+                ForEach(fruits) { fruit in
                     NavigationLink {
-                        Text("Item at \(item.name ?? "No name")")
+                        Text(fruit.name ?? "No name")
                     } label: {
-                        Text(item.name ?? "No name")
+                        Text(fruit.name ?? "No name")
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -45,8 +46,8 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = FruitEntity(context: viewContext)
-            newItem.name = "Lemon"
+            let newFruit = FruitEntity(context: viewContext)
+            newFruit.name = "Lemon"
 
             do {
                 try viewContext.save()
@@ -61,7 +62,7 @@ struct ContentView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { fruits[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
