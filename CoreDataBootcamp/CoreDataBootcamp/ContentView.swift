@@ -43,9 +43,7 @@ struct ContentView: View {
                     }
                 }
                 .padding(.horizontal)
-
                 Divider()
-                    
                 List {
                     ForEach(fruits) { fruit in
                         NavigationLink {
