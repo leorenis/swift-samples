@@ -9,7 +9,9 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    // MARK: PROPERTIES
     @Environment(\.managedObjectContext) private var viewContext
+    @State private var fruitText: String = ""
 
     @FetchRequest(
 //        entity: FruitEntity.entity(),
@@ -19,15 +21,41 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(fruits) { fruit in
-                    NavigationLink {
-                        Text(fruit.name ?? "No name")
+            VStack(spacing: 20) {
+                Group {
+                    TextField("Fruit", text: $fruitText)
+                        .font(.headline)
+                        .padding(.leading)
+                        .frame(height: 55)
+                        .background(.ultraThinMaterial)
+                        .frame(maxWidth: .infinity)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                    Button {
+                        addItem()
                     } label: {
-                        Text(fruit.name ?? "No name")
+                        Text("Add")
+                            .font(.headline)
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 55)
+                            .background(Color(#colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)))
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .padding(.horizontal)
+
+                Divider()
+                    
+                List {
+                    ForEach(fruits) { fruit in
+                        NavigationLink {
+                            Text(fruit.name ?? "No name")
+                        } label: {
+                            Text(fruit.name ?? "No name")
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
+                }
             }
             .navigationTitle("Fruits")
             .listStyle(PlainListStyle())
@@ -47,9 +75,9 @@ struct ContentView: View {
     private func addItem() {
         withAnimation {
             let newFruit = FruitEntity(context: viewContext)
-            newFruit.name = "Orange"
-
+            newFruit.name = fruitText
             saveItems()
+            fruitText = ""
         }
     }
 
