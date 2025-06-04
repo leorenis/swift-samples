@@ -53,6 +53,9 @@ struct ContentView: View {
                         } label: {
                             Text(fruit.name ?? "No name")
                         }
+                        .onTapGesture {
+                            updateItem(fruit: fruit)
+                        }
                     }
                     .onDelete(perform: deleteItems)
                 }
@@ -79,6 +82,12 @@ struct ContentView: View {
             saveItems()
             fruitText = ""
         }
+    }
+    
+    private func updateItem(fruit: FruitEntity) {
+        let currentName = fruit.name ?? ""
+        fruit.name = currentName + "🍎"
+        saveItems()
     }
 
     private func deleteItems(offsets: IndexSet) {
