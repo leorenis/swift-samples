@@ -16,10 +16,12 @@ import CoreData
 class CoreDataViewModel: ObservableObject {
     let container: NSPersistentContainer
     init() {
-        container = NSPersistentContainer(name: "")
+        container = NSPersistentContainer(name: "FruitsContainer")
         container.loadPersistentStores { (description, error) in
             if let error = error {
                 print("Error loading core data. \(error)")
+            } else {
+                print("Successfully loaded core data.")
             }
         }
     }
@@ -31,7 +33,7 @@ struct CoreDataBootcamp: View {
     
     // MARK: BODY
     var body: some View {
-        
+        Text("Hello, Core Data!")
     }
 }
 
