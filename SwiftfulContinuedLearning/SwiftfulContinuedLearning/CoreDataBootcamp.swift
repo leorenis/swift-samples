@@ -86,7 +86,14 @@ struct CoreDataBootcamp: View {
                 }
                 .padding(.horizontal)
                 
-                Spacer()
+                List {
+                    ForEach(vm.savedEntities) { entity in
+                        let noName = "No name"
+                        let name = entity.name ?? noName
+                        let noEmptyName = name.isEmpty ? noName : name
+                        Text(noEmptyName)
+                    }
+                }
             }
             .navigationTitle("Fruits")
         }
