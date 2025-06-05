@@ -26,6 +26,7 @@ class CoreDataViewModel: ObservableObject {
         }
         fetchFruits()
     }
+    
     fileprivate func fetchFruits() {
         let request = NSFetchRequest<FruitEntity>(entityName: "FruitEntity")
         do {
@@ -36,6 +37,7 @@ class CoreDataViewModel: ObservableObject {
     }
     
     fileprivate func addFruit(text: String) {
+        print("Saving..")
         let newFruit = FruitEntity(context: container.viewContext)
         newFruit.name = text
         saveData()
@@ -44,8 +46,9 @@ class CoreDataViewModel: ObservableObject {
     private func saveData() {
         do {
             try container.viewContext.save()
+            fetchFruits()
         } catch let error {
-            print("Error save fruits. \(error)")
+            print("Error saving data. \(error)")
         }
     }
 }
@@ -54,10 +57,39 @@ class CoreDataViewModel: ObservableObject {
 struct CoreDataBootcamp: View {
     // MARK: PROPERTIES
     @StateObject private var vm = CoreDataViewModel()
+    @State private var fruitText: String = ""
     
     // MARK: BODY
     var body: some View {
-        Text("Hello, Core Data!")
+        NavigationStack {
+            VStack(spacing: 20) {
+                TextField("Add a fruit", text: $fruitText)
+                    .frame(height: 55)
+                    .padding(.leading)
+                    .font(.headline)
+                    .background(.thinMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .padding(.horizontal)
+                
+                Button {
+                    guard fruitText.count > 3 else { return }
+                    vm.addFruit(text: fruitText)
+                    fruitText = ""
+                } label: {
+                    Text("Save")
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                        .frame(height: 55)
+                        .frame(maxWidth: .infinity)
+                        .background(Color(#colorLiteral(red: 1, green: 0.1857388616, blue: 0.5733950138, alpha: 1)))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                }
+                .padding(.horizontal)
+                
+                Spacer()
+            }
+            .navigationTitle("Fruits")
+        }
     }
 }
 
