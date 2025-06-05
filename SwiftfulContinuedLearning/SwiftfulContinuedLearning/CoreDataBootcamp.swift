@@ -36,17 +36,24 @@ class CoreDataViewModel: ObservableObject {
         }
     }
     
-    fileprivate func deleteFruit(indexSet: IndexSet) {
-        guard let index = indexSet.first else { return }
-        let entity = savedEntities[index]
-        container.viewContext.delete(entity)
-        saveData()
-    }
-    
     fileprivate func addFruit(text: String) {
         print("Saving..")
         let newFruit = FruitEntity(context: container.viewContext)
         newFruit.name = text
+        saveData()
+    }
+    
+    fileprivate func updateFruit(fruit: FruitEntity) {
+        let currentName = fruit.name ?? ""
+        let newName = currentName + "!"
+        fruit.name = newName
+        saveData()
+    }
+    
+    fileprivate func deleteFruit(indexSet: IndexSet) {
+        guard let index = indexSet.first else { return }
+        let entity = savedEntities[index]
+        container.viewContext.delete(entity)
         saveData()
     }
     
@@ -99,6 +106,9 @@ struct CoreDataBootcamp: View {
                         let name = entity.name ?? noName
                         let noEmptyName = name.isEmpty ? noName : name
                         Text(noEmptyName)
+                            .onLongPressGesture {
+                                vm.updateFruit(fruit: entity)
+                            }
                     }
                     .onDelete(perform: vm.deleteFruit)
                 }
