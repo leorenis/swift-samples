@@ -34,6 +34,16 @@ class CoreDataViewModel: ObservableObject {
             print("Error fetching fruits. \(error)")
         }
     }
+    
+    func addFruit(text: String) {
+        let newFruit = FruitEntity(context: container.viewContext)
+        newFruit.name = text
+        do {
+            try container.viewContext.save()
+        } catch let error {
+            print("Error save fruits. \(error)")
+        }
+    }
 }
 
 /// Struct used to learn CoreData
