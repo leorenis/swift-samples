@@ -36,6 +36,13 @@ class CoreDataViewModel: ObservableObject {
         }
     }
     
+    fileprivate func deleteFruit(indexSet: IndexSet) {
+        guard let index = indexSet.first else { return }
+        let entity = savedEntities[index]
+        container.viewContext.delete(entity)
+        saveData()
+    }
+    
     fileprivate func addFruit(text: String) {
         print("Saving..")
         let newFruit = FruitEntity(context: container.viewContext)
@@ -93,6 +100,7 @@ struct CoreDataBootcamp: View {
                         let noEmptyName = name.isEmpty ? noName : name
                         Text(noEmptyName)
                     }
+                    .onDelete(perform: vm.deleteFruit)
                 }
             }
             .navigationTitle("Fruits")
