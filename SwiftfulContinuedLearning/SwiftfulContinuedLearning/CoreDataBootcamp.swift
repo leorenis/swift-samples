@@ -15,14 +15,23 @@ import CoreData
 // MARK: CLASSES
 class CoreDataViewModel: ObservableObject {
     let container: NSPersistentContainer
+    @Published var savedEntities: [FruitEntity] = []
+    
     init() {
         container = NSPersistentContainer(name: "FruitsContainer")
         container.loadPersistentStores { (description, error) in
             if let error = error {
                 print("Error loading core data. \(error)")
-            } else {
-                print("Successfully loaded core data.")
             }
+        }
+        fetchFruits()
+    }
+    func fetchFruits() {
+        let request = NSFetchRequest<FruitEntity>(entityName: "FruitEntity")
+        do {
+            savedEntities = try container.viewContext.fetch(request)
+        } catch let error {
+            print("Error fetching fruits. \(error)")
         }
     }
 }
