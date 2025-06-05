@@ -26,7 +26,7 @@ class CoreDataViewModel: ObservableObject {
         }
         fetchFruits()
     }
-    func fetchFruits() {
+    fileprivate func fetchFruits() {
         let request = NSFetchRequest<FruitEntity>(entityName: "FruitEntity")
         do {
             savedEntities = try container.viewContext.fetch(request)
@@ -35,9 +35,13 @@ class CoreDataViewModel: ObservableObject {
         }
     }
     
-    func addFruit(text: String) {
+    fileprivate func addFruit(text: String) {
         let newFruit = FruitEntity(context: container.viewContext)
         newFruit.name = text
+        saveData()
+    }
+    
+    private func saveData() {
         do {
             try container.viewContext.save()
         } catch let error {
