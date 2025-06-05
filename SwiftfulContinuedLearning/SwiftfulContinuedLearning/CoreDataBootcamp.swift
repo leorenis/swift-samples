@@ -27,6 +27,7 @@ class CoreDataViewModel: ObservableObject {
     }
 }
 
+/// Struct used to learn CoreData
 struct CoreDataBootcamp: View {
     // MARK: PROPERTIES
     @StateObject private var vm = CoreDataViewModel()
