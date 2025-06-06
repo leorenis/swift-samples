@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 //MARK: CLASSES
+/// Class to represents a Singleton Pattern to CoreDataManager
 class CoreDataManager {
     static let instance = CoreDataManager()
     let container: NSPersistentContainer
@@ -28,13 +29,14 @@ class CoreDataManager {
         do {
             try context.save()
         } catch let error {
-            print("Error saving Core Data \(error)")
+            print("Error saving Core Data \(error.localizedDescription)")
         }
     }
 }
 
+/// Class to represents View Model
 class CoreDataRelationshipViewModel: ObservableObject {
-    
+    let manager = CoreDataManager.instance
 }
 
 // MARK: STRUCTS
