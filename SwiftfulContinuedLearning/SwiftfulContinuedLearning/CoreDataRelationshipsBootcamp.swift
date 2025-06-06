@@ -8,6 +8,13 @@
 import SwiftUI
 import CoreData
 
+/**
+ * 3 Entities
+ * BusinessEntity
+ * DepartmentEntity
+ * EmployeeEntity
+ */
+
 //MARK: CLASSES
 /// Class to represents a Singleton Pattern to CoreDataManager
 class CoreDataManager {
@@ -16,7 +23,7 @@ class CoreDataManager {
     let context: NSManagedObjectContext
     
     private init() {
-        container = NSPersistentContainer(name: "")
+        container = NSPersistentContainer(name: "CoreDataContainer")
         container.loadPersistentStores { (description, error) in
             if let error = error {
                 print("Error loading core data \(error)")
