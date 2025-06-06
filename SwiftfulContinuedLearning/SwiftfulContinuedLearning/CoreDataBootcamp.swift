@@ -72,6 +72,7 @@ struct CoreDataBootcamp: View {
     // MARK: PROPERTIES
     @StateObject private var vm = CoreDataViewModel()
     @State private var fruitText: String = ""
+    private let noName = "No name"
     
     // MARK: BODY
     var body: some View {
@@ -102,7 +103,6 @@ struct CoreDataBootcamp: View {
                 
                 List {
                     ForEach(vm.savedEntities) { entity in
-                        let noName = "No name"
                         let name = entity.name ?? noName
                         let noEmptyName = name.isEmpty ? noName : name
                         Text(noEmptyName)
