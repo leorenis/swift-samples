@@ -48,6 +48,10 @@ class CoreDataRelationshipViewModel: ObservableObject {
     let manager = CoreDataManager.instance
     @Published var businesses: [BusinessEntity] = []
     
+    init() {
+        fetchBusinesses()
+    }
+    
     fileprivate func addBusiness() {
         let newBusiness = BusinessEntity(context: manager.context)
         newBusiness.name = "Appl2 Inc."
