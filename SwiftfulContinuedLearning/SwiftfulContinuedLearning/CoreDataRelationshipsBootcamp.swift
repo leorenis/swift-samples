@@ -126,6 +126,11 @@ struct BusinessView: View {
                 }
             }
         })
+        .padding()
+        .frame(maxWidth: 300, alignment: .leading)
+        .background(Color.gray.opacity(0.5))
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .shadow(radius: 10)
     }
 }
 
