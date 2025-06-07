@@ -102,6 +102,33 @@ struct CoreDataRelationshipsBootcamp: View {
     }
 }
 
+/// Struct responsible to show BusinessView
+struct BusinessView: View {
+    let entity: BusinessEntity
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20, content: {
+            Text("Name: \(entity.name ?? "No name")")
+                .bold()
+            
+            if let departments = entity.departments?.allObjects as? [DepartmentEntity] {
+                Text("Departments:")
+                    .bold()
+                ForEach(departments) { department in
+                    Text(department.name ?? "No name")
+                }
+            }
+            
+            if let employees = entity.employees?.allObjects as? [EmployeeEntity] {
+                Text("Employees: ")
+                    .bold()
+                ForEach(employees) { employee in
+                    Text(employee.name ?? "no name")
+                }
+            }
+        })
+    }
+}
+
 // MARK: PREVIEW
 #Preview {
     CoreDataRelationshipsBootcamp()
