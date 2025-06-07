@@ -35,6 +35,7 @@ class CoreDataManager {
     fileprivate func save() {
         do {
             try context.save()
+            print("Saved successfully")
         } catch let error {
             print("Error saving Core Data \(error.localizedDescription)")
         }
@@ -66,7 +67,25 @@ struct CoreDataRelationshipsBootcamp: View {
     
     // MARK: BODY
     var body: some View {
-        Text("Hello, Relationship!")
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 12) {
+                    Button(action: {
+                        vm.addBusiness()
+                    }, label: {
+                        Text("Save")
+                            .font(.headline)
+                            .foregroundStyle(.white)
+                            .frame(height: 55)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .clipShape(Capsule())
+                    })
+                }
+                .padding()
+            }
+            .navigationTitle("Relationships")
+        }
     }
 }
 
