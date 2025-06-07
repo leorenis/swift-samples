@@ -19,7 +19,7 @@ import CoreData
 /// Class to represents a Singleton Pattern to CoreDataManager
 class CoreDataManager {
     static let instance = CoreDataManager()
-    let container: NSPersistentContainer
+    private let container: NSPersistentContainer
     let context: NSManagedObjectContext
     
     private init() {
@@ -56,6 +56,15 @@ class CoreDataRelationshipViewModel: ObservableObject {
     
     fileprivate func save() {
         manager.save()
+    }
+    
+    fileprivate func fetchBusinesses() {
+        let request = NSFetchRequest<BusinessEntity>(entityName: "BusinessEntity")
+        do {
+            businesses = try manager.context.fetch(request)
+        } catch let error {
+            print("Error fetching data \(error.localizedDescription)")
+        }
     }
 }
 
