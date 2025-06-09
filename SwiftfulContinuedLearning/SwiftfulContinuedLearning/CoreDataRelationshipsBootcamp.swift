@@ -92,7 +92,7 @@ struct CoreDataRelationshipsBootcamp: View {
                             .frame(height: 55)
                             .frame(maxWidth: .infinity)
                             .background(Color.blue)
-                            .clipShape(Capsule())
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
                     })
                     ScrollView (.horizontal, showsIndicators: true, content: {
                         HStack(alignment: .top) {
