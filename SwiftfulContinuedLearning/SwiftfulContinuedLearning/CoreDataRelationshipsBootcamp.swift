@@ -51,6 +51,7 @@ class CoreDataRelationshipViewModel: ObservableObject {
     
     init() {
         fetchBusinesses()
+        fetchDepartments()
     }
     
     fileprivate func addBusiness() {
@@ -81,9 +82,11 @@ class CoreDataRelationshipViewModel: ObservableObject {
     
     fileprivate func save() {
         businesses.removeAll()
+        departments.removeAll()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.manager.save()
             self.fetchBusinesses()
+            self.fetchDepartments()
         }
     }
     
@@ -91,6 +94,15 @@ class CoreDataRelationshipViewModel: ObservableObject {
         let request = NSFetchRequest<BusinessEntity>(entityName: "BusinessEntity")
         do {
             businesses = try manager.context.fetch(request)
+        } catch let error {
+            print("Error fetching data \(error.localizedDescription)")
+        }
+    }
+    
+    fileprivate func fetchDepartments() {
+        let request = NSFetchRequest<DepartmentEntity>(entityName: "DepartmentEntity")
+        do {
+            departments = try manager.context.fetch(request)
         } catch let error {
             print("Error fetching data \(error.localizedDescription)")
         }
