@@ -47,6 +47,7 @@ class CoreDataRelationshipViewModel: ObservableObject {
     
     let manager = CoreDataManager.instance
     @Published var businesses: [BusinessEntity] = []
+    @Published var departments: [DepartmentEntity] = []
     
     init() {
         fetchBusinesses()
@@ -123,6 +124,13 @@ struct CoreDataRelationshipsBootcamp: View {
                         HStack(alignment: .top) {
                             ForEach(vm.businesses) { business in
                                 BusinessView(entity: business)
+                            }
+                        }
+                    })
+                    ScrollView (.horizontal, showsIndicators: true, content: {
+                        HStack(alignment: .top) {
+                            ForEach(vm.departments) { department in
+                                DepartmentView(entity: department)
                             }
                         }
                     })
