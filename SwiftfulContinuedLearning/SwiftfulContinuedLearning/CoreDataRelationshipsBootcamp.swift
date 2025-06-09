@@ -48,10 +48,12 @@ class CoreDataRelationshipViewModel: ObservableObject {
     let manager = CoreDataManager.instance
     @Published var businesses: [BusinessEntity] = []
     @Published var departments: [DepartmentEntity] = []
+    @Published var employees: [EmployeeEntity] = []
     
     init() {
         fetchBusinesses()
         fetchDepartments()
+        fetchEmployees()
     }
     
     fileprivate func addBusiness() {
@@ -77,16 +79,27 @@ class CoreDataRelationshipViewModel: ObservableObject {
         newDepartment.name = "Engineering"
         newDepartment.businesses = [businesses[0]]
         save()
-        
+    }
+    
+    fileprivate func addEmployee() {
+        let newEmployee = EmployeeEntity(context: manager.context)
+        newEmployee.name = "Chris"
+        newEmployee.age = 28
+        newEmployee.dateJoined = Date()
+        newEmployee.business = businesses[0]
+        newEmployee.department = departments[0]
+        save()
     }
     
     fileprivate func save() {
         businesses.removeAll()
         departments.removeAll()
+        employees.removeAll()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.manager.save()
             self.fetchBusinesses()
             self.fetchDepartments()
+            self.fetchEmployees()
         }
     }
     
@@ -107,6 +120,15 @@ class CoreDataRelationshipViewModel: ObservableObject {
             print("Error fetching data \(error.localizedDescription)")
         }
     }
+    
+    fileprivate func fetchEmployees() {
+        let request = NSFetchRequest<EmployeeEntity>(entityName: "EmployeeEntity")
+        do {
+            employees = try manager.context.fetch(request)
+        } catch let error {
+            print("Error fetching data \(error.localizedDescription)")
+        }
+    }
 }
 
 // MARK: STRUCTS
@@ -122,7 +144,8 @@ struct CoreDataRelationshipsBootcamp: View {
                 VStack(spacing: 12) {
                     Button(action: {
                         //vm.addBusiness()
-                        vm.addDepartment()
+                        //vm.addDepartment()
+                        //vm.addEmployee()
                     }, label: {
                         Text("Save")
                             .font(.headline)
@@ -143,6 +166,13 @@ struct CoreDataRelationshipsBootcamp: View {
                         HStack(alignment: .top) {
                             ForEach(vm.departments) { department in
                                 DepartmentView(entity: department)
+                            }
+                        }
+                    })
+                    ScrollView (.horizontal, showsIndicators: true, content: {
+                        HStack(alignment: .top) {
+                            ForEach(vm.employees) { employee in
+                                EmployeeView(entity: employee)
                             }
                         }
                     })
@@ -213,6 +243,33 @@ struct DepartmentView: View {
         .padding()
         .frame(maxWidth: 300, alignment: .leading)
         .background(Color.green.opacity(0.5))
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .shadow(radius: 10)
+    }
+}
+
+/// Struct responsible to show EmployeeView
+struct EmployeeView: View {
+    let entity: EmployeeEntity
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20, content: {
+            Text("Name: \(entity.name ?? "No name")")
+                .bold()
+            Text("Age: \(entity.age)")
+            Text("Date joined: \(entity.dateJoined ?? Date())")
+            
+            Text("Business:")
+                .bold()
+            Text(entity.business?.name ?? "No business")
+            
+            Text("Department:")
+                .bold()
+            Text(entity.department?.name ?? "No department")
+        })
+        .padding()
+        .frame(maxWidth: 300, alignment: .leading)
+        .background(Color.blue.opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(radius: 10)
     }
