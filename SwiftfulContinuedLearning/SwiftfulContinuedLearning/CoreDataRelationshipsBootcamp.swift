@@ -143,6 +143,18 @@ class CoreDataRelationshipViewModel: ObservableObject {
             print("Error fetching data \(error.localizedDescription)")
         }
     }
+    
+    fileprivate func fetchEmployees(forBusiness business: BusinessEntity) {
+        let request = NSFetchRequest<EmployeeEntity>(entityName: "EmployeeEntity")
+        // Filter
+        let filter = NSPredicate(format: "business == %@", business)
+        request.predicate = filter
+        do {
+            employees = try manager.context.fetch(request)
+        } catch let error {
+            print("Error fetching data \(error.localizedDescription)")
+        }
+    }
 }
 
 // MARK: STRUCTS
