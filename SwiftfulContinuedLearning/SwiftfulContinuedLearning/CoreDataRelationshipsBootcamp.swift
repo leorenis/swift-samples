@@ -74,6 +74,12 @@ class CoreDataRelationshipViewModel: ObservableObject {
         save()
     }
     
+    fileprivate func updateBusiness() {
+        let existingBusiness = businesses[2]
+        existingBusiness.addToDepartments(departments[0])
+        save()
+    }
+    
     fileprivate func addDepartment() {
         let newDepartment = DepartmentEntity(context: manager.context)
         newDepartment.name = "Finance"
@@ -148,6 +154,7 @@ struct CoreDataRelationshipsBootcamp: View {
                         //vm.addBusiness()
                         //vm.addDepartment()
                         //vm.addEmployee()
+                        //vm.updateBusiness()
                     }, label: {
                         Text("Save")
                             .font(.headline)
