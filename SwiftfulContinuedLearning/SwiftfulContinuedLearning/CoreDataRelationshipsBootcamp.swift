@@ -58,13 +58,13 @@ class CoreDataRelationshipViewModel: ObservableObject {
     
     fileprivate func addBusiness() {
         let newBusiness = BusinessEntity(context: manager.context)
-        newBusiness.name = "Appl2 Inc."
+        newBusiness.name = "Microsoft Inc."
         
         // add existing departments to the new business
-        // newBusiness.departments = []
+        // newBusiness.departments = [departments[0]]
         
         // add existing employee to the new business
-        // newBusiness.employees = []
+        // newBusiness.employees = [employees[1]]
         
         // add new business to existing department
         // newBusiness.addToDepartments(<#T##value: DepartmentEntity##DepartmentEntity#>)
