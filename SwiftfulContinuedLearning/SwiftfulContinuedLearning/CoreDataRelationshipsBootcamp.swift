@@ -113,6 +113,7 @@ class CoreDataRelationshipViewModel: ObservableObject {
     
     fileprivate func fetchBusinesses() {
         let request = NSFetchRequest<BusinessEntity>(entityName: "BusinessEntity")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         do {
             businesses = try manager.context.fetch(request)
         } catch let error {
