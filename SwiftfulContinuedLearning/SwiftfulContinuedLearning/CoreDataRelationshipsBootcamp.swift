@@ -76,15 +76,16 @@ class CoreDataRelationshipViewModel: ObservableObject {
     
     fileprivate func addDepartment() {
         let newDepartment = DepartmentEntity(context: manager.context)
-        newDepartment.name = "Engineering"
-        newDepartment.businesses = [businesses[0]]
+        newDepartment.name = "Marketing"
+        //newDepartment.businesses = [businesses[0]]
+        newDepartment.employees = [employees[1]]
         save()
     }
     
     fileprivate func addEmployee() {
         let newEmployee = EmployeeEntity(context: manager.context)
-        newEmployee.name = "Chris"
-        newEmployee.age = 28
+        newEmployee.name = "Jhon"
+        newEmployee.age = 42
         newEmployee.dateJoined = Date()
         newEmployee.business = businesses[0]
         newEmployee.department = departments[0]
