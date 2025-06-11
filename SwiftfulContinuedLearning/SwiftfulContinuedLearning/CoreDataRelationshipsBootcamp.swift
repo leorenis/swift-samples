@@ -159,9 +159,9 @@ class CoreDataRelationshipViewModel: ObservableObject {
     fileprivate func deleteDepartment() {
         /**
          * Delete Rules (Relationships)
-         *  - Cascade
-         *  - Deny
-         *  - Nullify
+         *  - Cascade: Remove all recordes envolved in relationship (department[2] and all employees these department.
+         *  - Deny: Throws an error and allows delete only when departments to be deleted has no relationships
+         *  - Nullify: Keeps employees records, but remove deleted department;
          *  - No action
          */
         let departmentsToDelete = departments[2]
