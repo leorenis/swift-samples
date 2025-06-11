@@ -155,6 +155,19 @@ class CoreDataRelationshipViewModel: ObservableObject {
             print("Error fetching data \(error.localizedDescription)")
         }
     }
+    
+    fileprivate func deleteDepartment() {
+        /**
+         * Delete Rules (Relationships)
+         *  - Cascade
+         *  - Deny
+         *  - Nullify
+         *  - No action
+         */
+        let departmentsToDelete = departments[2]
+        manager.context.delete(departmentsToDelete)
+        save()
+    }
 }
 
 // MARK: STRUCTS
