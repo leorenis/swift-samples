@@ -186,6 +186,7 @@ struct CoreDataRelationshipsBootcamp: View {
                         //vm.addDepartment()
                         //vm.addEmployee()
                         //vm.updateBusiness()
+                        //vm.deleteDepartment()
                     }, label: {
                         Text("Save")
                             .font(.headline)
