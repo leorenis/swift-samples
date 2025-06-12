@@ -12,10 +12,15 @@ class BackgroundThreadViewModel: ObservableObject {
     @Published var dataArray: [String] = []
     
     func fetchData() {
-        DispatchQueue.global().async {
+        /// qos means: quality-of-service Class. Read more on documentation.
+        DispatchQueue.global(qos: .background).async {
             // the self is required! Because it's create a strong referente to the class ViewModel
             let newData = self.downloadData()
             /**
+             * The code has a problem:
+             * ```
+             *  self.dataArray = self.downloadData()
+             * ```
              * Problem: Publishing changes from background threads is not allowed; make sure to publish values from the main thread (via operators like receive(on:)) on model updates. In other words, we're not allowed to change dataArray in background thread, because this attribute changes the UI that's use the main thread.
              *
              * Solution: Use DispatchQueue.main.async to changes dataArray.
@@ -44,7 +49,7 @@ struct BackgroundThreadBootcamp: View {
     // MARK: BODY
     var body: some View {
         ScrollView {
-            VStack(spacing: 8) {
+            LazyVStack(spacing: 8) {
                 Text("LOAD DATA")
                     .font(.largeTitle)
                     .fontWeight(.semibold)
