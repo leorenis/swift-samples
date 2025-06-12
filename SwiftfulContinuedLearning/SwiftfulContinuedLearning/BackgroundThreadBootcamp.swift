@@ -9,6 +9,8 @@ import SwiftUI
 // MARK: VIEWMODEL
 class BackgroundThreadViewModel: ObservableObject {
     
+    @Published var dataArray: [String] = []
+    
 }
 
 // MARK: STRUCTS
@@ -18,7 +20,13 @@ struct BackgroundThreadBootcamp: View {
     
     // MARK: BODY
     var body: some View {
-        Text("Hello, BG Threads!")
+        ScrollView {
+            VStack(spacing: 8) {
+                Text("LOAD DATA")
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+            }
+        }
     }
 }
 
