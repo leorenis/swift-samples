@@ -12,7 +12,10 @@ class BackgroundThreadViewModel: ObservableObject {
     @Published var dataArray: [String] = []
     
     func fetchData() {
-        dataArray = downloadData()
+        DispatchQueue.global().async {
+            // the self is required! Because it's create a strong referente to the class ViewModel
+            self.dataArray = self.downloadData()
+        }
     }
     
     /// Simulates download data.
