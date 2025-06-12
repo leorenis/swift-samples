@@ -26,8 +26,13 @@ class BackgroundThreadViewModel: ObservableObject {
              *
              * Solution: Use DispatchQueue.main.async to changes dataArray.
              */
+            
+            print("CHECK 1: \(Thread.isMainThread)")
+            print("CHECK 1: \(Thread.current)")
             DispatchQueue.main.async {
                 self.dataArray = newData
+                print("CHECK 2: \(Thread.isMainThread)")
+                print("CHECK 2: \(Thread.current)")
             }
         }
     }
