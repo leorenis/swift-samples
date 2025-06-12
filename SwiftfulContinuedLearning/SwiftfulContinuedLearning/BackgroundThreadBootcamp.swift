@@ -12,7 +12,7 @@ class BackgroundThreadViewModel: ObservableObject {
     @Published var dataArray: [String] = []
     
     func fetchData() {
-        dataArray.append(contentsOf: downloadData())
+        dataArray = downloadData()
     }
     
     /// Simulates download data.
