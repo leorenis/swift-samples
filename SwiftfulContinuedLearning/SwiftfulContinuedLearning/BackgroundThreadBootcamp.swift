@@ -25,6 +25,12 @@ struct BackgroundThreadBootcamp: View {
                 Text("LOAD DATA")
                     .font(.largeTitle)
                     .fontWeight(.semibold)
+                
+                ForEach(vm.dataArray, id: \.self) { item in
+                    Text(item)
+                        .font(.headline)
+                        .foregroundStyle(.secondary)
+                }
             }
         }
     }
