@@ -11,6 +11,18 @@ class BackgroundThreadViewModel: ObservableObject {
     
     @Published var dataArray: [String] = []
     
+    func fetchData() {
+        dataArray.append(contentsOf: downloadData())
+    }
+    
+    /// Simulates download data.
+    private func downloadData() -> [String] {
+        var data: [String] = []
+        for x in 0..<100 {
+            data.append("item: \(x)")
+        }
+        return data
+    }
 }
 
 // MARK: STRUCTS
@@ -25,6 +37,9 @@ struct BackgroundThreadBootcamp: View {
                 Text("LOAD DATA")
                     .font(.largeTitle)
                     .fontWeight(.semibold)
+                    .onTapGesture {
+                        vm.fetchData()
+                    }
                 
                 ForEach(vm.dataArray, id: \.self) { item in
                     Text(item)
