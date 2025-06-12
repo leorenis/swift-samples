@@ -4,6 +4,7 @@
 //
 //  Created by Leo on 12/06/25.
 //
+// This approach is super important when downloading data, streaming videos, images from the internet or any heavy process in our app.
 
 import SwiftUI
 // MARK: VIEWMODEL
