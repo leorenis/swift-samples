@@ -37,6 +37,13 @@ struct WeakSelfBootcamp: View {
             )
             .navigationTitle("Screen One")
         }
+        .overlay(
+            Text("1")
+                .font(.title)
+                .padding()
+                .background(Color.green)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+            , alignment: .topTrailing)
     }
 }
 
