@@ -61,7 +61,7 @@ class MySecondObject {
     let title: String = "Hello, world!"
 }
 
-// Class vs Struct explained to a 5-year old
+// Class vs Struct explained to a 5-years old
 
 // Imagine a school and in the school there are classrooms.
 // Within each class, there are quizzes.
@@ -71,7 +71,7 @@ class MySecondObject {
 // "classroom" = Class
 // "quiz" = Struct
 
-// In this example, we have a classroom and there are many actions that occur inside the classroom.
+// In this example, we have a classroom and there are many actions that occurs inside the classroom.
 // In code, we create a class and can perform actions within the class.
 
 // In this example, there are many different types of quizzes. The teacher hands out the quizzes and the students take the quizzes and return them to the teacher.
@@ -79,7 +79,7 @@ class MySecondObject {
 
 // Note:
 // This metaphor is NOT perfect :)
-// Technical a "quiz" can be a class, etc.
+// Technically, a "quiz" can be a class, etc.
 
 // We want to use a class for things like:
 // "Manager" "DataService" "Service" "Factory" "ViewModel"
