@@ -13,11 +13,15 @@ class WeakSelfSecondScreenViewModel: ObservableObject {
     
     init() {
         print("Initialized now")
+        let currentCount = UserDefaults.standard.integer(forKey: "count")
+        UserDefaults.standard.set(currentCount + 1, forKey: "count")
         getData()
     }
     
     deinit {
         print("Deinitialized now")
+        let currentCount = UserDefaults.standard.integer(forKey: "count")
+        UserDefaults.standard.set(currentCount - 1, forKey: "count")
     }
     
     func getData() {
@@ -28,6 +32,13 @@ class WeakSelfSecondScreenViewModel: ObservableObject {
 // MARK: STRUCTS
 /// Struct to learning weak self
 struct WeakSelfBootcamp: View {
+    // MARK: PROPERTIES
+    @AppStorage("count") var count: Int?
+    
+    init () {
+        count = 0
+    }
+    
     // MARK: BODY
     var body: some View {
         NavigationStack {
@@ -38,7 +49,7 @@ struct WeakSelfBootcamp: View {
             .navigationTitle("Screen One")
         }
         .overlay(
-            Text("1")
+            Text("\(count ?? 0)")
                 .font(.title)
                 .padding()
                 .background(Color.green)
@@ -49,7 +60,8 @@ struct WeakSelfBootcamp: View {
 
 struct WeakSelfSecondScreen: View {
     // MARK: PROPERTIES: SECOND
-    @State private var vm = WeakSelfSecondScreenViewModel()
+    // Gootch, I forget put @State instead @StateObject. And I HAD a BIG BUUUG. I need to PAY ATENTION
+    @StateObject private var vm = WeakSelfSecondScreenViewModel()
     
     var body: some View {
         VStack {
