@@ -41,10 +41,19 @@ struct WeakSelfBootcamp: View {
 }
 
 struct WeakSelfSecondScreen: View {
+    // MARK: PROPERTIES: SECOND
+    @State private var vm = WeakSelfSecondScreenViewModel()
+    
     var body: some View {
-        Text("Second View")
-            .font(.title)
-            .foregroundStyle(.red)
+        VStack {
+            Text("Second View")
+                .font(.title)
+                .foregroundStyle(.red)
+            
+            if let data = vm.data {
+                Text(data)
+            }
+        }
     }
 }
 
