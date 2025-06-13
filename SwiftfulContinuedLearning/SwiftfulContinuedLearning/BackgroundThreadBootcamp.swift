@@ -58,7 +58,10 @@ struct BackgroundThreadBootcamp: View {
             LazyVStack(spacing: 8) {
                 Text("LOAD DATA")
                     .font(.title3)
-                    
+                    .fontWeight(.semibold)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(Color(.systemBlue))
                     .onTapGesture {
                         vm.fetchData()
                     }
