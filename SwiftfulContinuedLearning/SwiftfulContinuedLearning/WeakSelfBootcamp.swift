@@ -6,6 +6,26 @@
 //
 
 import SwiftUI
+
+// MARK: CLASSES
+class WeakSelfSecondScreenViewModel: ObservableObject {
+    @Published var data: String? = nil
+    
+    init() {
+        print("Initialized now")
+        getData()
+    }
+    
+    deinit {
+        print("Deinitialized now")
+    }
+    
+    func getData() {
+        data = "NEW DATA!!!!"
+    }
+}
+
+// MARK: STRUCTS
 /// Struct to learning weak self
 struct WeakSelfBootcamp: View {
     // MARK: BODY
