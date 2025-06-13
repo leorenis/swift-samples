@@ -62,6 +62,9 @@ struct BackgroundThreadBootcamp: View {
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
                     .background(Color(.systemBlue))
+                    .foregroundStyle(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .padding()
                     .onTapGesture {
                         vm.fetchData()
                     }
