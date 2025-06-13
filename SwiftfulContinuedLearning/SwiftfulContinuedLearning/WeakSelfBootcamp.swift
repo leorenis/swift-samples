@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
-
+/// Struct to learning weak self
 struct WeakSelfBootcamp: View {
+    // MARK: BODY
     var body: some View {
         Text("Hello, Weak self!")
     }
 }
 
+// MARK: PREVIEW
 #Preview {
     WeakSelfBootcamp()
 }
