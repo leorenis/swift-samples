@@ -10,7 +10,21 @@ import SwiftUI
 struct WeakSelfBootcamp: View {
     // MARK: BODY
     var body: some View {
-        Text("Hello, Weak self!")
+        NavigationStack {
+            NavigationLink(
+                "Navigate",
+                destination: WeakSelfSecondScreen()
+            )
+            .navigationTitle("Screen One")
+        }
+    }
+}
+
+struct WeakSelfSecondScreen: View {
+    var body: some View {
+        Text("Second View")
+            .font(.title)
+            .foregroundStyle(.red)
     }
 }
 
