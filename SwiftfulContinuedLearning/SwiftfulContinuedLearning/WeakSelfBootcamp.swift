@@ -26,7 +26,7 @@ class WeakSelfSecondScreenViewModel: ObservableObject {
     
     /// Situation:
     ///    When we are using this aproach, only setting data instantaneally, everithing works fine.
-    ///         But when we simulate a real world scenario, where some latency appers, the user can opens screen and get out before the new data is completely loaded. Let's simulate right now using DispatchQueue.
+    ///         But when we simulate a real world scenario, where some latency appers, the user can opens screen and get out before the new data is completely loaded, so in this cases, deinit cant be called because when we use self outside our main thread, we need to use strong self, and strong self prevent deinit be called. Let's simulate right now using DispatchQueue.
     ///    In this case we have a problem, and a possible door for memory leaks. E.g.
     ///
     /// ```
