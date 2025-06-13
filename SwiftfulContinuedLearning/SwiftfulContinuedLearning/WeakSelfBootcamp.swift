@@ -31,7 +31,7 @@ class WeakSelfSecondScreenViewModel: ObservableObject {
     ///
     /// ```
     ///     DispatchQueue.main.asyncAfter(deadline: .now() + 1000) {
-    ///         self.data = "NEW DATA!!!!"
+    ///         self.data = "NEW DATA!!!!" // this self stay alive in our code.
     ///     }
     /// ```
     ///
