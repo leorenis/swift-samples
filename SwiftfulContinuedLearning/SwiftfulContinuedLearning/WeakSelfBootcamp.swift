@@ -24,8 +24,28 @@ class WeakSelfSecondScreenViewModel: ObservableObject {
         UserDefaults.standard.set(currentCount - 1, forKey: "count")
     }
     
+    /// Situation:
+    ///    When we are using this aproach, only setting data instantaneally, everithing works fine.
+    ///         But when we simulate a real world scenario, where some latency appers, the user can opens screen and get out before the new data is completely loaded. Let's simulate right now using DispatchQueue.
+    ///    In this case we have a problem, and a possible door for memory leaks. E.g.
+    ///
+    /// ```
+    ///     DispatchQueue.main.asyncAfter(deadline: .now() + 1000) {
+    ///         self.data = "NEW DATA!!!!"
+    ///     }
+    /// ```
+    ///
+    /// Solution: Using [weak self] in our closure to remove strong reference to view model class.
+    ///
+    /// ```
+    ///     DispatchQueue.main.asyncAfter(deadline: .now() + 1000) { [weak self] in
+    ///         self?.data = "NEW DATA!!!!"
+    ///     }
+    /// ```
     func getData() {
-        data = "NEW DATA!!!!"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 500) { [weak self] in
+            self?.data = "NEW DATA!!!!"
+        }
     }
 }
 
