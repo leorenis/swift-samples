@@ -15,7 +15,7 @@ class BackgroundThreadViewModel: ObservableObject {
     func fetchData() {
         /// qos means: quality-of-service Class. Read more on documentation.
         DispatchQueue.global(qos: .background).async {
-            // the self is required! Because it's create a strong referente to the class ViewModel
+            // the self is required! Because it's create a strong reference to the class ViewModel
             let newData = self.downloadData()
             /**
              * The code has a problem:
@@ -57,8 +57,8 @@ struct BackgroundThreadBootcamp: View {
         ScrollView {
             LazyVStack(spacing: 8) {
                 Text("LOAD DATA")
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
+                    .font(.title3)
+                    
                     .onTapGesture {
                         vm.fetchData()
                     }
