@@ -31,7 +31,7 @@ class WeakSelfSecondScreenViewModel: ObservableObject {
     ///
     /// ```
     ///     DispatchQueue.main.asyncAfter(deadline: .now() + 1000) {
-    ///         self.data = "NEW DATA!!!!" // this self stay alive in our code.
+    ///         self.data = "NEW DATA!!!!" // this self stay alive in our code. Not efficient.
     ///     }
     /// ```
     ///
@@ -44,7 +44,7 @@ class WeakSelfSecondScreenViewModel: ObservableObject {
     /// ```
     func getData() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 500) { [weak self] in
-            self?.data = "NEW DATA!!!!"
+            self?.data = "NEW DATA!!!!" // We absolutely need these class stay alive. If the deinit, OK!
         }
     }
 }
@@ -82,6 +82,10 @@ struct WeakSelfSecondScreen: View {
     // MARK: PROPERTIES: SECOND
     // Gootch, I forget put @State instead @StateObject. And I HAD a BIG BUUUG. I need to PAY ATENTION
     @StateObject private var vm = WeakSelfSecondScreenViewModel()
+    
+//    init () {
+//        UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont(name: "Arial", size: 32)]
+//    }
     
     var body: some View {
         VStack {
