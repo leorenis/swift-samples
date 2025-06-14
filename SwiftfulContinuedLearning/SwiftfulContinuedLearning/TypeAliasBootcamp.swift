@@ -7,14 +7,29 @@
 
 import SwiftUI
 
+// MARK: STRUCTS
+
+struct MovieModel {
+    let title: String
+    let director: String
+    let count: Int
+}
+
 struct TypeAliasBootcamp: View {
-    //MARK: BODY
+    // MARK: PROPERTIES
+    @State private var item: MovieModel = MovieModel(title: "Movie Title", director: "Joe", count: 5)
+    
+    // MARK: BODY
     var body: some View {
-        Text("Hello, TypeAlias!")
+        VStack {
+            Text(item.title)
+            Text(item.director)
+            Text("\(item.count)")
+        }
     }
 }
 
-//MARK: PREVIEW
+// MARK: PREVIEW
 #Preview {
     TypeAliasBootcamp()
 }
