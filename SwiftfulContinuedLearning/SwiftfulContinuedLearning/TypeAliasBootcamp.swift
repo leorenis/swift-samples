@@ -2,7 +2,7 @@
 //  TypeAliasBootcamp.swift
 //  SwiftfulContinuedLearning
 //
-//  Created by Leo Renis Santos on 14/06/25.
+//  Created by Leo on 14/06/25.
 //
 
 import SwiftUI
