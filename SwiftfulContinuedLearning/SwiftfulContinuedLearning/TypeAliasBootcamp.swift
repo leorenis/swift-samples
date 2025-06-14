@@ -15,9 +15,16 @@ struct MovieModel {
     let count: Int
 }
 
+struct TVShowModel {
+    let title: String
+    let director: String
+    let count: Int
+}
+
 struct TypeAliasBootcamp: View {
     // MARK: PROPERTIES
-    @State private var item: MovieModel = MovieModel(title: "Movie Title", director: "Joe", count: 5)
+    // @State private var item: MovieModel = MovieModel(title: "Movie Title", director: "Joe", count: 5)
+    @State private var item: MovieModel = MovieModel(title: "TV Show Title", director: "Emily", count: 5)
     
     // MARK: BODY
     var body: some View {
