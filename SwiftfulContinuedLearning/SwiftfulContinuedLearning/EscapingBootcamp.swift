@@ -24,6 +24,11 @@ class EscapingViewModel: ObservableObject {
         /// solution: strong .self with the class EscapingViewModel. Ty by using [week self] to avoid issues such as memory leaks, slow apps and deinitialization.
         downloadDataAsyncWithDelay { [weak self] (returnData) in
             self?.title = returnData
+            self?.subtitle = "Async result caming soon..."
+        }
+        
+        downloadResultDataAsyncWithDelay { [weak self] (returnData) in
+            self?.title = returnData.data
             self?.subtitle = nil
         }
     }
@@ -32,7 +37,7 @@ class EscapingViewModel: ObservableObject {
         return "New data!"
     }
     
-/// Problem: Does not works, because we cant do this in a synchronous context.
+/// Problem: These code bellow does not works, because we cant do this in a synchronous context.
 //    fileprivate func downloadData2() -> String {
 //        // Delay 2 seconds
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
@@ -57,7 +62,13 @@ class EscapingViewModel: ObservableObject {
         }
     }
     
-    
+    fileprivate func downloadResultDataAsyncWithDelay(completionHandler: @escaping (DownloadResult) -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+            let result = DownloadResult(data: "Data Async RS!")
+            completionHandler(result)
+        }
+    }
+
     /// Tips: Samples Void functions
     func doSomethingVoidFn() {}
     /// By using in closures
@@ -85,6 +96,10 @@ struct EscapingBootcamp: View {
                 .foregroundStyle(.secondary)
         }
     }
+}
+
+struct DownloadResult {
+    let data: String
 }
 
 // MARK: PREVIEW
