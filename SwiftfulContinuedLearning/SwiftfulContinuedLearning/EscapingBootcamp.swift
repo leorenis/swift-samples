@@ -29,6 +29,11 @@ class EscapingViewModel: ObservableObject {
         
         downloadResultDataAsyncWithDelay { [weak self] (returnData) in
             self?.title = returnData.data
+            self?.subtitle = "typealias camming soon..."
+        }
+        
+        downloadResultTypealiasAsyncWithDelay { [weak self] (returnData) in
+            self?.title = returnData.data
             self?.subtitle = nil
         }
     }
@@ -62,9 +67,18 @@ class EscapingViewModel: ObservableObject {
         }
     }
     
+    /// Using a Struct type as parameter.
     fileprivate func downloadResultDataAsyncWithDelay(completionHandler: @escaping (DownloadResult) -> ()) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
             let result = DownloadResult(data: "Data Async RS!")
+            completionHandler(result)
+        }
+    }
+    
+    /// Using DownloadCompletion typealias. Woooow!!.
+    fileprivate func downloadResultTypealiasAsyncWithDelay(completionHandler: @escaping DownloadCompletion) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
+            let result = DownloadResult(data: "Woooow!!")
             completionHandler(result)
         }
     }
@@ -101,6 +115,10 @@ struct EscapingBootcamp: View {
 struct DownloadResult {
     let data: String
 }
+
+// MARK: TYPEALIAS
+typealias DownloadCompletion = (DownloadResult) -> Void
+// typealias DownloadCompletion = (DownloadResult) -> () // tip: As the same above.
 
 // MARK: PREVIEW
 #Preview {
