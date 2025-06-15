@@ -10,15 +10,25 @@ import SwiftUI
 
 // MARK: CLASSES
 class EscapingViewModel: ObservableObject {
-    @Published var text = "Hello"
+    @Published var title = "Hello"
+    @Published var subtitle: String? = nil
     
     fileprivate func getData() {
-        downloadDataAsync { (returnedData) in
-            text = returnedData
+        
+        title = downloadDataSync()
+        
+        downloadDataClosure { (returnedData) in
+            subtitle = returnedData
+        }
+        /// Another Problem: Reference to property 'text' in closure requires explicit use of 'self' to make capture semantics explicit
+        /// solution: strong .self with the class EscapingViewModel. Ty by using [week self] to avoid issues such as memory leaks, slow apps and deinitialization.
+        downloadDataAsyncWithDelay { [weak self] (returnData) in
+            self?.title = returnData
+            self?.subtitle = nil
         }
     }
     
-    fileprivate func downloadData() -> String {
+    fileprivate func downloadDataSync() -> String {
         return "New data!"
     }
     
@@ -30,17 +40,27 @@ class EscapingViewModel: ObservableObject {
 //        }
 //    }
     
-    /// Solution: Using callback function
+    /// Try to Solution 1: Using callback function
     /// TIPS:
     ///  - (_ data: String) _ represents a alias for data typed as String outside the function.
     ///  - In Swift: Closure Functions that returns Void might be represented as: (_ data: String) -> Void, or (_ data: String) -> ()
     ///  - See more: https://youtu.be/7gg8iBH2fg4?list=PLwvDm4VfkdpiagxAXCT33Rkwnc5IVhTar&t=791
-    fileprivate func downloadDataAsync(completionHandler: (_ data: String) -> Void) {
-        completionHandler("New data!")
+    fileprivate func downloadDataClosure(completionHandler: (_ data: String) -> Void) {
+        completionHandler("Preparing to async")
     }
     
-    /// Sample Void functions
+    /// Another Problem: Escaping closure captures non-escaping parameter 'completionHandler'
+    /// Solution: @escaping
+    fileprivate func downloadDataAsyncWithDelay(completionHandler: @escaping (_ data: String) -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            completionHandler("New data async!")
+        }
+    }
+    
+    
+    /// Tips: Samples Void functions
     func doSomethingVoidFn() {}
+    /// By using in closures
     func doSomethingVoidFnOne(_ data: String) -> () {}
     func doSomethingVoidFnTwo(_ data: String) -> Void {}
 }
@@ -51,13 +71,19 @@ struct EscapingBootcamp: View {
     @StateObject var vm = EscapingViewModel()
     
     var body: some View {
-        Text(vm.text)
+        Text(vm.title)
             .font(.largeTitle)
             .fontWeight(.semibold)
             .foregroundStyle(.blue)
             .onTapGesture {
                 vm.getData()
             }
+        if let subtitle = vm.subtitle {
+            Text(subtitle)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .foregroundStyle(.secondary)
+        }
     }
 }
 
