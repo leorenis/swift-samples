@@ -52,7 +52,7 @@ class EscapingViewModel: ObservableObject {
     
     /// Try to Solution 1: Using callback function
     /// TIPS:
-    ///  - (_ data: String) _ represents a alias for data typed as String outside the function.
+    ///  - (_ data: String) _ represents an alias for data typed as String outside function.
     ///  - In Swift: Closure Functions that returns Void might be represented as: (_ data: String) -> Void, or (_ data: String) -> ()
     ///  - See more: https://youtu.be/7gg8iBH2fg4?list=PLwvDm4VfkdpiagxAXCT33Rkwnc5IVhTar&t=791
     fileprivate func downloadDataClosure(completionHandler: (_ data: String) -> Void) {
