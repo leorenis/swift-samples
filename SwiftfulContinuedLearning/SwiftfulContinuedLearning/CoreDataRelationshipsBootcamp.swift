@@ -22,6 +22,7 @@ class CoreDataManager {
     private let container: NSPersistentContainer
     let context: NSManagedObjectContext
     
+    /// Private init to avoid create new instances unless a static instance such as a Singleton pattern
     private init() {
         container = NSPersistentContainer(name: "CoreDataContainer")
         container.loadPersistentStores { (description, error) in
