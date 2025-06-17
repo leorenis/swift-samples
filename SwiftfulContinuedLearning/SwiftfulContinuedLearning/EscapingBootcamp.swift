@@ -20,7 +20,7 @@ class EscapingViewModel: ObservableObject {
         downloadDataClosure { (returnedData) in
             subtitle = returnedData
         }
-        /// Another Problem: Reference to property 'text' in closure requires explicit use of 'self' to make capture semantics explicit
+        /// Another Problem: Reference to property 'text' in closure requires explicity use of 'self' to make capture semantics explicit
         /// solution: strong .self with the class EscapingViewModel. Ty by using [week self] to avoid issues such as memory leaks, slow apps and deinitialization.
         downloadDataAsyncWithDelay { [weak self] (returnData) in
             self?.title = returnData
