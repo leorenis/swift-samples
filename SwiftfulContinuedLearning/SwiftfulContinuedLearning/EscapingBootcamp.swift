@@ -10,7 +10,7 @@ import SwiftUI
 
 // MARK: CLASSES
 class EscapingViewModel: ObservableObject {
-    @Published var title = "Hello"
+    @Published var title = "Tap me!"
     @Published var subtitle: String? = nil
     
     fileprivate func getData() {
