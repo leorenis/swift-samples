@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+// MARK: CLASSES
+class CodableViewModel: ObservableObject {
+    
+}
+
 // MARK: STRUCTS
 /// Structs to learning and training Codable protocol.
 struct CodableBootcamp: View {
