@@ -42,6 +42,8 @@ struct CustomerModel: Identifiable, Codable {
     ///     O(1) on average, always contant.
     fileprivate func fetchData() {
         guard let data = getJSONData() else { return }
+        /// Hmm: this kind of code is tediously, so boring.
+        /// Solution: Codable
         if
             let localData = try? JSONSerialization.jsonObject(with: data, options: []),
             let dictionary = localData as? [String: Any],
