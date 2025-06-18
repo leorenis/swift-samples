@@ -17,7 +17,7 @@ struct CustomerModel: Identifiable, Codable {
 
 // MARK: CLASSES VIEW MODELS
 @Observable class CodableViewModel {
-    var customer: CustomerModel? = CustomerModel(id: "1", name: "Nick Doe", points: 5, isPremium: true)
+    fileprivate var customer: CustomerModel? = CustomerModel(id: "1", name: "Nick Doe", points: 5, isPremium: true)
 }
 
 // MARK: STRUCTS VIEWS
@@ -29,7 +29,22 @@ struct CodableBootcamp: View {
     
     // MARK: BODY
     var body: some View {
-        Text("Hello, Codable!")
+        VStack(alignment: .leading ,spacing: 20) {
+            if let customer = vm.customer {
+                Group {
+                    Text("ID: \(customer.id)")
+                    Text("Name: \(customer.name)")
+                    Text("\(customer.points) points")
+                    Text(customer.isPremium ? "Premium 🫅🏾" : "Not Premium")
+                }
+                .font(.headline)
+                
+            }
+        }
+        .padding()
+        .padding(.horizontal, 20)
+        .background(Color.green.opacity(0.2))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
 
