@@ -18,6 +18,42 @@ struct CustomerModel: Identifiable, Codable {
 // MARK: CLASSES VIEW MODELS
 @Observable class CodableViewModel {
     fileprivate var customer: CustomerModel? = nil // CustomerModel(id: "1", name: "Nick Doe", points: 5, isPremium: true)
+    
+    init () {
+        fetchData()
+    }
+    
+    
+    /// Simulates a method to get data.
+    ///
+    /// Inicialize data fetch method.
+    ///
+    /// ```
+    ///     fetchData()
+    /// ```
+    /// - Complexity:
+    ///     O(1) on average, always contant.
+    fileprivate func fetchData() {
+        guard let data = getJSONData() else { return }
+        print("JSON Data")
+        print(data)
+    }
+    
+    
+    /// Simulates a data fetch from the internet as JSON Object.
+    ///
+    /// Gets remote data and return as optional Data?
+    ///
+    /// - Returns: Returts an optional data from Data type
+    fileprivate func getJSONData() -> Data? {
+        let dictionary: [String:Any] = [
+            "id": "afb2df-dac321-bfa31",
+            "name": "Mary Jane Smith",
+            "points": "7",
+            "isPremium": true
+        ]
+        return try? JSONSerialization.data(withJSONObject: dictionary, options: [])
+    }
 }
 
 // MARK: STRUCTS VIEWS
