@@ -17,7 +17,7 @@ struct CustomerModel: Identifiable, Codable {
 
 // MARK: CLASSES VIEW MODELS
 @Observable class CodableViewModel {
-    fileprivate var customer: CustomerModel? = CustomerModel(id: "1", name: "Nick Doe", points: 5, isPremium: true)
+    fileprivate var customer: CustomerModel? = nil // CustomerModel(id: "1", name: "Nick Doe", points: 5, isPremium: true)
 }
 
 // MARK: STRUCTS VIEWS
@@ -39,6 +39,8 @@ struct CodableBootcamp: View {
                 }
                 .font(.headline)
                 
+            } else {
+                Text("∅")
             }
         }
         .padding()
