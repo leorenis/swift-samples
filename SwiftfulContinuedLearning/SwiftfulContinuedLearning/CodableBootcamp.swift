@@ -2,17 +2,22 @@
 //  CodableBootcamp.swift
 //  SwiftfulContinuedLearning
 //
-//  Created by Leo Renis Santos on 17/06/25.
+//  Created by Leo on 17/06/25.
 //
 
 import SwiftUI
 
+// MARK: STRUCTS
+/// Structs to learning and training Codable protocol.
 struct CodableBootcamp: View {
+    
+    // MARK: BODY
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Hello, Codable!")
     }
 }
 
+// MARK: PREVIEW
 #Preview {
     CodableBootcamp()
 }
