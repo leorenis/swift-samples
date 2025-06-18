@@ -28,16 +28,31 @@ struct CustomerModel: Identifiable, Codable {
     ///
     /// Inicialize data fetch method.
     ///
-    /// ```
+    /// ```swift
     ///    fetchData()
     /// ```
+    ///
+    /// We can see Data as JSON using:
+    ///
+    ///```swift
+    ///     let jsonAsString = String(data: data, encoding: .utf8)
+    ///```
     ///
     /// - Complexity:
     ///     O(1) on average, always contant.
     fileprivate func fetchData() {
         guard let data = getJSONData() else { return }
-        print("JSON Data")
-        print(data)
+        if
+            let localData = try? JSONSerialization.jsonObject(with: data, options: []),
+            let dictionary = localData as? [String: Any],
+            let id = dictionary["id"] as? String,
+            let name = dictionary["name"] as? String,
+            let points = dictionary["points"] as? Int,
+            let isPremium = dictionary["isPremium"] as? Bool {
+            
+            let newCustomer = CustomerModel(id: id, name: name , points: points, isPremium: isPremium)
+            customer = newCustomer
+        }
     }
     
     
@@ -50,9 +65,9 @@ struct CustomerModel: Identifiable, Codable {
     /// - Returns: Returts an optional data from Data type
     fileprivate func getJSONData() -> Data? {
         let dictionary: [String:Any] = [
-            "id": "afb2df-dac321-bfa31",
+            "id": "af2f-dac1-bfa3-1cbd2e5e8e4f",
             "name": "Mary Jane Smith",
-            "points": "7",
+            "points": 7,
             "isPremium": true
         ]
         return try? JSONSerialization.data(withJSONObject: dictionary, options: [])
