@@ -29,8 +29,9 @@ struct CustomerModel: Identifiable, Codable {
     /// Inicialize data fetch method.
     ///
     /// ```
-    ///     fetchData()
+    ///    fetchData()
     /// ```
+    ///
     /// - Complexity:
     ///     O(1) on average, always contant.
     fileprivate func fetchData() {
@@ -42,7 +43,9 @@ struct CustomerModel: Identifiable, Codable {
     
     /// Simulates a data fetch from the internet as JSON Object.
     ///
-    /// Gets remote data and return as optional Data?
+    /// Gets remote data and return as optional Data
+    ///
+    ///     getJSONData() -> Data?
     ///
     /// - Returns: Returts an optional data from Data type
     fileprivate func getJSONData() -> Data? {
