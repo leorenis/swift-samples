@@ -4,6 +4,7 @@
 //
 //  Created by Leo on 19/06/25.
 //  HTTP Response Status Codes: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
+//  JSON Placeholder: https://jsonplaceholder.typicode.com
 //
 
 import SwiftUI
@@ -15,7 +16,7 @@ class DownloadWithEscapingViewModel: ObservableObject {
     }
     
     fileprivate func getPosts() {
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1") else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else {
                 print("No data.")
