@@ -21,6 +21,41 @@ class DownloadWithEscapingViewModel: ObservableObject {
     
     fileprivate func getPosts() {
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1") else { return }
+        
+        downloadDataHandler(from: url) { downloadedData in
+            if let data = downloadedData {
+                guard let decodedData = try? JSONDecoder().decode(PostModel.self, from: data) else { return }
+                /// IMPORTANT TIP: Always we manipulate @Published data or any data to our Views (UI), these data must update only from the MAIN Thread, and here we're in a Task in background. So, we MUST to do in main thread using DispatchQueue.main.async and [weak self] as bellow.
+                DispatchQueue.main.async { [weak self] in
+                    self?.posts.append(decodedData)
+                }
+            } else {
+                print("No data returned")
+            }
+        }
+    }
+    
+    /// The downloadDataHandler method is a function that downloads data from a specified URL.
+    /// It utilizes the URLSession class to perform the download and returns the downloaded data through the completionHandler block.
+    ///
+    /// Important:
+    /// - .resume() here is like the start the function or task here... The task do not starts until call resume.
+    ///
+    /// - Parameters:
+    ///   - url: A completion block that is called after the download is complete. It receives the downloaded data (Data) as a parameter
+    ///   - completionHandler: The address of the URL from which to download the data.
+    ///
+    ///   ```swift
+    ///     downloadDataHandler(from: url) { (data) in
+    ///         if let data = data {
+    ///             print("Data downloaded successfully: \(String(data: data, encoding: .utf8)!)")
+    ///         } else {
+    ///             print("Error downloading data.")
+    ///         }
+    ///     }
+    ///
+    ///   ```
+    func downloadDataHandler(from url: URL, completionHandler: @escaping DownloadData) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard
                 error == nil,
@@ -29,38 +64,11 @@ class DownloadWithEscapingViewModel: ObservableObject {
                 response.statusCode >= 200 && response.statusCode < 300
             else {
                 print("Error downloading data.")
+                completionHandler(nil) // If fails, completionHandler with nil
                 return
             }
-//            guard error == nil else {
-//                print("Error: \(String(describing: error))")
-//                return
-//            }
-//            
-//            guard let response = response as? HTTPURLResponse else {
-//                print( "Invalid HTTPURLResponse.")
-//                return
-//            }
-//            
-//            guard response.statusCode >= 200 && response.statusCode < 300 else {
-//                print("Status code should be between 200 and 300, but got status code: \(response.statusCode)")
-//                return
-//            }
-//            print("Successfully downloaded data!")
-//            let jsonString = String(data: data, encoding: .utf8)
-//            print(jsonString as Any)
-
-            do {
-                let dataDecoded = try JSONDecoder().decode(PostModel.self, from: data)
-                /// IMPORTANT TIP: Always we manipulate @Published data or any data to our Views (UI), these data must update only from the MAIN Thread, and here we're in a Task in background. So, we MUST to do in main thread using DispatchQueue.main.async and [weak self] as bellow.
-                DispatchQueue.main.async { [weak self] in
-                    self?.posts.append(dataDecoded)
-                }
-                
-            } catch let error {
-                print("Error: \(error)")
-            }
-            
-        }.resume() // Tip: .resume() here is like the start the function or task here... The task do not starts until call resume.
+            completionHandler(data)
+        }.resume()  // Tip: .resume() here is like the start the function or task here... The task do not starts until call resume.
     }
 }
 
@@ -96,6 +104,9 @@ struct PostModel: Identifiable, Decodable {
     let title: String
     let body: String
 }
+
+// MARK: TYPEALIAS
+typealias DownloadData = (_ data: Data? ) -> ()
 
 // MARK: PREVIEW
 #Preview {
