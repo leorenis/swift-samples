@@ -13,6 +13,25 @@ struct CustomerModel: Identifiable, Codable {
     let name: String
     let points: Int
     let isPremium: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, points, isPremium
+    }
+    
+    init(id: String, name: String, points: Int, isPremium: Bool) {
+        self.id = id
+        self.name = name
+        self.points = points
+        self.isPremium = isPremium
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(String.self, forKey: .id)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.points = try container.decode(Int.self, forKey: .points)
+        self.isPremium = try container.decode(Bool.self, forKey: .isPremium)
+    }
 }
 
 // MARK: CLASSES VIEW MODELS
