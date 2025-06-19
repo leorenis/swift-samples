@@ -23,16 +23,18 @@ class DownloadWithEscapingViewModel: ObservableObject {
     }
     
     fileprivate func getPosts() {
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1") else { return }
+        let strPostOneURL = "https://jsonplaceholder.typicode.com/posts/1"
+        let strPostsURL = "https://jsonplaceholder.typicode.com/posts"
+        guard let url = URL(string: strPostsURL) else { return }
         
         downloadDataHandler(from: url) { downloadedData in
             if let data = downloadedData {
-                guard let newPost = try? JSONDecoder().decode(PostModel.self, from: data) else { return }
+                guard let newPosts = try? JSONDecoder().decode([PostModel].self, from: data) else { return }
                 /// IMPORTANT TIP: Always we manipulate @Published data or any data to our Views (UI),
                 ///  these data must update only from the MAIN Thread, and here we're in a Task in background.
                 ///  So, we MUST to do in main thread using DispatchQueue.main.async and [weak self] as bellow.
                 DispatchQueue.main.async { [weak self] in
-                    self?.posts.append(newPost)
+                    self?.posts = newPosts
                 }
             } else {
                 print("No data returned")
