@@ -73,7 +73,8 @@ struct CustomerModel: Identifiable, Codable {
 //            let newCustomer = CustomerModel(id: id, name: name , points: points, isPremium: isPremium)
 //            customer = newCustomer
         
-        /// Solution: Codable
+        /// Solution: Codable. Both approach works. I prefer the explicity second one.
+//        self.customer = try? JSONDecoder().decode(CustomerModel.self, from: data)
         do {
             self.customer = try JSONDecoder().decode(CustomerModel.self, from: data)
         } catch let error {
