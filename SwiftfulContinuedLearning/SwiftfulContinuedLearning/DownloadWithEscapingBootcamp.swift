@@ -5,6 +5,7 @@
 //  Created by Leo on 19/06/25.
 //  HTTP Response Status Codes: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
 //  JSON Placeholder: https://jsonplaceholder.typicode.com
+//  QuickType: https://app.quicktype.io/
 //
 
 import SwiftUI
@@ -56,6 +57,14 @@ struct DownloadWithEscapingBootcamp: View {
     var body: some View {
         Text("Hello, DownloadWithEscaping!")
     }
+}
+
+// MARK: MODELS
+struct PostModel: Identifiable, Decodable {
+    let userId: Int
+    let id: Int
+    let title: String
+    let body: String
 }
 
 // MARK: PREVIEW
