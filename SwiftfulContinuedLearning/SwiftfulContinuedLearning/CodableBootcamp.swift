@@ -106,13 +106,15 @@ struct CustomerModel: Identifiable, Codable {
     ///
     /// - Returns: Returts an optional data from Data type
     fileprivate func getJSONData() -> Data? {
-        let dictionary: [String:Any] = [
-            "id": "af2f-dac1-bfa3-1cbd2e5e8e4f",
-            "name": "Mary Jane Smith",
-            "points": 7,
-            "isPremium": true
-        ]
-        return try? JSONSerialization.data(withJSONObject: dictionary, options: [])
+        let customer = CustomerModel(id: "af2f-dac1-bfa3-1cbd2e5e8e4f", name: "Mary Jane Smith", points: 9, isPremium: true)
+        return try? JSONEncoder().encode(customer)
+//        let dictionary: [String:Any] = [
+//            "id": "af2f-dac1-bfa3-1cbd2e5e8e4f",
+//            "name": "Mary Jane Smith",
+//            "points": 7,
+//            "isPremium": true
+//        ]
+//        return try? JSONSerialization.data(withJSONObject: dictionary, options: [])
     }
 }
 
