@@ -7,6 +7,10 @@
 //  JSON Placeholder: https://jsonplaceholder.typicode.com
 //  QuickType: https://app.quicktype.io/
 //
+//  Inicial v1: https://tinyurl.com/3d5znvsv
+//  Intermediate v2: https://tinyurl.com/5n7wut4r
+//  Advanced v3: https://tinyurl.com/ysnk96es
+//
 
 import SwiftUI
 
