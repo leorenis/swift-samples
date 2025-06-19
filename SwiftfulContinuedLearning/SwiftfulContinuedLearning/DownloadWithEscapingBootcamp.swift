@@ -16,7 +16,6 @@ import SwiftUI
 
 // MARK: CLASSES
 class DownloadWithEscapingViewModel: ObservableObject {
-    
     @Published fileprivate var posts: [PostModel] = []
     
     init() {
@@ -29,7 +28,9 @@ class DownloadWithEscapingViewModel: ObservableObject {
         downloadDataHandler(from: url) { downloadedData in
             if let data = downloadedData {
                 guard let decodedData = try? JSONDecoder().decode(PostModel.self, from: data) else { return }
-                /// IMPORTANT TIP: Always we manipulate @Published data or any data to our Views (UI), these data must update only from the MAIN Thread, and here we're in a Task in background. So, we MUST to do in main thread using DispatchQueue.main.async and [weak self] as bellow.
+                /// IMPORTANT TIP: Always we manipulate @Published data or any data to our Views (UI),
+                ///  these data must update only from the MAIN Thread, and here we're in a Task in background.
+                ///  So, we MUST to do in main thread using DispatchQueue.main.async and [weak self] as bellow.
                 DispatchQueue.main.async { [weak self] in
                     self?.posts.append(decodedData)
                 }
@@ -76,6 +77,9 @@ class DownloadWithEscapingViewModel: ObservableObject {
     }
 }
 
+// MARK: TYPEALIAS
+typealias DownloadData = (_ data: Data? ) -> ()
+
 // MARK: STRUCTS
 /// Struct to learning about download data from the internet using escaping.
 struct DownloadWithEscapingBootcamp: View {
@@ -108,9 +112,6 @@ struct PostModel: Identifiable, Decodable {
     let title: String
     let body: String
 }
-
-// MARK: TYPEALIAS
-typealias DownloadData = (_ data: Data? ) -> ()
 
 // MARK: PREVIEW
 #Preview {
