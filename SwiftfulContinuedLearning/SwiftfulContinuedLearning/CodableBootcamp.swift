@@ -62,17 +62,22 @@ struct CustomerModel: Identifiable, Codable {
     fileprivate func fetchData() {
         guard let data = getJSONData() else { return }
         /// Hmm: this kind of code is tediously, so boring.
+//        if
+//            let localData = try? JSONSerialization.jsonObject(with: data, options: []),
+//            let dictionary = localData as? [String: Any],
+//            let id = dictionary["id"] as? String,
+//            let name = dictionary["name"] as? String,
+//            let points = dictionary["points"] as? Int,
+//            let isPremium = dictionary["isPremium"] as? Bool {
+//            
+//            let newCustomer = CustomerModel(id: id, name: name , points: points, isPremium: isPremium)
+//            customer = newCustomer
+        
         /// Solution: Codable
-        if
-            let localData = try? JSONSerialization.jsonObject(with: data, options: []),
-            let dictionary = localData as? [String: Any],
-            let id = dictionary["id"] as? String,
-            let name = dictionary["name"] as? String,
-            let points = dictionary["points"] as? Int,
-            let isPremium = dictionary["isPremium"] as? Bool {
-            
-            let newCustomer = CustomerModel(id: id, name: name , points: points, isPremium: isPremium)
-            customer = newCustomer
+        do {
+            self.customer = try JSONDecoder().decode(CustomerModel.self, from: data)
+        } catch let error {
+            print("Error decoding. \(error)")
         }
     }
     
