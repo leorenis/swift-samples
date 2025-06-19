@@ -2,17 +2,20 @@
 //  DownloadWithEscapingBootcamp.swift
 //  SwiftfulContinuedLearning
 //
-//  Created by Leo Renis Santos on 19/06/25.
+//  Created by Leo on 19/06/25.
 //
 
 import SwiftUI
 
+/// Struct to learning about download data from the internet using escaping.
 struct DownloadWithEscapingBootcamp: View {
+    // MARK: BODY
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Hello, DownloadWithEscaping!")
     }
 }
 
+// MARK: PREVIEW
 #Preview {
     DownloadWithEscapingBootcamp()
 }
