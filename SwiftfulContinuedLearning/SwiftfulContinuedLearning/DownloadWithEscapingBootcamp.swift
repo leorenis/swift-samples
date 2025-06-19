@@ -27,12 +27,12 @@ class DownloadWithEscapingViewModel: ObservableObject {
         
         downloadDataHandler(from: url) { downloadedData in
             if let data = downloadedData {
-                guard let decodedData = try? JSONDecoder().decode(PostModel.self, from: data) else { return }
+                guard let newPost = try? JSONDecoder().decode(PostModel.self, from: data) else { return }
                 /// IMPORTANT TIP: Always we manipulate @Published data or any data to our Views (UI),
                 ///  these data must update only from the MAIN Thread, and here we're in a Task in background.
                 ///  So, we MUST to do in main thread using DispatchQueue.main.async and [weak self] as bellow.
                 DispatchQueue.main.async { [weak self] in
-                    self?.posts.append(decodedData)
+                    self?.posts.append(newPost)
                 }
             } else {
                 print("No data returned")
