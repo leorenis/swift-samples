@@ -12,6 +12,9 @@ import SwiftUI
 
 // MARK: CLASSES
 class DownloadWithEscapingViewModel: ObservableObject {
+    
+    @Published fileprivate var posts: [PostModel] = []
+    
     init() {
         getPosts()
     }
@@ -38,14 +41,17 @@ class DownloadWithEscapingViewModel: ObservableObject {
                 return
             }
             
-            print("Successfully downloaded data!")
-            print(data)
-            let jsonString = String(data: data, encoding: .utf8)
+            // print("Successfully downloaded data!")
+            // let jsonString = String(data: data, encoding: .utf8)
             // print(jsonString as Any)
             
             do {
                 let dataDecoded = try JSONDecoder().decode(PostModel.self, from: data)
-                print(dataDecoded)
+                /// IMPORTANT TIP: Always we manipulate @Published data or any data to our Views (UI), these data must update only from the MAIN Thread, and here we're in a Task in background. So, we MUST to do in main thread using DispatchQueue.main.async and [weak self] as bellow.
+                DispatchQueue.main.async { [weak self] in
+                    self?.posts.append(dataDecoded)
+                }
+                
             } catch let error {
                 print("Error: \(error)")
             }
@@ -62,7 +68,20 @@ struct DownloadWithEscapingBootcamp: View {
     
     // MARK: BODY
     var body: some View {
-        Text("Hello, DownloadWithEscaping!")
+        List {
+            ForEach(vm.posts) { post in
+                VStack(alignment: .leading) {
+                    Text(post.title)
+                        .font(.headline)
+                        .padding(.bottom)
+                    
+                    Text(post.body)
+                        .foregroundStyle(.secondary)
+                        
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
     }
 }
 
