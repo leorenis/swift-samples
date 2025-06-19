@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: MODELS
 
-struct CustomerModel: Identifiable, Decodable, Encodable {
+struct CustomerModel: Identifiable, Codable {
     /**
      * Tip: Codable - A type that can convert itself into and out of an external representation.
      * ```
