@@ -41,7 +41,14 @@ class DownloadWithEscapingViewModel: ObservableObject {
             print("Successfully downloaded data!")
             print(data)
             let jsonString = String(data: data, encoding: .utf8)
-            print(jsonString as Any)
+            // print(jsonString as Any)
+            
+            do {
+                let dataDecoded = try JSONDecoder().decode(PostModel.self, from: data)
+                print(dataDecoded)
+            } catch let error {
+                print("Error: \(error)")
+            }
             
         }.resume() // Tip: .resume() here is like the start the function or task here... The task do not starts until call resume.
     }
