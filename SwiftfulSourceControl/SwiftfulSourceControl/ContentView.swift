@@ -47,6 +47,12 @@
  */
 
 /**
+ * Be Aware as well. 
+ * Conventional Commits: A specification for adding human and machine readable meaning to commit messages
+ * Link: https://www.conventionalcommits.org
+ */
+
+/**
  * Stay aware abaout Git Hints
  *  E.G:
  *  hint: Updates were rejected because the remote contains work that you do not
