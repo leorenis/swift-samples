@@ -23,7 +23,7 @@ class DownloadWithEscapingViewModel: ObservableObject {
     }
     
     fileprivate func getPosts() {
-        let strPostOneURL = "https://jsonplaceholder.typicode.com/posts/1"
+//        let strPostOneURL = "https://jsonplaceholder.typicode.com/posts/1"
         let strPostsURL = "https://jsonplaceholder.typicode.com/posts"
         guard let url = URL(string: strPostsURL) else { return }
         
@@ -108,7 +108,7 @@ struct DownloadWithEscapingBootcamp: View {
 }
 
 // MARK: MODELS
-struct PostModel: Identifiable, Decodable {
+fileprivate struct PostModel: Identifiable, Decodable {
     let userId: Int
     let id: Int
     let title: String
