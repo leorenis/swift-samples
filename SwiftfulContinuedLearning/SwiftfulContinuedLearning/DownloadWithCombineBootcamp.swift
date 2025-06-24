@@ -19,7 +19,7 @@ import Combine
     fileprivate var cancellables = Set<AnyCancellable>()
     
     init() {
-        
+        getPosts()
     }
     
     /// Get posts using combine framework.
@@ -38,12 +38,12 @@ import Combine
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
         
         /**
-         *  Steps to implement the combine flow:
+         * Steps to implement the combine flow (combine discussion):
          *
          * 1. Create a publisher
          * 2. Subscribe the publisher on background thread
          * 3. Receive on main thread
-         * 4. tryMap (check that the dat is good)
+         * 4. tryMap (check that the data is good)
          * 5. Decode data into [PostModel]
          * 6. Sink (put the item into our app)
          * 7. store (cancel subscription if needed)
