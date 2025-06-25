@@ -52,14 +52,7 @@ import Combine
         URLSession.shared.dataTaskPublisher(for: url)
             .subscribe(on: DispatchQueue.global(qos: .background))
             .receive(on: DispatchQueue.main) // TIP: We need receive on using Dispatch on main thread. Because publishing changes from background threads is not allowed. Make sure that UI is updated on the main thread.
-            .tryMap { (data, response) -> Data in
-                guard
-                    let response = response as? HTTPURLResponse,
-                    response.statusCode >= 200 && response.statusCode < 300 else {
-                    throw URLError(.badServerResponse)
-                }
-                return data
-            }
+            .tryMap(handleOutput)
             .decode(type: [PostModel].self, decoder: JSONDecoder())
             .sink { completion in
                 print("Completion: \(completion)")
@@ -67,6 +60,21 @@ import Combine
                 self?.posts = returnedPosts
             }
             .store(in: &cancellables)
+    }
+    
+    /// Maps the output of the data task publisher to a valid response.
+    ///
+    /// This function checks if the HTTP response is valid (200-299 status code) and returns the response data.
+    ///
+    /// - Parameter output: The output of the data task publisher, containing the response data and a URL response object.
+    /// - Returns: The response data, or throws an error if the response is invalid.
+    private func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
+        guard
+            let response = output.response as? HTTPURLResponse,
+            response.statusCode >= 200 && response.statusCode < 300 else {
+            throw URLError(.badServerResponse)
+        }
+        return output.data
     }
 }
 
