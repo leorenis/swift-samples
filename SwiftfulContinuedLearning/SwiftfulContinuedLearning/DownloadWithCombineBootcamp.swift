@@ -55,6 +55,12 @@ import Combine
             .tryMap(handleOutput)
             .decode(type: [PostModel].self, decoder: JSONDecoder())
             .sink { completion in
+                switch completion { // Error handling
+                case .finished:
+                    print("Finished")
+                case .failure(let error):
+                    print("There was an error: \(error)")
+                }
                 print("Completion: \(completion)")
             } receiveValue: { [weak self] returnedPosts in
                 self?.posts = returnedPosts
