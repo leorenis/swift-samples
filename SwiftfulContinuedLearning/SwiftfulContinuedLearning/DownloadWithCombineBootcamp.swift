@@ -51,7 +51,7 @@ import Combine
         
         URLSession.shared.dataTaskPublisher(for: url)
             .subscribe(on: DispatchQueue.global(qos: .background))
-            .receive(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.main) // TIP: We need receive on using Dispatch on main thread. Because publishing changes from background threads is not allowed. Make sure that UI is updated on the main thread.
             .tryMap { (data, response) -> Data in
                 guard
                     let response = response as? HTTPURLResponse,
@@ -70,7 +70,7 @@ import Combine
     }
 }
 
-// MARK: STRUCTS
+// MARK: VIEWS
 /// Struct to learn about download data with combine
 struct DownloadWithCombineBootcamp: View {
     // MARK: PROPERTIES
@@ -80,14 +80,15 @@ struct DownloadWithCombineBootcamp: View {
     var body: some View {
         List {
             ForEach(vm.posts) { post in
-                Group {
-                    Text(post.title)
-                        .foregroundStyle(.primary)
-                        .font(.headline)
-                    Text(post.body)
-                        .foregroundStyle(.secondary)
-                }
-                
+                VStack(alignment: .leading) {
+                    Group {
+                        Text(post.title)
+                            .foregroundStyle(.primary)
+                            .font(.headline)
+                        Text(post.body)
+                            .foregroundStyle(.secondary)
+                    }
+                }.frame(maxWidth: .infinity, alignment: .leading)
             }
         }
     }
