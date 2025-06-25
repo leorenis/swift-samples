@@ -11,7 +11,21 @@ import SwiftUI
 struct TimerBootcamp: View {
     // MARK: BODY
     var body: some View {
-        Text("Hello, Timer!")
+        ZStack {
+            RadialGradient(
+                colors: [Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1))],
+                center: .center,
+                startRadius: 5,
+                endRadius: 500
+            )
+            .ignoresSafeArea()
+            
+            Text("Hi")
+                .font(.system(size: 100, weight: .semibold, design: .rounded))
+        }
+        
+        
+        
     }
 }
 
