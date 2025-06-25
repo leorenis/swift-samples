@@ -54,7 +54,7 @@ import Combine
             .receive(on: DispatchQueue.main) // TIP: We need receive on using Dispatch on main thread. Because publishing changes from background threads is not allowed. Make sure that UI is updated on the main thread.
             .tryMap(handleOutput)
             .decode(type: [PostModel].self, decoder: JSONDecoder())
-//            .replaceError(with: []) // In this scenario, we're not interested in error, só we can use .sink(receiveValue:...) only.
+//            .replaceError(with: []) // In this scenario, we're not interested in error, so can use .sink(receiveValue:...) only.
             .sink { completion in
                 switch completion { // Error handling
                 case .finished:
@@ -103,7 +103,8 @@ struct DownloadWithCombineBootcamp: View {
                         Text(post.body)
                             .foregroundStyle(.secondary)
                     }
-                }.frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
     }
