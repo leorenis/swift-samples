@@ -82,7 +82,7 @@ fileprivate struct TimerCarouselBootcamp: View {
     
     var body: some View {
         ZStack {
-            PurpleRadialRadientView()
+            PurpleRadialGradientView()
             
             TabView(selection: $count, content: {
                ForEach(items.indices, id: \.self) { index in
@@ -109,7 +109,7 @@ fileprivate struct AnimationCounterBootcamp: View {
     
     var body: some View {
         ZStack {
-            PurpleRadialRadientView()
+            PurpleRadialGradientView()
             
             HStack(spacing: 16) {
                 ForEach(range, id: \.self) { index in
@@ -133,7 +133,7 @@ fileprivate struct TextRadialGradientView: View {
     @Binding var content: String
     var body: some View {
         ZStack {
-            PurpleRadialRadientView()
+            PurpleRadialGradientView()
             
             Text(content)
                 .font(.system(size: 100, weight: .semibold, design: .rounded))
@@ -144,7 +144,7 @@ fileprivate struct TextRadialGradientView: View {
     }
 }
 
-fileprivate struct PurpleRadialRadientView: View {
+fileprivate struct PurpleRadialGradientView: View {
     var body: some View {
         RadialGradient(
             colors: [Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1))],
