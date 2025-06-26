@@ -79,13 +79,7 @@ fileprivate struct TextRadialGradientView: View {
     @Binding var content: String
     var body: some View {
         ZStack {
-            RadialGradient(
-                colors: [Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1))],
-                center: .center,
-                startRadius: 5,
-                endRadius: 500
-            )
-            .ignoresSafeArea()
+            PurpleRadialRadientView()
             
             Text(content)
                 .font(.system(size: 100, weight: .semibold, design: .rounded))
@@ -93,6 +87,18 @@ fileprivate struct TextRadialGradientView: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.1)
         }
+    }
+}
+
+fileprivate struct PurpleRadialRadientView: View {
+    var body: some View {
+        RadialGradient(
+            colors: [Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1))],
+            center: .center,
+            startRadius: 5,
+            endRadius: 500
+        )
+        .ignoresSafeArea()
     }
 }
 
