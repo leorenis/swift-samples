@@ -75,6 +75,33 @@ fileprivate struct TimeRemainingBootcamp: View {
     }
 }
 
+fileprivate struct TimerCarouselBootcamp: View {
+    @State private var count = 0
+    let timer = Timer.publish(every: 3.0, on: .main, in: .common).autoconnect()
+    let items: [Color] = [.red, .green, .blue, .orange, .pink]
+    
+    var body: some View {
+        ZStack {
+            PurpleRadialRadientView()
+            
+            TabView(selection: $count, content: {
+               ForEach(items.indices, id: \.self) { index in
+                    Rectangle()
+                       .foregroundStyle(items[index])
+                       .tag(index)
+                }
+            })
+            .frame(height: 250)
+            .tabViewStyle(PageTabViewStyle())
+        }
+        .onReceive(timer) { value in
+            withAnimation(.default) {
+                count = (count == items.count) ? 0 : count + 1
+            }
+        }
+    }
+}
+
 fileprivate struct AnimationCounterBootcamp: View {
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     @State private var count: Int = 0
@@ -131,5 +158,5 @@ fileprivate struct PurpleRadialRadientView: View {
 
 // MARK: PREVIEW
 #Preview {
-    AnimationCounterBootcamp()
+    TimerCarouselBootcamp()
 }
