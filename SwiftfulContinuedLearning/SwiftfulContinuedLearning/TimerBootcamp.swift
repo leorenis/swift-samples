@@ -158,5 +158,5 @@ fileprivate struct PurpleRadialGradientView: View {
 
 // MARK: PREVIEW
 #Preview {
-    TimerCarouselBootcamp()
+    TimeRemainingBootcamp()
 }
