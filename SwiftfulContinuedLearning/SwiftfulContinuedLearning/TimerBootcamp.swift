@@ -75,6 +75,28 @@ fileprivate struct TimeRemainingBootcamp: View {
     }
 }
 
+fileprivate struct AnimationCounterBootcamp: View {
+    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    @State private var count: Int = 0
+    let range = 1..<4
+    
+    var body: some View {
+        ZStack {
+            PurpleRadialRadientView()
+            
+            HStack(spacing: 16) {
+                ForEach(range, id: \.self) { index in
+                    Circle()
+                        .offset(y: count == index ? -20 : 0)
+                        .overlay(Text("\(index)").font(.caption).foregroundColor(.primary))
+                }
+            }
+            .frame(width: 150)
+            .foregroundStyle(.white)
+        }
+    }
+}
+
 fileprivate struct TextRadialGradientView: View {
     @Binding var content: String
     var body: some View {
@@ -104,5 +126,5 @@ fileprivate struct PurpleRadialRadientView: View {
 
 // MARK: PREVIEW
 #Preview {
-    TimeRemainingBootcamp()
+    AnimationCounterBootcamp()
 }
