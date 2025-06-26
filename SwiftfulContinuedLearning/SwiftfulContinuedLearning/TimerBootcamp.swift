@@ -14,7 +14,8 @@ struct TimerBootcamp: View {
     let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
+        formatter.timeStyle = .medium
+//        formatter.dateFormat = "HH:mm:ss" // Just the same above line.
         return formatter
     }
     
