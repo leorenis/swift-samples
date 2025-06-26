@@ -87,12 +87,17 @@ fileprivate struct AnimationCounterBootcamp: View {
             HStack(spacing: 16) {
                 ForEach(range, id: \.self) { index in
                     Circle()
+                        //.overlay(Text("\(index)").font(.caption).foregroundColor(.primary))
                         .offset(y: count == index ? -20 : 0)
-                        .overlay(Text("\(index)").font(.caption).foregroundColor(.primary))
                 }
             }
             .frame(width: 150)
             .foregroundStyle(.white)
+        }
+        .onReceive(timer) { value in
+            withAnimation(.easeInOut(duration: 0.5)) {
+                count = count == range.count ? 0 : count + 1
+            }
         }
     }
 }
