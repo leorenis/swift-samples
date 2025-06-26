@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Struct to training publisher subscriber using onreceive.
-struct TimerBootcamp: View {
+fileprivate struct TimerBootcamp: View {
     // MARK: PROPERTIES
     @State private var currentDate: Date = Date()
     @State private var currentDateFormatted: String = ""
@@ -30,8 +30,8 @@ struct TimerBootcamp: View {
     }
 }
 
-struct CountDownBootcamp: View {
-    @State private var currentDate: Date = Date()
+fileprivate struct CountDownBootcamp: View {
+    // MARK: PROPERTIES
     let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     
     // Countdown
@@ -48,6 +48,30 @@ struct CountDownBootcamp: View {
                 finishedText = "\(count)"
             }
         })
+    }
+}
+
+fileprivate struct TimeRemainingBootcamp: View {
+    // MARK: PROPERTIES
+    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    
+    @State private var timeRemaing: String = ""
+    let futureDate: Date = Calendar.current.date(byAdding: .hour, value: 1, to: Date()) ?? Date()
+    
+    var body: some View {
+        TextRadialGradientView(content: $timeRemaing)
+            .onReceive(timer, perform: { value in
+                updateTimeRemaining()
+            })
+    }
+    
+    private func updateTimeRemaining() {
+        let remaining = Calendar.current.dateComponents([.hour, .minute, .second], from: Date(), to: futureDate)
+        let hour = remaining.hour ?? 0
+        let minute = remaining.minute ?? 0
+        let second = remaining.second ?? 0
+//         timeRemaing = String(format: "%02d:%02d:%02d", hour, minute, second) // Another way to show
+        timeRemaing = "\(hour):\(minute):\(second)"
     }
 }
 
@@ -74,5 +98,5 @@ fileprivate struct TextRadialGradientView: View {
 
 // MARK: PREVIEW
 #Preview {
-    TimerBootcamp()
+    TimeRemainingBootcamp()
 }
