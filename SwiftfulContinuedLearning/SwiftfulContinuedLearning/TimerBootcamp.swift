@@ -11,6 +11,7 @@ import SwiftUI
 struct TimerBootcamp: View {
     // MARK: PROPERTIES
     @State private var currentDate: Date = Date()
+    @State private var currentDateFormatted: String = ""
     let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -21,6 +22,38 @@ struct TimerBootcamp: View {
     
     // MARK: BODY
     var body: some View {
+        TextRadialGradientView(content: $currentDateFormatted)
+        .onReceive(timer, perform: { value in
+           currentDate = value
+            currentDateFormatted = dateFormatter.string(from: currentDate)
+        })
+    }
+}
+
+struct CountDownBootcamp: View {
+    @State private var currentDate: Date = Date()
+    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    
+    // Countdown
+    @State private var count: Int = 10
+    @State private var finishedText: String = "10"
+    
+    var body: some View {
+        TextRadialGradientView(content: $finishedText)
+        .onReceive(timer, perform: { value in
+            if count <= 1 {
+                finishedText = "Wow!"
+            } else {
+                count -= 1
+                finishedText = "\(count)"
+            }
+        })
+    }
+}
+
+fileprivate struct TextRadialGradientView: View {
+    @Binding var content: String
+    var body: some View {
         ZStack {
             RadialGradient(
                 colors: [Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1))],
@@ -30,15 +63,12 @@ struct TimerBootcamp: View {
             )
             .ignoresSafeArea()
             
-            Text(dateFormatter.string(from: currentDate))
+            Text(content)
                 .font(.system(size: 100, weight: .semibold, design: .rounded))
                 .foregroundStyle(.white)
                 .lineLimit(1)
                 .minimumScaleFactor(0.1)
         }
-        .onReceive(timer, perform: { value in
-           currentDate = value
-        })
     }
 }
 
