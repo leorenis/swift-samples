@@ -9,12 +9,25 @@ import SwiftUI
 import Combine
 
 // MARK: VIEW MODELS
-@Observable class SubscriberViewModel {
-    var count: Int = 0
+class SubscriberViewModel: ObservableObject {
+    @Published var count: Int = 0
     var cancellables = Set<AnyCancellable>()
+    
+    @Published var textFieldText: String = ""
+    @Published var isTextFieldValid: Bool = false
     
     init() {
         setUpTimer()
+        addTextFieldSubscriber()
+    }
+    
+    func addTextFieldSubscriber() {
+        $textFieldText
+            .map { (text) -> Bool in
+                return text.count > 3
+            }
+            .assign(to: \.isTextFieldValid, on: self)
+            .store(in: &cancellables)
     }
     
     func setUpTimer() {
@@ -38,14 +51,24 @@ import Combine
 /// Struct to learning about Subscriber Pulish using Combine framework.
 struct SubscriberBootcamp: View {
     // MARK: PROPERTIES
-    @State var vm = SubscriberViewModel()
+    @StateObject var vm = SubscriberViewModel()
     
     // MARK: BODY
     var body: some View {
         VStack {
             Text("\(vm.count)")
                 .font(.largeTitle)
+            
+            Text(vm.isTextFieldValid.description)
+            
+            TextField("Type something here...", text: $vm.textFieldText)
+                .padding()
+                .frame(height: 55)
+                .font(.headline)
+                .background(.thinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
         }
+        .padding()
     }
 }
 
