@@ -10,6 +10,15 @@ import SwiftUI
 // MARK: VIEW MODELS
 class FileManagerViewModel: ObservableObject {
     @Published var image: UIImage? = nil
+    let imageName: String = "dog"
+    
+    init() {
+        getImageFromAssetsFolder()
+    }
+    
+    func getImageFromAssetsFolder() {
+        image = UIImage(named: imageName)
+    }
 }
 
 /// Struct to learning about FileManager
@@ -22,12 +31,25 @@ struct FileManagerBootcamp: View {
         NavigationStack {
             VStack {
                 if let image = vm.image {
-                    Image("dog")
+                    Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 288, height: 330)
                         .clipped()
                         .clipShape(RoundedRectangle(cornerRadius: 12))
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("Save to FM")
+                            .font(.headline)
+                            .foregroundStyle(.white)
+                            .frame(height: 55)
+                            .padding(.horizontal, 60)
+                            .background(Color.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                    }
+
                 }
                 Spacer()
            }
