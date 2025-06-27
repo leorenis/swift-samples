@@ -26,7 +26,10 @@ class SubscriberViewModel: ObservableObject {
             .map { (text) -> Bool in
                 return text.count > 3
             }
-            .assign(to: \.isTextFieldValid, on: self)
+//            .assign(to: \.isTextFieldValid, on: self) // When we use assing, we have to pass on: self, and create a strong reference. So, we should avoid this and use sink {[weak self]}.
+            .sink(receiveValue: { [weak self] isValid in
+                self?.isTextFieldValid = isValid
+            })
             .store(in: &cancellables)
     }
     
