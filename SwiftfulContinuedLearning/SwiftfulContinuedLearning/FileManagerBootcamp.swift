@@ -21,12 +21,14 @@ struct FileManagerBootcamp: View {
     var body: some View {
         NavigationStack {
             VStack {
-               Image("dog")
-                   .resizable()
-                   .scaledToFit()
-                   .frame(width: 288, height: 330)
-                   .clipped()
-                   .clipShape(RoundedRectangle(cornerRadius: 12))
+                if let image = vm.image {
+                    Image("dog")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 288, height: 330)
+                        .clipped()
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
                 Spacer()
            }
             .navigationTitle("File manager")
