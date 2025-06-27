@@ -17,17 +17,18 @@ class SubscriberViewModel: ObservableObject {
     @Published var isTextFieldValid: Bool = false
     
     init() {
-        setUpTimer()
+        setUpTimer() // This time running together with addTextField cause a BUG, because they share same cancellables. But this is just a test porpuse.
         addTextFieldSubscriber()
     }
     
     func addTextFieldSubscriber() {
         $textFieldText
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
             .map { (text) -> Bool in
                 return text.count > 3
             }
 //            .assign(to: \.isTextFieldValid, on: self) // When we use assing, we have to pass on: self, and create a strong reference. So, we should avoid this and use sink {[weak self]}.
-            .sink(receiveValue: { [weak self] isValid in
+            .sink(receiveValue: { [weak self] (isValid) in
                 self?.isTextFieldValid = isValid
             })
             .store(in: &cancellables)
@@ -70,6 +71,22 @@ struct SubscriberBootcamp: View {
                 .font(.headline)
                 .background(.thinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
+                .overlay(
+                    Group {
+                        Image(systemName: "xmark")
+                            .foregroundStyle(.red)
+                            .opacity(
+                                vm.textFieldText.count < 1
+                                ? 0.0
+                                : vm.isTextFieldValid ? 0.0 : 1.0
+                            )
+                        
+                        Image(systemName: "checkmark")
+                            .foregroundStyle(.green)
+                            .opacity(vm.isTextFieldValid ? 1.0 : 0.0)
+                    }
+                    .padding(.trailing, 8)
+                    ,alignment: .trailing)
         }
         .padding()
     }
