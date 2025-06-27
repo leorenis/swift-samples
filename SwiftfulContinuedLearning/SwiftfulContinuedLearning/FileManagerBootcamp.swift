@@ -13,7 +13,16 @@ struct FileManagerBootcamp: View {
     
     // MARK: BODY
     var body: some View {
-        Text("Hello, Filemanager!")
+        NavigationStack {
+            VStack {
+               Image("dog")
+                   .resizable()
+                   .scaledToFit()
+                   .frame(width: 288, height: 330)
+                   .clipped()
+                   .clipShape(RoundedRectangle(cornerRadius: 12))
+           }
+        }
     }
 }
 
