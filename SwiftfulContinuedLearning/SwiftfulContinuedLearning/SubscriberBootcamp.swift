@@ -17,7 +17,7 @@ class SubscriberViewModel: ObservableObject {
     @Published var isTextFieldValid: Bool = false
     
     init() {
-        setUpTimer() // This time running together with addTextField cause a BUG, because they share same cancellables. But this is just a test porpuse.
+        setUpTimer() // This timer running together with addTextField... cause a BUG, because they share same cancellables and here we use item.cancel(). So, this is just a test porpuse.
         addTextFieldSubscriber()
     }
     
@@ -42,7 +42,7 @@ class SubscriberViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.count += 1
                 
-                if self.count >= 10 {
+                if self.count >= 100 {
                     for item in self.cancellables {
                         item.cancel()
                     }
