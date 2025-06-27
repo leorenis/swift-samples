@@ -15,10 +15,12 @@ class SubscriberViewModel: ObservableObject {
     
     @Published var textFieldText: String = ""
     @Published var isTextFieldValid: Bool = false
+    @Published var showButton: Bool = false
     
     init() {
         setUpTimer() // This timer running together with addTextField... cause a BUG, because they share same cancellables and here we use item.cancel(). So, this is just a test porpuse.
         addTextFieldSubscriber()
+        addButtonSubscriber()
     }
     
     func addTextFieldSubscriber() {
@@ -42,11 +44,21 @@ class SubscriberViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.count += 1
                 
-                if self.count >= 100 {
+                if self.count >= 180 {
                     for item in self.cancellables {
                         item.cancel()
                     }
                 }
+            }
+            .store(in: &cancellables)
+    }
+    
+    func addButtonSubscriber() {
+        $isTextFieldValid
+            .combineLatest($count)
+            .sink { [weak self] (isValid, count) in
+                guard let self = self else { return }
+                self.showButton = isValid && count >= 10
             }
             .store(in: &cancellables)
     }
@@ -63,7 +75,7 @@ struct SubscriberBootcamp: View {
             Text("\(vm.count)")
                 .font(.largeTitle)
             
-            Text(vm.isTextFieldValid.description)
+//            Text(vm.isTextFieldValid.description)
             
             TextField("Type something here...", text: $vm.textFieldText)
                 .padding()
@@ -86,7 +98,22 @@ struct SubscriberBootcamp: View {
                             .opacity(vm.isTextFieldValid ? 1.0 : 0.0)
                     }
                     .padding(.trailing, 8)
-                    ,alignment: .trailing)
+                    ,alignment: .trailing
+                )
+            
+            Button {
+                
+            } label: {
+                Text("Submit".uppercased())
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .opacity(vm.showButton ? 1.0 : 0.5)
+            }
+            .disabled(!vm.showButton)
         }
         .padding()
     }
