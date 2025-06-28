@@ -18,14 +18,27 @@ fileprivate class LocalFileManager {
             print("Error getting data.")
             return
         }
-        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let directory2 = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
-        let directory3 = FileManager.default.temporaryDirectory
+//        let DocDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//        let directory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
+//        let directoryTmp = FileManager.default.temporaryDirectory
+//        let path = directory?.appendingPathComponent("\(name).jpg")
         
-        print("Directory: \(directory)")
-        print("CachesDirectory: \(directory2)")
-        print("TemporaryDirectory: \(directory3)")
-//        data.write(to: <#T##URL#>)
+        guard
+            let path = FileManager
+                .default
+                .urls(for: .cachesDirectory, in: .userDomainMask)
+                .first?
+                .appendingPathComponent("\(name).jpg") else {
+            print("Error getting path")
+            return
+        }
+                
+        do {
+            try data.write(to: path)
+            print("Success saving")
+        } catch let error {
+            print("Error saving \(error)")
+        }
     }
 }
 
