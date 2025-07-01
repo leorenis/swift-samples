@@ -33,8 +33,14 @@ fileprivate class LocalFileManager {
         }
     }
     
-    func getImage(name: String) {
-        
+    func getImage(name: String) -> UIImage? {
+        guard
+            let path = getPath(forImage: name)?.path(percentEncoded: false),
+            FileManager.default.fileExists(atPath: path) else {
+            print("Error getting path")
+            return nil
+        }
+        return UIImage(contentsOfFile: path)
     }
     
     func getPath(forImage name: String) -> URL? {
@@ -58,11 +64,16 @@ class FileManagerViewModel: ObservableObject {
     fileprivate let manager = LocalFileManager.instance
     
     init() {
-        getImageFromAssetsFolder()
+        //getImageFromAssetsFolder()
+        getImageFromFileManager()
     }
     
     func getImageFromAssetsFolder() {
         image = UIImage(named: imageName)
+    }
+    
+    func getImageFromFileManager() {
+        image = manager.getImage(name: imageName)
     }
     
     func saveImage() {
