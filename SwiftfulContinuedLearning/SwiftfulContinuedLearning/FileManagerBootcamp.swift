@@ -12,13 +12,12 @@ fileprivate class LocalFileManager {
     static let instance = LocalFileManager()
     private init() {} // As a singleton, its must not be initialized out of this class.
     
-    func saveImage(image: UIImage, name: String) {
+    func saveImage(image: UIImage, name: String) -> String {
         guard
             let data = image.jpegData(compressionQuality: 1.0),
             let path = getPath(forImage: name)
         else {
-            print("Error getting data.")
-            return
+            return "Error getting data."
         }
 //        let DocDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 //        let directory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
@@ -27,9 +26,9 @@ fileprivate class LocalFileManager {
           
         do {
             try data.write(to: path)
-            print("Success saving")
+            return "Success saving"
         } catch let error {
-            print("Error saving \(error)")
+            return "Error saving \(error)"
         }
     }
     
@@ -43,18 +42,17 @@ fileprivate class LocalFileManager {
         return UIImage(contentsOfFile: path)
     }
     
-    func deleteImage(name: String) {
+    func deleteImage(name: String) -> String {
         guard
             let path = getPath(forImage: name)?.path(percentEncoded: false),
             FileManager.default.fileExists(atPath: path) else {
-            print("Error getting path")
-            return
+            return "Error getting path"
         }
         do {
             try FileManager.default.removeItem(atPath: path)
-            print("Successfully deleted.")
+            return "Successfully deleted."
         } catch let error {
-            print("Error deleting image \(error)")
+            return "Error deleting image \(error)"
         }
     }
     
@@ -75,6 +73,7 @@ fileprivate class LocalFileManager {
 // MARK: VIEW MODELS
 class FileManagerViewModel: ObservableObject {
     @Published var image: UIImage? = nil
+    @Published var infoMessage: String = ""
     let imageName: String = "dog"
     fileprivate let manager = LocalFileManager.instance
     
@@ -92,12 +91,12 @@ class FileManagerViewModel: ObservableObject {
     }
     
     func deleteImage() {
-        manager.deleteImage(name: imageName)
+        infoMessage = manager.deleteImage(name: imageName)
     }
     
     func saveImage() {
         guard let image else { return }
-        manager.saveImage(image: image, name: imageName)
+        infoMessage = manager.saveImage(image: image, name: imageName)
     }
 }
 
@@ -143,6 +142,10 @@ struct FileManagerBootcamp: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                         }
                     }
+                    
+                    Text(vm.infoMessage)
+                        .font(.headline)
+                        .foregroundStyle(.purple)
                 }
                 Spacer()
            }
