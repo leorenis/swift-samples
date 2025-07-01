@@ -14,7 +14,9 @@ fileprivate class LocalFileManager {
     
     func saveImage(image: UIImage, name: String) {
         guard
-            let data = image.jpegData(compressionQuality: 1.0) else {
+            let data = image.jpegData(compressionQuality: 1.0),
+            let path = getPath(forImage: name)
+        else {
             print("Error getting data.")
             return
         }
@@ -22,7 +24,20 @@ fileprivate class LocalFileManager {
 //        let directory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
 //        let directoryTmp = FileManager.default.temporaryDirectory
 //        let path = directory?.appendingPathComponent("\(name).jpg")
+          
+        do {
+            try data.write(to: path)
+            print("Success saving")
+        } catch let error {
+            print("Error saving \(error)")
+        }
+    }
+    
+    func getImage(name: String) {
         
+    }
+    
+    func getPath(forImage name: String) -> URL? {
         guard
             let path = FileManager
                 .default
@@ -30,15 +45,9 @@ fileprivate class LocalFileManager {
                 .first?
                 .appendingPathComponent("\(name).jpg") else {
             print("Error getting path")
-            return
+            return nil
         }
-                
-        do {
-            try data.write(to: path)
-            print("Success saving")
-        } catch let error {
-            print("Error saving \(error)")
-        }
+        return path
     }
 }
 
