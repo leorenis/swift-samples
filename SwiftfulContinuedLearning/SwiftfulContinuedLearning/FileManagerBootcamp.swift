@@ -43,6 +43,21 @@ fileprivate class LocalFileManager {
         return UIImage(contentsOfFile: path)
     }
     
+    func deleteImage(name: String) {
+        guard
+            let path = getPath(forImage: name)?.path(percentEncoded: false),
+            FileManager.default.fileExists(atPath: path) else {
+            print("Error getting path")
+            return
+        }
+        do {
+            try FileManager.default.removeItem(atPath: path)
+            print("Successfully deleted.")
+        } catch let error {
+            print("Error deleting image \(error)")
+        }
+    }
+    
     func getPath(forImage name: String) -> URL? {
         guard
             let path = FileManager
@@ -76,6 +91,10 @@ class FileManagerViewModel: ObservableObject {
         image = manager.getImage(name: imageName)
     }
     
+    func deleteImage() {
+        manager.deleteImage(name: imageName)
+    }
+    
     func saveImage() {
         guard let image else { return }
         manager.saveImage(image: image, name: imageName)
@@ -99,16 +118,30 @@ struct FileManagerBootcamp: View {
                         .clipped()
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     
-                    Button {
-                        vm.saveImage()
-                    } label: {
-                        Text("Save to FM")
-                            .font(.headline)
-                            .foregroundStyle(.white)
-                            .frame(height: 55)
-                            .padding(.horizontal, 60)
-                            .background(Color.blue)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                    HStack {
+                        Button {
+                            vm.saveImage()
+                        } label: {
+                            Text("Save to FM")
+                                .font(.headline)
+                                .foregroundStyle(.white)
+                                .frame(height: 55)
+                                .padding(.horizontal, 60)
+                                .background(Color.blue)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }
+                        
+                        Button {
+                            vm.deleteImage()
+                        } label: {
+                            Text("Delete from FM")
+                                .font(.headline)
+                                .foregroundStyle(.white)
+                                .frame(height: 55)
+                                .padding(.horizontal, 60)
+                                .background(Color.red)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }
                     }
                 }
                 Spacer()
