@@ -49,7 +49,6 @@ fileprivate class LocalFileManager {
           
         do {
             try data.write(to: path)
-            print(path)
             return "Success saving"
         } catch let error {
             return "Error saving \(error)"
