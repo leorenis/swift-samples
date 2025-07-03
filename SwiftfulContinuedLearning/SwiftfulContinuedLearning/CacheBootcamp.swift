@@ -24,7 +24,10 @@ fileprivate class CacheManager {
         print("Added to cache!")
     }
     
-    
+    func remove(name: String) {
+        imageCache.removeObject(forKey: name as NSString)
+        print("Removed from cache!")
+    }
     
 }
 
