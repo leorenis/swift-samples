@@ -7,10 +7,27 @@
 
 import SwiftUI
 
+// MARK: SINGLETON
+fileprivate class CacheManager {
+    static let instance = CacheManager()
+    private init() {}
+    
+    var imageCache: NSCache<NSString, UIImage> = {
+        let cache = NSCache<NSString, UIImage>()
+        cache.countLimit = 10
+        cache.totalCostLimit = 10 * 1024 * 1024 // 10mb
+        return cache
+    }()
+    
+    
+    
+}
+
 // MARK: VIEW MODEL
 fileprivate class CacheViewModel: ObservableObject {
     @Published var startingImage: UIImage? = nil
     let imageName: String = "dog"
+    let manager: CacheManager = .instance
     
     init() {
         getImageFromAssets()
