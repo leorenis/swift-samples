@@ -19,14 +19,14 @@ fileprivate class CacheManager {
         return cache
     }()
     
-    func add(image: UIImage, name: String) {
+    func add(image: UIImage, name: String) -> String {
         imageCache.setObject(image, forKey: name as NSString)
-        print("Added to cache!")
+        return "Added to cache!"
     }
     
-    func remove(name: String) {
+    func remove(name: String) -> String {
         imageCache.removeObject(forKey: name as NSString)
-        print("Removed from cache!")
+        return "Removed from cache!"
     }
     
     func get(name: String) -> UIImage? {
@@ -39,6 +39,7 @@ fileprivate class CacheManager {
 fileprivate class CacheViewModel: ObservableObject {
     @Published var startingImage: UIImage? = nil
     @Published var cachedImage: UIImage? = nil
+    @Published var infoMessage: String = ""
     
     let imageName: String = "dog"
     let manager: CacheManager = .instance
@@ -54,15 +55,20 @@ fileprivate class CacheViewModel: ObservableObject {
     func saveToCache() {
         guard
             let image = startingImage else { return }
-        manager.add(image: image, name: imageName)
+        infoMessage = manager.add(image: image, name: imageName)
     }
     
     func removeFromCache() {
-        manager.remove(name: imageName)
+        infoMessage = manager.remove(name: imageName)
     }
     
     func getFromCache() {
-        cachedImage = manager.get(name: imageName)
+        if let returndImage = manager.get(name: imageName) {
+            cachedImage = returndImage
+            infoMessage = "Got image from cache"
+        } else {
+            infoMessage = "No image in cache"
+        }
     }
 }
 
@@ -83,6 +89,10 @@ struct CacheBootcamp: View {
                         .clipped()
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
+                
+                Text(vm.infoMessage)
+                    .font(.headline)
+                    .foregroundStyle(.purple)
                     
                 HStack {
                     Button {
