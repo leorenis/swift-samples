@@ -82,33 +82,57 @@ struct CacheBootcamp: View {
                         .frame(width: 288, height: 330)
                         .clipped()
                         .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
                     
-                    HStack {
-                        Button {
-                            vm.saveToCache()
-                        } label: {
-                            Text("Save to Cache")
-                                .font(.headline)
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundStyle(.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                            
-                        }
+                HStack {
+                    Button {
+                        vm.saveToCache()
+                    } label: {
+                        Text("Save to Cache")
+                            .font(.headline)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundStyle(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
                         
-                        Button {
-                            vm.removeFromCache()
-                        } label: {
-                            Text("Delete from Cache")
-                                .font(.headline)
-                                .padding()
-                                .background(Color.red)
-                                .foregroundStyle(.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                            
-                        }
+                    }
+                    
+                    Button {
+                        vm.removeFromCache()
+                    } label: {
+                        Text("Delete from Cache")
+                            .font(.headline)
+                            .padding()
+                            .background(Color.red)
+                            .foregroundStyle(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        
                     }
                 }
+                    
+                HStack {
+                    Button {
+                        vm.getFromCache()
+                    } label: {
+                        Text("Get from Cache")
+                            .font(.headline)
+                            .padding()
+                            .foregroundStyle(.white)
+                            .background(Color.green)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        
+                    }
+                }
+                
+                if let cachedImage = vm.cachedImage {
+                    Image(uiImage: cachedImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 288, height: 330)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipped()
+                }
+                
                 Spacer()
             }
             .navigationTitle("Cache bootcamp")
