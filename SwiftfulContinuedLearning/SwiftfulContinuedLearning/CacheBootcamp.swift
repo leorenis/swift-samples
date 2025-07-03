@@ -38,6 +38,8 @@ fileprivate class CacheManager {
 // MARK: VIEW MODEL
 fileprivate class CacheViewModel: ObservableObject {
     @Published var startingImage: UIImage? = nil
+    @Published var cachedImage: UIImage? = nil
+    
     let imageName: String = "dog"
     let manager: CacheManager = .instance
     
@@ -47,6 +49,20 @@ fileprivate class CacheViewModel: ObservableObject {
     
     func getImageFromAssets() {
         startingImage = UIImage(named: imageName)
+    }
+    
+    func saveToCache() {
+        guard
+            let image = startingImage else { return }
+        manager.add(image: image, name: imageName)
+    }
+    
+    func removeFromCache() {
+        manager.remove(name: imageName)
+    }
+    
+    func getFromCache() {
+        cachedImage = manager.get(name: imageName)
     }
 }
 
