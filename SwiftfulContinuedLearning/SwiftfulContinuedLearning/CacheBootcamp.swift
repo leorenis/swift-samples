@@ -85,7 +85,7 @@ struct CacheBootcamp: View {
                     
                     HStack {
                         Button {
-                            
+                            vm.saveToCache()
                         } label: {
                             Text("Save to Cache")
                                 .font(.headline)
@@ -97,7 +97,7 @@ struct CacheBootcamp: View {
                         }
                         
                         Button {
-                            
+                            vm.removeFromCache()
                         } label: {
                             Text("Delete from Cache")
                                 .font(.headline)
