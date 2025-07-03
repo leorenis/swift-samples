@@ -29,6 +29,10 @@ fileprivate class CacheManager {
         print("Removed from cache!")
     }
     
+    func get(name: String) -> UIImage? {
+        return imageCache.object(forKey: name as NSString)
+    }
+    
 }
 
 // MARK: VIEW MODEL
