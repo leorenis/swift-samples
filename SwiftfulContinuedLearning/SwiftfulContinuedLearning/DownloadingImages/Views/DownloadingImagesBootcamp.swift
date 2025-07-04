@@ -7,6 +7,17 @@
 
 import SwiftUI
 
+/**
+ *  We will cover:
+ *  - Background threads
+ *  - weak self
+ *  - combine framework
+ *  -  Publishers and Subscribers
+ *  - FileManager
+ *  - NSCache
+ */
+
+
 /// Downloading images view
 struct DownloadingImagesBootcamp: View {
     // MARK: BODY
