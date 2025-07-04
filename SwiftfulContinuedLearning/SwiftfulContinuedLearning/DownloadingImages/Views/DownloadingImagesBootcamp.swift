@@ -7,12 +7,15 @@
 
 import SwiftUI
 
+/// Downloading images view
 struct DownloadingImagesBootcamp: View {
+    // MARK: BODY
     var body: some View {
         Text("Hello, World!")
     }
 }
 
+// MARK: PREVIEW
 #Preview {
     DownloadingImagesBootcamp()
 }
