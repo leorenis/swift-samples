@@ -10,9 +10,9 @@ import SwiftUI
 /**
  *  We will cover:
  *  - Background threads
- *  - weak self
- *  - combine framework
- *  -  Publishers and Subscribers
+ *  - Weak Self
+ *  - Combine Framework
+ *  - Publishers and Subscribers
  *  - FileManager
  *  - NSCache
  */
