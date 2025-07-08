@@ -1,8 +1,11 @@
 //
 //  DownloadingImagesBootcamp.swift
 //  SwiftfulContinuedLearning
+//  Created by Leo on 03/07/25.
 //
-//  Created by Leo Renis Santos on 03/07/25.
+//  Links:
+//  JSON Placeholder: https://jsonplaceholder.typicode.com
+//  QuickType: https://app.quicktype.io/
 //
 
 import SwiftUI
@@ -17,12 +20,16 @@ import SwiftUI
  *  - NSCache
  */
 
-
 /// Downloading images view
 struct DownloadingImagesBootcamp: View {
     // MARK: BODY
     var body: some View {
-        Text("Hello, World!")
+        NavigationStack {
+            List {
+                Text("Downloading Images Bootcamp")
+            }
+            .navigationTitle("Downloading images")
+        }
     }
 }
 
