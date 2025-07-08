@@ -28,7 +28,7 @@ import Combine
     ///
     ///  1. Sign up for monthly subscription for package to be delivery;
     ///  2. The company would make the package behind the scene;
-    ///  3. Receive the package at yout front door;
+    ///  3. Receive the package at your front door;
     ///  4. Make sure the box isn't demaged;
     ///  5. Open and make sure the item is correct;
     ///  6. Use the item;
