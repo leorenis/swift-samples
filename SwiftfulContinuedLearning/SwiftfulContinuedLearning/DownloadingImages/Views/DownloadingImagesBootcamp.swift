@@ -4,7 +4,7 @@
 //  Created by Leo on 03/07/25.
 //
 //  Links:
-//  JSON Placeholder: https://jsonplaceholder.typicode.com
+//  Dummy JSON: https://dummyjson.com/products?limit=10&skip=10&select=title,price,thumbnail
 //  QuickType: https://app.quicktype.io/
 //
 
