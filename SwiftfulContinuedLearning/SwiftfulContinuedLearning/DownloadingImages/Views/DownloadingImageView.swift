@@ -16,9 +16,9 @@ struct DownloadingImageView: View {
     /// This initializer creates and assigns a `StateObject` that wraps an
     /// `ImageLoadingViewModel`, which handles loading an image from the given URL.
     ///
-    /// - Parameter stringURL: The URL string used by the image loading view model to fetch the image.
-    init(stringURL: String) {
-        _loader = StateObject(wrappedValue: ImageLoadingViewModel(url: stringURL))
+    /// - Parameter url: The URL string used by the image loading view model to fetch the image.
+    init(url: String) {
+        _loader = StateObject(wrappedValue: ImageLoadingViewModel(url: url))
     }
     
     var body: some View {
@@ -33,6 +33,6 @@ struct DownloadingImageView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout, body: {
-    DownloadingImageView(stringURL: "https://cdn.dummyjson.com/product-images/groceries/cat-food/thumbnail.webp")
+    DownloadingImageView(url: "https://cdn.dummyjson.com/product-images/groceries/apple/thumbnail.webp")
         .frame(width: 75, height: 75)
 })

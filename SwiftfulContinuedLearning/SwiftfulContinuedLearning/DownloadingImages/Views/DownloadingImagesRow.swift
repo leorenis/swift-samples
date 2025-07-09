@@ -12,7 +12,7 @@ struct DownloadingImagesRow: View {
     let model: ProductModel
     var body: some View {
         HStack {
-            Circle()
+            DownloadingImageView(url: model.thumbnail)
                 .frame(width: 75, height: 75)
             
             VStack(alignment: .leading) {
@@ -29,7 +29,7 @@ struct DownloadingImagesRow: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout, body: {
-    let model = ProductModel(id: 1, title: "Mackbook Pro 14", price: 5000.0, thumbnail: "https://via.placeholder.com/150")
+    let model = ProductModel(id: 1, title: "Mackbook Pro 14", price: 5000.0, thumbnail: "https://cdn.dummyjson.com/product-images/groceries/apple/thumbnail.webp")
     DownloadingImagesRow(model: model)
         .padding()
 })
