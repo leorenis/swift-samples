@@ -23,6 +23,9 @@ import SwiftUI
 
 /// Downloading images view
 struct DownloadingImagesBootcamp: View {
+    // MARK: PROPERTIES
+    @State var vm = DownloadingImagesViewModel()
+    
     // MARK: BODY
     var body: some View {
         NavigationStack {
