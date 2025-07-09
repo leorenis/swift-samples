@@ -9,6 +9,10 @@
 
 import Foundation
 
+struct ProductEnvelopeModel: Codable {
+    let products: [ProductModel]
+}
+
 struct ProductModel: Identifiable, Codable {
     let id: Int
     let title: String
