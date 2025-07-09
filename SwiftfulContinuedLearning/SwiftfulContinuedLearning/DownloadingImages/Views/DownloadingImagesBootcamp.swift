@@ -31,7 +31,20 @@ struct DownloadingImagesBootcamp: View {
         NavigationStack {
             List {
                 ForEach(vm.dataArray) { model in
-                    Text(model.title)
+                    HStack {
+                        Circle()
+                            .frame(width: 75, height: 75)
+                        
+                        VStack(alignment: .leading) {
+                            Text(model.title)
+                                .font(.headline)
+                            Text(model.thumbnail)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .italic(true)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
             .navigationTitle("Downloading images")
