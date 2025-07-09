@@ -45,7 +45,7 @@ class ProductModelDataService {
             .subscribe(on: DispatchQueue.global(qos: .background))
             .receive(on: DispatchQueue.main)
             .tryMap(handleOutput)
-            .decode(type: [ProductModel].self, decoder: JSONDecoder())
+            .decode(type: ProductEnvelopeModel.self, decoder: JSONDecoder())
             .sink { (completion) in
                 switch completion {
                 case .finished:
@@ -54,7 +54,8 @@ class ProductModelDataService {
                     print("Error downloading data: \(error)")
                 }
             } receiveValue: { [weak self] (returnedProductModels) in
-                self?.productModels = returnedProductModels
+                // print(returnedProductModels.products)
+                self?.productModels = returnedProductModels.products
             }
             .store(in: &cancellables)
     }
