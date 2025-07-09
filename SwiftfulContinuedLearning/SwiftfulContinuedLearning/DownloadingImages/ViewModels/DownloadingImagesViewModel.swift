@@ -8,5 +8,5 @@
 import Foundation
 
 class DownloadingImagesViewModel: ObservableObject {
-    
+    @Published var dataArray: [ProductModel] = []
 }

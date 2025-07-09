@@ -30,7 +30,9 @@ struct DownloadingImagesBootcamp: View {
     var body: some View {
         NavigationStack {
             List {
-                Text("Downloading Images Bootcamp")
+                ForEach(vm.dataArray) { model in
+                    Text(model.title)
+                }
             }
             .navigationTitle("Downloading images")
         }
