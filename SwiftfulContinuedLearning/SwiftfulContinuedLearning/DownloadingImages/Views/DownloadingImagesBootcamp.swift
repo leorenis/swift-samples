@@ -12,6 +12,7 @@ import SwiftUI
 
 /**
  *  We will cover:
+ *  - Codable
  *  - Background threads
  *  - Weak Self
  *  - Combine Framework
