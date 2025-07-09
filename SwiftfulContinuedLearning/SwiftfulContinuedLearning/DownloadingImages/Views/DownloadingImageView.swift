@@ -2,17 +2,25 @@
 //  DownloadingImageView.swift
 //  SwiftfulContinuedLearning
 //
-//  Created by Leo Renis Santos on 09/07/25.
+//  Created by Leo on 09/07/25.
 //
 
 import SwiftUI
 
 struct DownloadingImageView: View {
+    // MARK: PROPERTIES
+    @State var isLoading: Bool = true
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if isLoading {
+            ProgressView()
+        } else {
+            Circle()
+        }
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout, body: {
     DownloadingImageView()
-}
+        .frame(width: 75, height: 75)
+})
