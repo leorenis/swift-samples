@@ -25,6 +25,27 @@ class ImageLoadingViewModel: ObservableObject {
         getImage()
     }
     
+    /// Retrieves an image from cache or downloads it if not available.
+    ///
+    /// This method first attempts to retrieve a previously cached image using the `imageKey`.
+    /// If a cached image is found, it sets it to the `image` property and logs the cache retrieval.
+    /// If no cached image is available, it initiates an asynchronous image download by calling `downloadImage()`.
+    ///
+    /// Steps involved:
+    /// - Attempts to get the image from the cache using `manager.get(key:)`.
+    /// - If a cached image exists:
+    ///   - Assigns it to the `image` property.
+    ///   - Logs the use of the cached image.
+    /// - If not:
+    ///   - Calls `downloadImage()` to fetch the image from the remote URL.
+    ///   - Logs that the image is being downloaded.
+    ///
+    /// - Note: The actual download and caching logic is handled in the `downloadImage()` method.
+    ///
+    /// Example usage:
+    /// ```swift
+    /// getImage()
+    /// ```
     func getImage() {
         if let savedImage = manager.get(key: imageKey) {
             image = savedImage
@@ -56,7 +77,7 @@ class ImageLoadingViewModel: ObservableObject {
     ///
     /// Example usage:
     /// ```swift
-    /// viewModel.downloadImage()
+    /// downloadImage()
     /// ```
     func downloadImage() {
         isLoading = true
