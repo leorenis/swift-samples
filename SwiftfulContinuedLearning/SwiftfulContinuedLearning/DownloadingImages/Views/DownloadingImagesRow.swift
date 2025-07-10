@@ -12,7 +12,7 @@ struct DownloadingImagesRow: View {
     let model: ProductModel
     var body: some View {
         HStack {
-            DownloadingImageView(url: model.thumbnail)
+            DownloadingImageView(url: model.thumbnail, key: "\(model.id)")
                 .frame(width: 75, height: 75)
             
             VStack(alignment: .leading) {
