@@ -39,7 +39,7 @@ class ProductModelDataService {
     ///
     /// - Note: This method uses Combine's `dataTaskPublisher` and stores the subscription in `cancellables`.
     func downloadData() {
-        let stringURL = "https://dummyjson.com/products?limit=10&skip=10&select=title,price,thumbnail,price"
+        let stringURL = "https://dummyjson.com/products?limit=30&skip=30&select=title,price,thumbnail,price"
         guard let url = URL(string: stringURL) else { return }
         URLSession.shared.dataTaskPublisher(for: url)
             .subscribe(on: DispatchQueue.global(qos: .background))

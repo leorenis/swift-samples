@@ -14,7 +14,7 @@ class ImageLoadingViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     
     var cancellables: Set<AnyCancellable> = []
-    let manager = ThumbnailModelCacheManager.instance
+    let manager = ThumbnailModelFileManager.instance
     
     let urlString: String
     let imageKey: String
