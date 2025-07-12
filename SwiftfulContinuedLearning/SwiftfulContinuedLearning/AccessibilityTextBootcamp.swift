@@ -16,11 +16,17 @@ struct AccessibilityTextBootcamp: View {
                         HStack {
                             Image(systemName: "heart.fill")
                             Text("Welcome to SwiftUI")
+                                .truncationMode(.tail)
                         }
                         .font(.title)
                         
                         Text("This is some longer text that expands to multiple lines.")
+                            .font(.subheadline)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .lineLimit(3)
+                            .minimumScaleFactor(0.5)
                     }
+                    .background(Color.red)
                 }
             }
             .listStyle(PlainListStyle())
