@@ -12,9 +12,10 @@ import SwiftUI
 ///
 /// `ThumbnailModelCacheManager` uses `NSCache` to store `UIImage` objects associated with string keys.
 /// This improves performance by avoiding redundant network requests for images that have already been fetched.
+/// Conforms to `ImageCacheable` for use as a pluggable image caching strategy.
 ///
 /// The cache has a limit of 100 images or 10 MB in total size to help control memory usage.
-class ThumbnailModelCacheManager {
+class ThumbnailModelCacheManager: ImageCacheable {
     
     /// The shared singleton instance of `ThumbnailModelCacheManager`.
     ///

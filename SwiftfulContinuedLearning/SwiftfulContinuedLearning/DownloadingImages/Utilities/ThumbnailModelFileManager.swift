@@ -12,9 +12,10 @@ import SwiftUI
 ///
 /// `ThumbnailModelFileManager` stores thumbnails in the app's cache directory under a custom folder.
 /// It provides disk-based persistence for images, reducing memory pressure and avoiding repeated network downloads.
+/// Conforms to `ImageCacheable` for use as a pluggable image caching strategy.
 ///
 /// Images are saved in PNG format with a `.png` extension, and stored using a string `key` for identification.
-class ThumbnailModelFileManager {
+class ThumbnailModelFileManager: ImageCacheable {
     
     /// The shared singleton instance of `ThumbnailModelFileManager`.
     static let instance = ThumbnailModelFileManager()
