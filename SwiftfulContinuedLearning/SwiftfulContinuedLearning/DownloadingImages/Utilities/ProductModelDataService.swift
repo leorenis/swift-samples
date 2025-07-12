@@ -8,6 +8,14 @@
 import Foundation
 import Combine
 
+/// A singleton service responsible for downloading and publishing product data from a remote API.
+///
+/// `ProductModelDataService` uses Combine to asynchronously fetch and decode product information,
+/// exposing the results via a `@Published` `productModels` property. This allows view models
+/// to observe and reactively update when new product data becomes available.
+///
+/// - Important: This class follows the Singleton design pattern to ensure a single shared instance
+/// throughout the app.
 class ProductModelDataService {
     
     /// Shared singleton instance of `ProductModelDataService`.
