@@ -18,6 +18,8 @@ struct AccessibilityTextBootcamp: View {
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
                             Image(systemName: "heart.fill")
+//                                .font(.system(size: 18)) // Define a specific size. Do not resize
+                            
                             Text("Welcome to SwiftUI")
                                 .truncationMode(.tail)
                         }
@@ -30,7 +32,7 @@ struct AccessibilityTextBootcamp: View {
                             .minimumScaleFactor(sizeCategory.customMinScaleFactor) // Wooow
                     }
                     //.frame(height: 100)
-                    .background(Color.red)
+                    .background(Color.purple.opacity(0.3))
                 }
             }
             .listStyle(PlainListStyle())
