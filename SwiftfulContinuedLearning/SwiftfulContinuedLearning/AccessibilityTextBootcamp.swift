@@ -17,10 +17,14 @@ struct AccessibilityTextBootcamp: View {
                             Image(systemName: "heart.fill")
                             Text("Welcome to SwiftUI")
                         }
+                        .font(.title)
+                        
                         Text("This is some longer text that expands to multiple lines.")
                     }
                 }
             }
+            .listStyle(PlainListStyle())
+            .navigationTitle("Accessibility Text")
         }
     }
 }
