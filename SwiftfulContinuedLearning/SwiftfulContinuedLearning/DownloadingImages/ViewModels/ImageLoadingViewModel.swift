@@ -22,6 +22,7 @@ import Combine
 /// This class is designed to be used in SwiftUI views where image loading needs to be asynchronous,
 /// cached, and observable.
 class ImageLoadingViewModel: ObservableObject {
+    
     /// The loaded image. This is published so the UI can reactively update.
     @Published var image: UIImage? = nil
     

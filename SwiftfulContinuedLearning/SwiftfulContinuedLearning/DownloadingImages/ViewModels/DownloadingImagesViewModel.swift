@@ -17,8 +17,10 @@ import Combine
 /// This view model is suitable for use in SwiftUI views that need to display dynamic lists of products
 /// with images downloaded from the internet.
 class DownloadingImagesViewModel: ObservableObject {
+    
     /// The array of downloaded `ProductModel` items, published to allow SwiftUI views to update reactively.
     @Published var dataArray: [ProductModel] = []
+    
     /// A singleton dataService responsible for downloading product data from the internet.
     let dataService = ProductModelDataService.instance
     
