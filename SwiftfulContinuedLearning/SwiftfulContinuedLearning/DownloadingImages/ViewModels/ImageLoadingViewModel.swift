@@ -9,16 +9,41 @@ import Foundation
 import SwiftUI
 import Combine
 
+/// A view model responsible for asynchronously loading and caching images.
+///
+/// `ImageLoadingViewModel` provides functionality to retrieve an image either from a local cache or by downloading
+/// it from a remote URL. It uses Combine for handling asynchronous network operations and SwiftUI's
+/// `@Published` properties for reactive UI updates.
+///
+/// The image is first searched in a cache (via `ThumbnailModelFileManager`). If not found, it downloads the image
+/// and caches it for future use. The view model also maintains a loading state to indicate whether an image
+/// is currently being fetched.
+///
+/// This class is designed to be used in SwiftUI views where image loading needs to be asynchronous,
+/// cached, and observable.
 class ImageLoadingViewModel: ObservableObject {
+    /// The loaded image. This is published so the UI can reactively update.
     @Published var image: UIImage? = nil
+    
+    /// A flag indicating whether an image is currently being downloaded.
     @Published var isLoading: Bool = false
     
+    /// A set to store Combine subscriptions to keep them alive.
     var cancellables: Set<AnyCancellable> = []
+    
+    /// A singleton manager responsible for saving and retrieving cached images.
     let manager = ThumbnailModelFileManager.instance
     
+    /// The remote URL (as a string) to download the image from.
     let urlString: String
+    
+    /// A unique key used to store and retrieve the image from cache.
     let imageKey: String
     
+    /// Initializes the view model with a given URL and cache key.
+    /// - Parameters:
+    ///   - url: The string representation of the remote image URL.
+    ///   - key: The unique key to identify and store the image in cache.
     init(url: String, key: String) {
         urlString = url
         imageKey = key
@@ -73,7 +98,7 @@ class ImageLoadingViewModel: ObservableObject {
     ///
     /// If the URL is invalid, the method exits early and resets `isLoading` to `false`.
     ///
-    /// - Note: The Combine pipeline uses `[weak self]` to prevent strong reference cycles.
+    /// - Note: The Combine pipeline uses `[weak self]` to prevent strong reference cycles and prevent memory leaks.
     ///
     /// Example usage:
     /// ```swift
