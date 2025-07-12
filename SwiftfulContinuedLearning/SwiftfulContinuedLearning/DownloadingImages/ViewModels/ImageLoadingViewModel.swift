@@ -10,15 +10,15 @@ import SwiftUI
 import Combine
 
 /// A view model responsible for asynchronously loading and caching images.
-///
+/// 
 /// `ImageLoadingViewModel` provides functionality to retrieve an image either from a local cache or by downloading
 /// it from a remote URL. It uses Combine for handling asynchronous network operations and SwiftUI's
 /// `@Published` properties for reactive UI updates.
-///
+/// 
 /// The image is first searched in a cache (via `ThumbnailModelFileManager`). If not found, it downloads the image
 /// and caches it for future use. The view model also maintains a loading state to indicate whether an image
 /// is currently being fetched.
-///
+/// 
 /// This class is designed to be used in SwiftUI views where image loading needs to be asynchronous,
 /// cached, and observable.
 class ImageLoadingViewModel: ObservableObject {
