@@ -11,12 +11,16 @@ import SwiftUI
 
 struct AccessibilityColorsBootcamp: View {
     // MARK: PROPERTIES
+    @Environment(\.colorSchemeContrast) var schemeContrast
     @Environment(\.accessibilityReduceTransparency) var reduceTransparency
+    @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
+    @Environment(\.accessibilityInvertColors) var invertColors
+
     var body: some View {
         NavigationStack {
             VStack {
                 Button("Button one") {}
-                .foregroundStyle(.primary)
+                    .foregroundStyle(schemeContrast == .increased ? .white : .primary)
                 .buttonStyle(.borderedProminent)
                 
                 Button("Button one") {}
@@ -25,14 +29,14 @@ struct AccessibilityColorsBootcamp: View {
                 .tint(Color.orange)
                 
                 Button("Button one") {}
-                .foregroundStyle(.primary)
+                .foregroundStyle(.white)
                 .buttonStyle(.borderedProminent)
                 .tint(.green)
                 
                 Button("Button one") {}
                 .foregroundStyle(.primary)
                 .buttonStyle(.borderedProminent)
-                .tint(.purple)
+                .tint(differentiateWithoutColor ? .black : .purple)
             }
             .font(.largeTitle)
             //.navigationTitle("Hi")
