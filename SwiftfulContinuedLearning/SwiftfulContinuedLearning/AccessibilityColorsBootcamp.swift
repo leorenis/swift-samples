@@ -2,7 +2,9 @@
 //  AccessibilityColorsBootcamp.swift
 //  SwiftfulContinuedLearning
 //
-//  Created by Leo Renis Santos on 14/07/25.
+//  Created by Leo on 14/07/25.
+//  Contrast color checker: https://coolors.co/contrast-checker
+//  Other one: https://webaim.org/resources/contrastchecker/
 //
 
 import SwiftUI
