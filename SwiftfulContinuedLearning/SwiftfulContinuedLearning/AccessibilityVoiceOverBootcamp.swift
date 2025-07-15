@@ -20,12 +20,21 @@ struct AccessibilityVoiceOverBootcamp: View {
                         Text("Volume")
                         Spacer()
                         Text(isActive ? "ON" : "OFF")
+                            .accessibilityHidden(true)
                             
                     }
                     .background(Color.black.opacity(0.001))
                     .onTapGesture {
                         isActive.toggle()
                     }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityAddTraits(.isButton)
+                    .accessibilityValue(isActive ? "IS ON" : "IS OFF")
+                    .accessibilityHint("Double tap to toggle setting.")
+                    .accessibilityAction {
+                        isActive.toggle()
+                    }
+                    
                 } header: {
                     Text("Preferences")
                 }
