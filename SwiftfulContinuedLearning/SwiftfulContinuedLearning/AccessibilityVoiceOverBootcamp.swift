@@ -16,7 +16,37 @@ struct AccessibilityVoiceOverBootcamp: View {
                 Section {
                     Toggle("Volume", isOn: $isActive)
                     
+                    HStack {
+                        Text("Volume")
+                        Spacer()
+                        Text(isActive ? "ON" : "OFF")
+                            
+                    }
+                    .background(Color.black.opacity(0.001))
+                    .onTapGesture {
+                        isActive.toggle()
+                    }
+                } header: {
+                    Text("Preferences")
+                }
+                
+                Section {
+                    Button("Favorites") {
+                        
+                    }
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "heart.fill")
+                    }
                     
+                    Text("Favorites")
+                        .onTapGesture {
+                            
+                        }
+
+                } header: {
+                    Text("Applications")
                 }
             }
         }
