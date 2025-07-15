@@ -10,31 +10,39 @@
 import SwiftUI
 
 struct AccessibilityColorsBootcamp: View {
+    // MARK: PROPERTIES
+    @Environment(\.accessibilityReduceTransparency) var reduceTransparency
     var body: some View {
-        VStack {
-            Button("Button one") {}
-            .foregroundStyle(.primary)
-            .buttonStyle(.borderedProminent)
-            
-            Button("Button one") {}
-            .foregroundStyle(.primary)
-            .buttonStyle(.borderedProminent)
-            .tint(Color.orange)
-            
-            Button("Button one") {}
-            .foregroundStyle(.primary)
-            .buttonStyle(.borderedProminent)
-            .tint(.green)
-            
-            Button("Button one") {}
-            .foregroundStyle(.primary)
-            .buttonStyle(.borderedProminent)
-            .tint(.purple)
+        NavigationStack {
+            VStack {
+                Button("Button one") {}
+                .foregroundStyle(.primary)
+                .buttonStyle(.borderedProminent)
+                
+                Button("Button one") {}
+                .foregroundStyle(.primary)
+                .buttonStyle(.borderedProminent)
+                .tint(Color.orange)
+                
+                Button("Button one") {}
+                .foregroundStyle(.primary)
+                .buttonStyle(.borderedProminent)
+                .tint(.green)
+                
+                Button("Button one") {}
+                .foregroundStyle(.primary)
+                .buttonStyle(.borderedProminent)
+                .tint(.purple)
+            }
+            .font(.largeTitle)
+            //.navigationTitle("Hi")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(reduceTransparency ? Color.black : Color.black.opacity(0.5))
         }
-        .font(.largeTitle)
     }
 }
 
+// MARK: PREVIEW
 #Preview {
     AccessibilityColorsBootcamp()
 }
