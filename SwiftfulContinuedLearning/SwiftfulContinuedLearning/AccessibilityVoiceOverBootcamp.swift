@@ -48,7 +48,36 @@ struct AccessibilityVoiceOverBootcamp: View {
                 } header: {
                     Text("Applications")
                 }
+                
+                
+                VStack {
+                    Text("Content")
+                        .textCase(.uppercase)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundStyle(.secondary)
+                        .font(.caption)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 8) {
+                            ForEach(0..<10) { index in
+                                VStack {
+                                    Image("dog")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 188, height: 230)
+                                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                                    
+                                    Text("Dog \(index)")
+                                        .onTapGesture {
+                                            
+                                        }
+                                }
+                            }
+                        }
+                    }
+                }
             }
+            .navigationTitle("Settings")
         }
     }
 }
