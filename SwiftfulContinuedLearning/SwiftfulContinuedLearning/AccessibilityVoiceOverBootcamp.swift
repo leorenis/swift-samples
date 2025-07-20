@@ -68,6 +68,7 @@ struct AccessibilityVoiceOverBootcamp: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundStyle(.secondary)
                         .font(.caption)
+                        .accessibilityAddTraits(.isHeader)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
@@ -80,10 +81,11 @@ struct AccessibilityVoiceOverBootcamp: View {
                                         .clipShape(RoundedRectangle(cornerRadius: 16))
                                     
                                     Text("Dog \(index)")
-                                        .onTapGesture {
-                                            
-                                        }
                                 }
+                                .onTapGesture {
+                                    
+                                }
+                                .accessibilityElement(children: .combine)
                             }
                         }
                     }
