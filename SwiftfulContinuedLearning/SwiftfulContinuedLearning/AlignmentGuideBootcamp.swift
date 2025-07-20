@@ -25,6 +25,25 @@ struct AlignmentGuideBootcamp: View {
     }
 }
 
+struct AlignmentChildView: View {
+    var body: some View {
+        VStack (alignment: .leading, spacing: 20) {
+            row(title: "First row")
+            row(title: "Second row")
+            row(title: "Third row")
+        }
+    }
+    
+    private func row(title: String) -> some View {
+        HStack(spacing: 10) {
+            Image(systemName: "info.circle")
+                .frame(width: 30, height: 30)
+            
+            Text(title)
+        }
+    }
+}
+
 #Preview {
-    AlignmentGuideBootcamp()
+    AlignmentChildView()
 }
