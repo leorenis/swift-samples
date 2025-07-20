@@ -61,7 +61,6 @@ struct AccessibilityVoiceOverBootcamp: View {
                     Text("Applications")
                 }
                 
-                
                 VStack {
                     Text("Content")
                         .textCase(.uppercase)
