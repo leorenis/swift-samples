@@ -43,12 +43,13 @@ struct AccessibilityVoiceOverBootcamp: View {
                     Button("Favorites") {
                         
                     }
-//                    .accessibilityRemoveTraits(.isButton) // To do when wanna remove voiceOver verbalization.
+                    .accessibilityRemoveTraits(.isButton) // To do when wanna remove voiceOver verbalization.
                     Button {
                         
                     } label: {
                         Image(systemName: "heart.fill")
                     }
+                    .accessibilityLabel("Favorites")
                     
                     Text("Favorites")
                         .onTapGesture {
