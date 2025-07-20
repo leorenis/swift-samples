@@ -43,6 +43,7 @@ struct AccessibilityVoiceOverBootcamp: View {
                     Button("Favorites") {
                         
                     }
+//                    .accessibilityRemoveTraits(.isButton) // To do when wanna remove voiceOver verbalization.
                     Button {
                         
                     } label: {
