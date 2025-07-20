@@ -3,6 +3,7 @@
 //  SwiftfulContinuedLearning
 //
 //  Created by Leo on 20/07/25.
+//  Aligment Guides: https://swiftui-lab.com/alignment-guides/
 //
 
 import SwiftUI
