@@ -13,7 +13,10 @@ struct AlignmentGuideBootcamp: View {
             Text("Hello!")
                 .background(.blue)
 //                .padding(.leading, 10)
-//                .offset(x: 10)
+//                .offset(x: -10)
+                .alignmentGuide(.leading) { dimension in
+                    return dimension.width * 0.5
+                }
             
             Text("Another text AlignementGuide")
                 .background(.red)
