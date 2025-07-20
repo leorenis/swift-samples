@@ -9,9 +9,11 @@ import SwiftUI
 
 struct AlignmentGuideBootcamp: View {
     var body: some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .leading) {
             Text("Hello!")
                 .background(.blue)
+//                .padding(.leading, 10)
+//                .offset(x: 10)
             
             Text("Another text AlignementGuide")
                 .background(.red)
