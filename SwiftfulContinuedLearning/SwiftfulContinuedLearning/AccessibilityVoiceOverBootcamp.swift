@@ -52,6 +52,7 @@ struct AccessibilityVoiceOverBootcamp: View {
                     .accessibilityLabel("Favorites")
                     
                     Text("Favorites")
+                        .accessibilityAddTraits(.isButton)// To do when wanna add voiceOver verbalization.
                         .onTapGesture {
                             
                         }
