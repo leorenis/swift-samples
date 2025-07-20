@@ -86,6 +86,9 @@ struct AccessibilityVoiceOverBootcamp: View {
                                     
                                 }
                                 .accessibilityElement(children: .combine)
+                                .accessibilityAddTraits(.isButton)
+                                .accessibilityLabel("Dog \(index)")
+                                
                             }
                         }
                     }
