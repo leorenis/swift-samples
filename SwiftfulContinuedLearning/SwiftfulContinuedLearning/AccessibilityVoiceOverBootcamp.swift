@@ -87,8 +87,11 @@ struct AccessibilityVoiceOverBootcamp: View {
                                 }
                                 .accessibilityElement(children: .combine)
                                 .accessibilityAddTraits(.isButton)
-                                .accessibilityLabel("Dog \(index)")
-                                
+                                .accessibilityLabel("Item \(index). Image of a dog.")
+                                .accessibilityHint("Double tap to open.")
+                                .accessibilityAction {
+                                    
+                                }
                             }
                         }
                     }
