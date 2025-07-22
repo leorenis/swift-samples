@@ -8,17 +8,26 @@
 import SwiftUI
 
 struct VisualEffectBootcamp: View {
+    @State private var showSpacer: Bool = false
     var body: some View {
-        
-        GeometryReader { geometry in
-            Text("Hello, Visual Effect!")
+        VStack {
+            Text("Learning Visual Effect!")
                 .padding()
-                .frame(width: 100)
                 .background(.red)
-                .grayscale(0)
+                .visualEffect { content, geometry in
+                    content
+                        .grayscale(geometry.frame(in: .global).minY < 300 ? 1 : 0)
+//                    content.grayscale(geometry.size.width >= 200 ? 1 : 0)
+                }
+            
+            if showSpacer {
+                Spacer()
+            }
         }
-        .background(.green)
-        .padding()
+        .animation(.easeIn, value: showSpacer)
+        .onTapGesture {
+            showSpacer.toggle()
+        }
     }
 }
 
