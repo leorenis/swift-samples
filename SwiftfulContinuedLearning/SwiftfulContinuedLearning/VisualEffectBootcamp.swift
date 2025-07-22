@@ -9,11 +9,16 @@ import SwiftUI
 
 struct VisualEffectBootcamp: View {
     var body: some View {
-        Text("Hello, Visual Effect!")
-            .padding()
-            .frame(width: 100)
-            .background(.red)
-            .grayscale(0)
+        
+        GeometryReader { geometry in
+            Text("Hello, Visual Effect!")
+                .padding()
+                .frame(width: 100)
+                .background(.red)
+                .grayscale(0)
+        }
+        .background(.green)
+        .padding()
     }
 }
 
