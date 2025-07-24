@@ -9,15 +9,21 @@ import SwiftUI
 
 struct ScrollViewPagingBootcamp: View {
     var body: some View {
-        // ScrollViewTicTokUX()
+//        VScrollViewTicTokUX()
+        HScollViewUX()
+    }
+}
+
+struct VScrollViewTicTokUX: View {
+    var body: some View {
         ScrollView {
-            ForEach(0..<10) { index in
-                VStack(spacing: 0) {
+            VStack(spacing: 0) {
+                ForEach(0..<10) { index in
                     Rectangle()
                         //.frame(width: 300, height: 300)
                         .overlay(Text("\(index)").foregroundStyle(.white))
                         .frame(maxWidth: .infinity)
-                        //.padding(.vertical, 10)
+                        .padding(.vertical, 10)
                         .containerRelativeFrame(.vertical, alignment: .center)
                 }
             }
@@ -29,17 +35,18 @@ struct ScrollViewPagingBootcamp: View {
     }
 }
 
-struct ScrollViewTicTokUX: View {
+struct HScollViewUX: View {
     var body: some View {
-        ScrollView {
-            ForEach(0..<10) { index in
-                VStack(spacing: 0) {
+        ScrollView(.horizontal) {
+            HStack(spacing: 0) {
+                ForEach(0..<10) { index in
                     Rectangle()
-                        //.frame(width: 300, height: 300)
+                        .frame(width: 300, height: 300)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                         .overlay(Text("\(index)").foregroundStyle(.white))
                         .frame(maxWidth: .infinity)
-                        //.padding(.vertical, 10)
-                        .containerRelativeFrame(.vertical, alignment: .center)
+                        .padding(.vertical, 10)
+                        .containerRelativeFrame(.horizontal, alignment: .center)
                 }
             }
         }
