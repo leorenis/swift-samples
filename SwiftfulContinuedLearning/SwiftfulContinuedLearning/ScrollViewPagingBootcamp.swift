@@ -36,24 +36,42 @@ struct VScrollViewTicTokUX: View {
 }
 
 struct HScollViewUX: View {
+    @State private var scrollPosition: Int? = nil
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack(spacing: 0) {
-                ForEach(0..<10) { index in
-                    Rectangle()
-                        .frame(width: 300, height: 300)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .overlay(Text("\(index)").foregroundStyle(.white))
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 10)
-                        .containerRelativeFrame(.horizontal, alignment: .center)
+        VStack {
+            Button {
+                scrollPosition = (0..<10).randomElement()
+            } label: {
+                Text("Scroll to")
+                    .textCase(.uppercase)
+                    .padding()
+                    .background(.blue)
+                    .foregroundStyle(.white)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+
+            ScrollView(.horizontal) {
+                HStack(spacing: 0) {
+                    ForEach(0..<10) { index in
+                        Rectangle()
+                            .frame(width: 300, height: 300)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                            .overlay(Text("\(index)").foregroundStyle(.white))
+                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal, 10)
+                            .id(index)
+//                            .containerRelativeFrame(.horizontal, alignment: .center)
+                    }
                 }
             }
+            .ignoresSafeArea()
+            .scrollTargetLayout()
+            .scrollTargetBehavior(.viewAligned)
+            .scrollBounceBehavior(.basedOnSize)
+            .scrollPosition(id: $scrollPosition, anchor: .center)
+            .animation(.smooth, value: scrollPosition)
         }
-        .ignoresSafeArea()
-        .scrollTargetLayout()
-        .scrollTargetBehavior(.paging)
-        .scrollBounceBehavior(.basedOnSize)
     }
 }
 
