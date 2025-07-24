@@ -9,7 +9,17 @@ import SwiftUI
 
 struct ScrollViewPagingBootcamp: View {
     var body: some View {
-        Text("Hello, Scroll!")
+        ScrollView {
+            ForEach(0..<10) { index in
+                VStack(spacing: 30) {
+                    Rectangle()
+                        .frame(width: 300, height: 300)
+                        .overlay(Text("\(index)").foregroundStyle(.white))
+                        .frame(maxWidth: .infinity)
+                }
+            }
+        }
+        .scrollBounceBehavior(.basedOnSize)
     }
 }
 
