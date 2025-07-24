@@ -61,9 +61,15 @@ struct HScollViewUX: View {
                             .frame(maxWidth: .infinity)
                             .padding(.horizontal, 10)
                             .id(index)
+                            .scrollTransition(.interactive.threshold(.visible(0.9))) { content, phase in
+                                content
+                                    .opacity(phase.isIdentity ? 1 : 0)
+                                    .offset(y: phase.isIdentity ? 0 : -100)
+                            }
 //                            .containerRelativeFrame(.horizontal, alignment: .center)
                     }
                 }
+                .padding(.vertical, 100)
             }
             .ignoresSafeArea()
             .scrollTargetLayout()
