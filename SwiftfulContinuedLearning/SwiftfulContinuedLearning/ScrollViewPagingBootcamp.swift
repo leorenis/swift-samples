@@ -11,14 +11,19 @@ struct ScrollViewPagingBootcamp: View {
     var body: some View {
         ScrollView {
             ForEach(0..<10) { index in
-                VStack(spacing: 30) {
+                VStack(spacing: 0) {
                     Rectangle()
-                        .frame(width: 300, height: 300)
+                        //.frame(width: 300, height: 300)
                         .overlay(Text("\(index)").foregroundStyle(.white))
                         .frame(maxWidth: .infinity)
+                        //.padding(.vertical, 10)
+                        .containerRelativeFrame(.vertical, alignment: .center)
                 }
             }
         }
+        .ignoresSafeArea()
+        .scrollTargetLayout()
+        .scrollTargetBehavior(.paging)
         .scrollBounceBehavior(.basedOnSize)
     }
 }
